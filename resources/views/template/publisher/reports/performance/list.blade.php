@@ -508,39 +508,18 @@
                 <div class="col-lg-12">
                     <div class="shop-breadcrumb">
                         <div class="breadcrumb-main">
-                            <h4 class="text-capitalize breadcrumb-title">Advertiser Performance</h4>
-
+                            <h1 class="title">Advertiser Performance</h1>
                             @include("partial.publisher.transaction_alert")
+                            <div class="d-flex justify-content-end">
+                                <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black" id="totalResults">Total Results: <strong>{{ $total }}</strong></p>
+                            </div>
 
-                            <div class="breadcrumb-action justify-content-center flex-wrap">
-                                <div class="action-btn">
-                                    <div class="form-group mb-0">
-                                        <div class="input-container icon-left position-relative">
-                                                <span class="input-icon icon-left">
-                                                    <span data-feather="calendar"></span>
-                                                </span>
-                                            <input type="text" class="form-control form-control-default date-ranger"
-                                                   name="date-ranger"
-                                                   placeholder="{{ now()->format("M 01, Y") }} - {{ now()->format("M t, Y") }}"/>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="dropdown action-btn">
-                                    <button class="btn btn-sm btn-default btn-white dropdown-toggle" type="button"
-                                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                        <i class="la la-download"></i> Export
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <span class="dropdown-item">Export With</span>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="{{ route("publisher.reports.performance-by-transactions.export", ['type' => 'xlsx', 'start_date' => request()->start_date ?? now()->format("Y-m-01 00:00:00"), 'end_date' => request()->end_date ?? now()->format("Y-m-t 23:59:59")]) }}"
-                                           id="exportXLSX" class="dropdown-item">
-                                            <i class="la la-file-excel"></i> Excel (XLSX)</a>
-                                        <a href="{{ route("publisher.reports.performance-by-transactions.export", ['type' => 'csv', 'start_date' => request()->start_date ?? now()->format("Y-m-01 00:00:00"), 'end_date' => request()->end_date ?? now()->format("Y-m-t 23:59:59")]) }}"
-                                           id="exportCSV" class="dropdown-item">
-                                            <i class="la la-file-csv"></i> CSV</a>
-                                    </div>
+                            <div class="date-filter-container my-4 justify-content-end">
+                                <div class="date-input-wrapper">
+                                    <i class="ri-calendar-2-line date-icon"></i>
+                                    <input type="text" class="date-input-glass form-control"
+                                        name="date-ranger"
+                                        placeholder="{{ now()->format('M 01, Y') }} - {{ now()->format('M t, Y') }}"/>
                                 </div>
                             </div>
                         </div>
@@ -558,40 +537,38 @@
                 <div class="col-lg-12">
                     <div class="orderDatatable global-shadow border py-30 px-sm-30 px-20 bg-white radius-xl w-100 mb-30">
                         <div class="project-top-wrapper d-flex justify-content-between flex-wrap mb-25 mt-n10">
-                            <div class="d-flex align-items-center flex-wrap justify-content-center">
-                                <div class="project-search order-search  global-shadow mt-10">
-                                    <form action="/" class="order-search__form">
-                                        <span data-feather="search"></span>
-                                        <input id="SearchByName" class="form-control mr-sm-2 border-0 box-shadow-none" type="text" placeholder="Filter by name, id..." aria-label="Search" value="{{ request()->earning_search }}">
-                                    </form>
-                                </div><!-- End: .project-search -->
-                                <div class="project-category d-flex align-items-center mt-xl-10 mt-15">
-                                    <a href="javascript:void(0)" id="clearSearchByName"
-                                       onclick="clearFilter('clearSearchByName')"
-                                       class="margin-left-minus-50px {{ request()->earning_search ? null : "display-hidden" }}">
-                                        <small>Clear</small>
-                                    </a>
-                                </div>
-                                <div class="project-category d-flex align-items-center ml-md-30 mt-xl-10 mt-15">
-                                    <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black">Sort By :</p>
-                                    <div class="project-category__select global-shadow ">
-                                        <select class="js-example-basic-single js-states form-control" id="sortBy">
-                                            <option {{ request()->earning_sort == "advertiser" || empty(request()->earning_sort) ? "selected" : "" }} value="advertiser">Advertiser</option>
-                                            <option {{ request()->earning_sort == "sale" ? "selected" : "" }} value="sale">Sale</option>
-                                            <option {{ request()->earning_sort == "commission" ? "selected" : "" }} value="commission">Commission</option>
-                                            <option {{ request()->earning_sort == "transactions" ? "selected" : "" }} value="transactions">Transactions</option>
-                                        </select>
-                                    </div>
-                                </div><!-- End: .project-category -->
-                            </div><!-- End: .d-flex -->
-                            <div class="content-center mt-10">
-                                <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black" id="totalResults">Total Results: <strong>{{ $total }}</strong></p>
-                            </div><!-- End: .content-center -->
+                            <!-- End: .content-center -->
                         </div><!-- End: .project-top-wrapper -->
 
                         @include("partial.admin.alert")
-                        <div id="ap-overview">
-                            @include("template.publisher.reports.performance.transaction.list_view", compact('performanceOverviewList'))
+
+                        <div class="table-container">
+                            <div class="d-flex justify-content-between">
+                                <div class="search-box">
+                                    <i class="ri-search-line search-icon"></i>
+                                    <input class="search-input" type="text" id="SearchByName" placeholder="Search by Name..." value="{{ request()->search_by_name }}">
+                                </div>
+                                <div class="dropdown action-btn">
+                                    <button class="btn btn-sm btn-primary-outline dropdown-toggle" type="button"
+                                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                        <i class="la la-download"></i> Export
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <span class="dropdown-item">Export With</span>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="{{ route("publisher.reports.performance-by-transactions.export", ['type' => 'xlsx', 'start_date' => request()->start_date ?? now()->format("Y-m-01 00:00:00"), 'end_date' => request()->end_date ?? now()->format("Y-m-t 23:59:59")]) }}"
+                                           id="exportXLSX" class="dropdown-item">
+                                            <i class="la la-file-excel"></i> Excel (XLSX)</a>
+                                        <a href="{{ route("publisher.reports.performance-by-transactions.export", ['type' => 'csv', 'start_date' => request()->start_date ?? now()->format("Y-m-01 00:00:00"), 'end_date' => request()->end_date ?? now()->format("Y-m-t 23:59:59")]) }}"
+                                           id="exportCSV" class="dropdown-item">
+                                            <i class="la la-file-csv"></i> CSV</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="ap-overview">
+                                @include("template.publisher.reports.performance.transaction.list_view", compact('performanceOverviewList'))
+                            </div>
                         </div>
 
                     </div><!-- End: .userDatatable -->

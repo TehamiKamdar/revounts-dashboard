@@ -1,9 +1,9 @@
-<?php if (! $__env->hasRenderedOnce('c30fb88b-8df9-4fbc-88d2-180826aef879')): $__env->markAsRenderedOnce('c30fb88b-8df9-4fbc-88d2-180826aef879');
+<?php if (! $__env->hasRenderedOnce('3c01a40e-406d-444c-883c-cdcee2876d96')): $__env->markAsRenderedOnce('3c01a40e-406d-444c-883c-cdcee2876d96');
 $__env->startPush('styles'); ?>
     <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/daterangepicker.css")); ?>">
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('1a882608-510b-4a62-b8d0-33b474d4989e')): $__env->markAsRenderedOnce('1a882608-510b-4a62-b8d0-33b474d4989e');
+<?php if (! $__env->hasRenderedOnce('080a3ffb-3c5f-43e5-9bba-69bcf807f72b')): $__env->markAsRenderedOnce('080a3ffb-3c5f-43e5-9bba-69bcf807f72b');
 $__env->startPush('scripts'); ?>
 
     <?php
@@ -306,44 +306,25 @@ $__env->startPush('scripts'); ?>
                 <div class="col-lg-12">
                     <div class="shop-breadcrumb">
 
-                        <div class="breadcrumb-main">
-                            <h4 class="text-capitalize breadcrumb-title">Transactions</h4>
+                        < class="breadcrumb-main">
+                            <h1 class="title">Transactions</h1>
 
                             <?php echo $__env->make("partial.publisher.transaction_alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-                            <div class="breadcrumb-action justify-content-center flex-wrap">
+                            <div class="d-flex justify-content-end">
+                                <p class="subtitle">Total
+                                    Results: <strong id="totalResults"><?php echo e($total); ?></strong></p>
+                            </div>
                                 <?php if(!request()->payment_id): ?>
-                                    <div class="action-btn">
-                                        <div class="form-group mb-0">
-                                            <div class="input-container icon-left position-relative">
-                                                <span class="input-icon icon-left">
-                                                    <span data-feather="calendar"></span>
-                                                </span>
-                                                <input type="text" class="form-control form-control-default date-ranger"
-                                                       name="date-ranger"
-                                                       placeholder="Jan 01, <?php echo e(now()->format("Y")); ?> - <?php echo e(now()->format("M d, Y")); ?>"/>
-                                            </div>
+                                    <div class="date-filter-container my-4 justify-content-end">
+                                        <div class="date-input-wrapper">
+                                            <i class="ri-calendar-2-line date-icon"></i>
+                                            <input type="text" class="date-input-glass form-control"
+                                                name="date-ranger"
+                                                placeholder="<?php echo e(now()->format('M 01, Y')); ?> - <?php echo e(now()->format('M t, Y')); ?>"/>
                                         </div>
                                     </div>
                                 <?php endif; ?>
-                                <div class="dropdown action-btn">
-                                    <button class="btn btn-sm btn-default btn-white dropdown-toggle" type="button"
-                                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                        <i class="la la-download"></i> Export
-                                    </button>
-                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                        <span class="dropdown-item">Export With</span>
-                                        <div class="dropdown-divider"></div>
-                                        <a href="<?php echo e($xslx); ?>"
-                                           id="exportXLSX" class="dropdown-item">
-                                            <i class="la la-file-excel"></i> Excel (XLSX)</a>
-                                        <a href="<?php echo e($csv); ?>"
-                                           id="exportCSV" class="dropdown-item">
-                                            <i class="la la-file-csv"></i> CSV</a>
-                                    </div>
-                                </div>
-                            </div>
+
                         </div>
 
                     </div>
@@ -372,9 +353,22 @@ $__env->startPush('scripts'); ?>
                                         <small>Clear</small>
                                     </a>
                                 </div>
+                            </div><!-- End: .d-flex -->
+                            <!-- End: .content-center -->
+                        </div><!-- End: .project-top-wrapper -->
+
+                        <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                        <div class="table-container">
+                            <div class="d-flex justify-content-between">
+                                <div class="search-box">
+                                    <i class="ri-search-line search-icon"></i>
+                                    <input class="search-input" type="text" id="SearchByName" placeholder="Search by Name..." value="<?php echo e(request()->search_by_name); ?>">
+                                </div>
+
                                 <?php if(!request()->payment_id): ?>
-                                    <div class="project-category d-flex align-items-center ml-md-30 mt-xl-10 mt-15">
-                                        <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black">Status :</p>
+                                    <div>
+                                        <div class="d-flex align-items-center">
+                                        <span class="text-primary-light">Status :</span>
                                         <div class="project-tap order-project-tap global-shadow">
                                             <ul class="nav px-1" id="ap-tab" role="tablist">
                                                 <li class="nav-item">
@@ -407,9 +401,11 @@ $__env->startPush('scripts'); ?>
                                                 </li>
                                             </ul>
                                         </div>
+                                    </div>
                                     </div><!-- End: .project-category -->
-                                    <div class="project-category d-flex align-items-center ml-md-30 mt-xl-10 mt-15">
-                                        <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black">Region :</p>
+                                    <div>
+                                        <div class="d-flex align-items-center">
+                                        <span class="text-primary-light">Region :</span>
                                         <div class="project-category__select global-shadow ">
                                             <select class="js-example-basic-single js-states form-control" id="region">
                                                 <option <?php echo e(request()->region == "all" || empty(request()->region) ? "selected" : ""); ?> value="all">All Regions</option>
@@ -423,18 +419,30 @@ $__env->startPush('scripts'); ?>
                                                 <option <?php echo e(request()->region == "unknown" ? "selected" : ""); ?> value="unknown">Unknown</option>
                                             </select>
                                         </div>
-                                    </div><!-- End: .project-category -->
+                                    </div>
+                                </div><!-- End: .project-category -->
                                 <?php endif; ?>
-                            </div><!-- End: .d-flex -->
-                            <div class="content-center mt-10">
-                                <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black">Total
-                                    Results: <strong id="totalResults"><?php echo e($total); ?></strong></p>
-                            </div><!-- End: .content-center -->
-                        </div><!-- End: .project-top-wrapper -->
-
-                        <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                        <div id="ap-overview">
-                            <?php echo $__env->make("template.publisher.reports.transaction.list_view", compact('transactions'), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                                <div class="dropdown action-btn">
+                                    <button class="btn btn-sm btn-primary-outline dropdown-toggle" type="button"
+                                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                        <i class="la la-download"></i> Export
+                                    </button>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                        <span class="dropdown-item">Export With</span>
+                                        <div class="dropdown-divider"></div>
+                                        <a href="<?php echo e($xslx); ?>"
+                                           id="exportXLSX" class="dropdown-item">
+                                            <i class="la la-file-excel"></i> Excel (XLSX)</a>
+                                        <a href="<?php echo e($csv); ?>"
+                                           id="exportCSV" class="dropdown-item">
+                                            <i class="la la-file-csv"></i> CSV</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="ap-overview">
+                                <?php echo $__env->make("template.publisher.reports.transaction.list_view", compact('transactions'), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                            </div>
                         </div>
 
                     </div><!-- End: .userDatatable -->

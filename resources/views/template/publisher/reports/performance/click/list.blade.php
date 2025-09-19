@@ -373,23 +373,44 @@
                 <div class="col-lg-12">
                     <div class="shop-breadcrumb">
                         <div class="breadcrumb-main">
-                            <h4 class="text-capitalize breadcrumb-title">Clicks Performance</h4>
-
-                            <div class="breadcrumb-action justify-content-center flex-wrap">
-                                <div class="action-btn">
-                                    <div class="form-group mb-0">
-                                        <div class="input-container icon-left position-relative">
-                                                <span class="input-icon icon-left">
-                                                    <span data-feather="calendar"></span>
-                                                </span>
-                                            <input type="text" class="form-control form-control-default date-ranger"
-                                                   name="date-ranger"
-                                                   placeholder="{{ now()->format("M 01, Y") }} - {{ now()->format("M t, Y") }}"/>
-                                        </div>
-                                    </div>
+                            <h1 class="title">Clicks Performance</h1>
+                            <div class="d-flex justify-content-end flex-wrap mb-25 mt-n10">
+                                <p class="subtitle" id="totalResults">Total Results: <strong>{{ $total }}</strong></p>
+                            </div><!-- End: .project-top-wrapper -->
+                            <div class="date-filter-container my-4 justify-content-end">
+                                <div class="date-input-wrapper">
+                                    <i class="ri-calendar-2-line date-icon"></i>
+                                    <input type="text" class="date-input-glass form-control"
+                                        name="date-ranger"
+                                        placeholder="{{ now()->format('M 01, Y') }} - {{ now()->format('M t, Y') }}"/>
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12" id="performanceOverview">
+                    @include("template.publisher.widgets.section_performance_click_overview", compact('performanceOverview'))
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row" id="listingContentWrapper">
+                <div class="col-lg-12">
+                    <div class="">
+
+
+                        @include("partial.admin.alert")
+                        <div class="table-container">
+                            <div class="d-flex justify-content-between">
+
+                            <div class="search-box">
+                                <i class="ri-search-line search-icon"></i>
+                                <input class="search-input" type="text" id="SearchByName" placeholder="Search by Name..." value="{{ request()->search_by_name }}">
+                            </div>
                                 <div class="dropdown action-btn">
-                                    <button class="btn btn-sm btn-default btn-white dropdown-toggle" type="button"
+                                    <button class="btn btn-sm btn-primary-outline dropdown-toggle" type="button"
                                             id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
                                         <i class="la la-download"></i> Export
@@ -406,90 +427,13 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12" id="performanceOverview">
-                    @include("template.publisher.widgets.section_performance_click_overview", compact('performanceOverview'))
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid">
-            <div class="row" id="listingContentWrapper">
-                <div class="col-lg-12">
-                    <div class="orderDatatable global-shadow border py-30 px-sm-30 px-20 bg-white radius-xl w-100 mb-30">
-                        <div class="project-top-wrapper d-flex justify-content-between flex-wrap mb-25 mt-n10">
-                            <div class="d-flex align-items-center flex-wrap justify-content-center">
-                                <div class="project-search order-search  global-shadow mt-10">
-                                    <form action="/" class="order-search__form">
-                                        <span data-feather="search"></span>
-                                        <input id="SearchByName" class="form-control mr-sm-2 border-0 box-shadow-none" type="text" placeholder="Filter by name, id..." aria-label="Search" value="{{ request()->conversion_search }}">
-                                    </form>
-                                </div><!-- End: .project-search -->
-                                <div class="project-category d-flex align-items-center mt-xl-10 mt-15">
-                                    <a href="javascript:void(0)" id="clearSearchByName"
-                                       onclick="clearFilter('clearSearchByName')"
-                                       class="margin-left-minus-50px {{ request()->conversion_search ? null : "display-hidden" }}">
-                                        <small>Clear</small>
-                                    </a>
-                                </div>
-                                <div class="project-category d-flex align-items-center ml-md-30 mt-xl-10 mt-15">
-                                </div><!-- End: .project-category -->
-                            </div><!-- End: .d-flex -->
-                            <div class="content-center mt-10">
-                                <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black" id="totalResults">Total Results: <strong>{{ $total }}</strong></p>
-                            </div><!-- End: .content-center -->
-                        </div><!-- End: .project-top-wrapper -->
-
-                        @include("partial.admin.alert")
-                        <div id="ap-overview">
-                            @include("template.publisher.reports.performance.click.list_view", compact('performanceOverviewList2'))
+                            <div id="ap-overview">
+                                @include("template.publisher.reports.performance.click.list_view", compact('performanceOverviewList2'))
+                            </div>
                         </div>
 
                     </div><!-- End: .userDatatable -->
                 </div><!-- End: .col -->
-{{--                <div class="col-lg-6">--}}
-{{--                    <div class="orderDatatable global-shadow border py-30 px-sm-30 px-20 bg-white radius-xl w-100 mb-30">--}}
-{{--                        <div class="project-top-wrapper d-flex justify-content-between flex-wrap mb-25 mt-n10">--}}
-{{--                            <div class="d-flex align-items-center flex-wrap justify-content-center">--}}
-{{--                                <div class="project-search order-search  global-shadow mt-10">--}}
-{{--                                    <form action="/" class="order-search__form">--}}
-{{--                                        <span data-feather="search"></span>--}}
-{{--                                        <input id="SearchByName2" class="form-control mr-sm-2 border-0 box-shadow-none" type="text" placeholder="Filter by name, id..." aria-label="Search" value="{{ request()->conversion_search }}">--}}
-{{--                                    </form>--}}
-{{--                                </div><!-- End: .project-search -->--}}
-{{--                                <div class="project-category d-flex align-items-center mt-xl-10 mt-15">--}}
-{{--                                    <a href="javascript:void(0)" id="clearSearchByName2"--}}
-{{--                                       onclick="clearFilter('clearSearchByName2')"--}}
-{{--                                       class="margin-left-minus-50px {{ request()->conversion_search ? null : "display-hidden" }}">--}}
-{{--                                        <small>Clear</small>--}}
-{{--                                    </a>--}}
-{{--                                </div>--}}
-{{--                                <div class="project-category d-flex align-items-center ml-md-30 mt-xl-10 mt-15">--}}
-{{--                                    <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black">Sort By :</p>--}}
-{{--                                    <div class="project-category__select global-shadow ">--}}
-{{--                                        <select class="js-example-basic-single js-states form-control" id="sortBy2">--}}
-{{--                                            <option {{ request()->conversion_sort == "advertiser" || empty(request()->conversion_sort) ? "selected" : "" }} value="advertiser">Advertiser</option>--}}
-{{--                                            <option {{ request()->earning_sort == "transactions" ? "selected" : "" }} value="transactions">Transactions</option>--}}
-{{--                                            <option {{ request()->conversion_sort == "clicks" ? "selected" : "" }} value="clicks">Clicks</option>--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div><!-- End: .project-category -->--}}
-{{--                            </div><!-- End: .d-flex -->--}}
-{{--                            <div class="content-center mt-10">--}}
-{{--                                <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black" id="totalResults2">Total Results: <strong>{{ $total2 }}</strong></p>--}}
-{{--                            </div><!-- End: .content-center -->--}}
-{{--                        </div><!-- End: .project-top-wrapper -->--}}
-
-{{--                        @include("partial.admin.alert")--}}
-{{--                        <div id="ap-overview-2">--}}
-{{--                            @include("template.publisher.reports.performance.transaction.list_view_2", compact('performanceOverviewList2'))--}}
-{{--                        </div>--}}
-
-{{--                    </div><!-- End: .userDatatable -->--}}
-{{--                </div>--}}
             </div>
         </div>
 

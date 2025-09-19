@@ -994,23 +994,91 @@ function chartjsLineChartThree(selector, bcolor = "#FA8B0C") {
 chartjsLineChartThree("myChart5");
 
 /* line chart four */
-function chartjsLineChartFour(selector, bcolor = "#FA8B0C", height = "95", dataCur, dataPrev, labels, suggestedMin = 50, suggestedMax = 80) {
+function chartjsLineChartFour(selector, bcolor = "#7b36b5", height = "95", dataCur, dataPrev, labels, suggestedMin = 50, suggestedMax = 80) {
     var ctxs = document.getElementById(selector);
     if (ctxs) {
         ctxs.getContext("2d");
         ctxs.height = window.innerWidth <= 575 ? 190 : height;
+
+        // Custom tooltip function
+        var customTooltips = function(tooltip) {
+            // Tooltip Element
+            var tooltipEl = document.getElementById('chartjs-tooltip');
+
+            // Create element on first render
+            if (!tooltipEl) {
+                tooltipEl = document.createElement('div');
+                tooltipEl.id = 'chartjs-tooltip';
+                tooltipEl.className = 'custom-tooltip';
+                document.body.appendChild(tooltipEl);
+            }
+
+            // Hide if no tooltip
+            if (tooltip.opacity === 0) {
+                tooltipEl.style.opacity = 0;
+                return;
+            }
+
+            // Set Text
+            if (tooltip.body) {
+                var title = '';
+                var bodyLines = tooltip.body.map(function(bodyItem) {
+                    return bodyItem.lines;
+                });
+
+                // Get the label (date/time)
+                if (tooltip.title && tooltip.title.length > 0) {
+                    title = '<div class="tooltip-header">' + tooltip.title[0] + '</div>';
+                }
+
+                var body = '<div class="tooltip-body">';
+
+                // Current period data
+                if (bodyLines[0] && bodyLines[0][0]) {
+                    body += '<div class="tooltip-item">';
+                    body += '<span class="color-indicator" style="background-color: #7b36b5"></span>';
+                    body += '<span>Current Period</span>';
+                    body += '<span class="tooltip-value">' + bodyLines[0][0].replace('Current period:', '').trim() + '</span>';
+                    body += '</div>';
+                }
+
+                // Previous period data
+                if (bodyLines[1] && bodyLines[1][0]) {
+                    body += '<div class="tooltip-item">';
+                    body += '<span class="color-indicator" style="background-color: #C6D0DC"></span>';
+                    body += '<span>Previous Period</span>';
+                    body += '<span class="tooltip-value">' + bodyLines[1][0].replace('Previous period:', '').trim() + '</span>';
+                    body += '</div>';
+                }
+
+                body += '</div>';
+
+                tooltipEl.innerHTML = title + body;
+            }
+
+            // Position the tooltip
+            var position = ctxs.getBoundingClientRect();
+
+            // Display, position, and set styles for font
+            tooltipEl.style.opacity = 1;
+            tooltipEl.style.position = 'absolute';
+            tooltipEl.style.left = position.left + window.pageXOffset + tooltip.caretX + 'px';
+            tooltipEl.style.top = position.top + window.pageYOffset + tooltip.caretY - 10 + 'px';
+            tooltipEl.style.pointerEvents = 'none';
+        };
+
         var charts = new Chart(ctxs, {
             type: "line",
             data: {
                 labels: labels,
                 datasets: [{
                     data: dataCur,
-                    borderColor: "#5F63F2",
+                    borderColor: "#7b36b5",
                     borderWidth: 4,
                     fill: true,
                     backgroundColor: () =>
                         chartLinearGradient(ctxs, 300, {
-                            start: "#5F63F230",
+                            start: "#7b36b530",
                             end: "#ffffff05",
                         }),
                     label: "Current period",
@@ -1018,21 +1086,20 @@ function chartjsLineChartFour(selector, bcolor = "#FA8B0C", height = "95", dataC
                     pointRadius: "0",
                     hoverRadius: "9",
                     pointBorderColor: "#fff",
-                    pointBackgroundColor: "#5F63F2",
+                    pointBackgroundColor: "#7b36b5",
                     hoverBorderWidth: 5,
                 },
-                    {
-                        data: dataPrev,
-                        borderColor: "#C6D0DC",
-                        borderWidth: 2,
-                        fill: false,
-                        backgroundColor: "#00173750",
-                        label: "Previous period",
-                        borderDash: [3, 3],
-                        pointRadius: "0",
-                        hoverRadius: "0",
-                    },
-                ],
+                {
+                    data: dataPrev,
+                    borderColor: "#C6D0DC",
+                    borderWidth: 2,
+                    fill: false,
+                    backgroundColor: "#00173750",
+                    label: "Previous period",
+                    borderDash: [3, 3],
+                    pointRadius: "0",
+                    hoverRadius: "0",
+                }],
             },
             options: {
                 maintainAspectRatio: true,
@@ -1052,19 +1119,22 @@ function chartjsLineChartFour(selector, bcolor = "#FA8B0C", height = "95", dataC
                 tooltips: {
                     mode: "label",
                     intersect: false,
-                    backgroundColor: "#ffffff",
-                    position: "average",
-                    enabled: false,
+                    backgroundColor: "transparent",
+                    titleFontColor: "#fff",
+                    bodyFontColor: "#fff",
+                    titleFontSize: 14,
+                    bodyFontSize: 13,
+                    displayColors: false,
+                    enabled: false, // Disable default tooltips
                     custom: customTooltips,
                     callbacks: {
-                        label(t, d) {
-                            const {
-                                yLabel,
-                                datasetIndex
-                            } = t;
-                            return `<span class="chart-data">${yLabel}</span> <span class="data-label">${d.datasets[datasetIndex].label}</span>`;
+                        title: function(tooltipItems, data) {
+                            return tooltipItems[0].xLabel;
                         },
-                    },
+                        label: function(tooltipItem, data) {
+                            return data.datasets[tooltipItem.datasetIndex].label + ': ' + tooltipItem.yLabel;
+                        }
+                    }
                 },
                 scales: {
                     yAxes: [{
@@ -1084,7 +1154,7 @@ function chartjsLineChartFour(selector, bcolor = "#FA8B0C", height = "95", dataC
                                 return label;
                             },
                         },
-                    }, ],
+                    }],
                     xAxes: [{
                         stacked: true,
                         gridLines: {
@@ -1095,7 +1165,7 @@ function chartjsLineChartFour(selector, bcolor = "#FA8B0C", height = "95", dataC
                             fontSize: 11,
                             display: true,
                         },
-                    }, ],
+                    }],
                 },
             },
         });

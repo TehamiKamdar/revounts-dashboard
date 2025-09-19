@@ -1,29 +1,29 @@
-<div class="tab-content" id="ap-tabContent">
-    <div class="tab-pane fade show active" id="all-transactions" role="tabpanel" aria-labelledby="all-transactions-tab">
 
         @include("template.publisher.widgets.loader")
 
         <!-- Start Table Responsive -->
         <div class="table-responsive">
-            <table class="table table-bordered">
-                <tbody>
+            <table class="table table-hover table-borderless">
+                <thead>
                 <tr>
-                    <td>
-                        <span class="userDatatable-title font-weight-bold text-black">Advertiser</span>
-                    </td>
-                    <td>
-                        <span class="userDatatable-title font-weight-bold text-black">Tracking Link Clicks</span>
-                    </td>
-                    <td>
-                        <span class="userDatatable-title font-weight-bold text-black">Deeplink Clicks</span>
-                    </td>
-                    <td>
-                        <span class="userDatatable-title font-weight-bold text-black">Coupon Clicks</span>
-                    </td>
-                    <td>
-                        <span class="userDatatable-title font-weight-bold text-black">Total Clicks</span>
-                    </td>
+                    <th>
+                        Advertiser
+                    </th>
+                    <th>
+                        Tracking Link Clicks
+                    </th>
+                    <th>
+                        Deeplink Clicks
+                    </th>
+                    <th>
+                        Coupon Clicks
+                    </th>
+                    <th>
+                        Total Clicks
+                    </th>
                 </tr>
+                </thead>
+                <tbody>
                 @if($performanceOverviewList2 && count($performanceOverviewList2))
                     @foreach($performanceOverviewList2 as $data)
                         @php
@@ -36,7 +36,7 @@
                         @endphp
                         <tr>
                             <td>
-                                <a target="_blank" href="{{ route("publisher.view-advertiser", ['sid' => $sid]) }}">{{ $advertiser ?? "-" }} <br><span class="fs-12 color-gray">({{ $sid }})</span></a>
+                                <a target="_blank" href="{{ route("publisher.view-advertiser", ['sid' => $sid]) }}" class="text-primary-light">{{ $advertiser ?? "-" }} <br><span>({{ $sid }})</span></a>
                             </td>
                             <td>{{ $totalTrackingClicks }}</td>
                             <td>{{ $totalDeepClicks }}</td>
@@ -54,16 +54,7 @@
                 </tbody>
             </table>
         </div>
-        <!-- Table Responsive End -->
-    </div>
-</div>
 
 @if($performanceOverviewList2 && count($performanceOverviewList2) && $performanceOverviewList2 instanceof \Illuminate\Pagination\LengthAwarePaginator )
-
-    <div class="d-flex justify-content-sm-end justify-content-start mt-15 pt-25 border-top">
-
-        {{ $performanceOverviewList2->withQueryString()->links() }}
-
-    </div>
-
+    {{ $performanceOverviewList2->withQueryString()->links('vendor.pagination.custom') }}
 @endif
