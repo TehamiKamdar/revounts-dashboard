@@ -1,9 +1,9 @@
-<?php if (! $__env->hasRenderedOnce('bcc7edf6-59a5-4e7a-8934-e56b72951a74')): $__env->markAsRenderedOnce('bcc7edf6-59a5-4e7a-8934-e56b72951a74');
+<?php if (! $__env->hasRenderedOnce('de758a47-b282-478e-9b8a-edef4c442570')): $__env->markAsRenderedOnce('de758a47-b282-478e-9b8a-edef4c442570');
 $__env->startPush('styles'); ?>
     <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/daterangepicker.css")); ?>">
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('084b8dd1-38e7-4296-a103-686df3a16450')): $__env->markAsRenderedOnce('084b8dd1-38e7-4296-a103-686df3a16450');
+<?php if (! $__env->hasRenderedOnce('f5a498e1-374b-45c5-90f3-69e7ea52b151')): $__env->markAsRenderedOnce('f5a498e1-374b-45c5-90f3-69e7ea52b151');
 $__env->startPush('scripts'); ?>
 
     <?php
@@ -281,12 +281,11 @@ $__env->startPush('scripts'); ?>
             </div>
         </div>
         <div class="table-container">
+            <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                        <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-                        <div id="ap-overview">
-                            <?php echo $__env->make("template.publisher.payments.list_view", compact('payments'), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                        </div>
+            <div id="ap-overview">
+                <?php echo $__env->make("template.publisher.payments.list_view", compact('payments'), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+            </div>
         </div>
 
     </div>

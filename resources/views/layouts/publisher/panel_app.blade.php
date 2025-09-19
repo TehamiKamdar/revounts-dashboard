@@ -47,7 +47,7 @@
 
         .select2-container--default .select2-selection--multiple .select2-selection__rendered li,
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            margin: 10px 0 10px 10px !important;
+            margin: 0px 0 0px 10px !important;
         }
 
         .select2-container--default .select2-selection--single,
@@ -73,6 +73,25 @@
         .spin-active .table-responsive {
             opacity: 0.1;
         }
+
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 48px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .select2-container .select2-search--inline .select2-search__field {
+            box-sizing: border-box;
+            border: none;
+            font-size: 100%;
+            margin-top: 8px;
+            padding: 0;
+        }
+
+
     </style>
 
 </head>

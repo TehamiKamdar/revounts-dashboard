@@ -17,7 +17,7 @@
 
             <nav class="header-nav">
                 <div class="nav-item has-dropdown">
-                    <a href="index.html" class="nav-link active">
+                    <a href="index.html" class="nav-link <?php echo e(\App\Helper\PublisherData::isAdvertiserActive()); ?>">
                         <i class="ri-user-smile-line"></i>
                         <span class="nav-text">Advertisers</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -30,7 +30,7 @@
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link <?php echo e(\App\Helper\PublisherData::isReportActive()); ?>">
                         <i class="ri-line-chart-fill"></i>
                         <span class="nav-text">Reports</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -43,7 +43,7 @@
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link <?php echo e(\App\Helper\PublisherData::isCreativeActive()); ?>">
                         <i class="ri-tools-fill"></i>
                         <span class="nav-text">Creatives</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link <?php echo e(\App\Helper\PublisherData::isToolActive()); ?>">
                         <i class="ri-code-s-slash-line"></i>
                         <span class="nav-text">Dev Tools</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
