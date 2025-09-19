@@ -1,13 +1,3 @@
-<?php if (! $__env->hasRenderedOnce('97ec85d8-c6b0-4a5b-9cfd-786bc93ecb05')): $__env->markAsRenderedOnce('97ec85d8-c6b0-4a5b-9cfd-786bc93ecb05');
-$__env->startPush('styles'); ?>
-
-<?php $__env->stopPush(); endif; ?>
-
-<?php if (! $__env->hasRenderedOnce('2a6cbc67-cf36-4218-a38f-8d1ea75a7040')): $__env->markAsRenderedOnce('2a6cbc67-cf36-4218-a38f-8d1ea75a7040');
-$__env->startPush('scripts'); ?>
-
-<?php $__env->stopPush(); endif; ?>
-
 <?php $__env->startSection("content"); ?>
 
     <div class="contents">

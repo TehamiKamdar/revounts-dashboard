@@ -1,15 +1,50 @@
-<?php if (! $__env->hasRenderedOnce('ca048151-7c26-459f-b41a-8570a5d2ebd6')): $__env->markAsRenderedOnce('ca048151-7c26-459f-b41a-8570a5d2ebd6');
+<?php if (! $__env->hasRenderedOnce('9d564f4d-d7a1-40f3-918c-ef2f2c855b59')): $__env->markAsRenderedOnce('9d564f4d-d7a1-40f3-918c-ef2f2c855b59');
 $__env->startPush('styles'); ?>
 
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('3a0ae2a7-165f-4387-ba44-6213ed5371ee')): $__env->markAsRenderedOnce('3a0ae2a7-165f-4387-ba44-6213ed5371ee');
+<?php if (! $__env->hasRenderedOnce('1a583d29-27db-4459-b6c6-15d4e326d184')): $__env->markAsRenderedOnce('1a583d29-27db-4459-b6c6-15d4e326d184');
 $__env->startPush('scripts'); ?>
     <script>
-        function clickToCopy()
-        {
-            copyToClipboard(document.getElementById("api_token"))
-            normalMsg({"message": "API Token Successfully Copied.", "success": true});
+        function clickToCopy() {
+            const tokenInput = document.getElementById('api_token');
+            tokenInput.select();
+            tokenInput.setSelectionRange(0, 99999);
+            document.execCommand('copy');
+
+            showTokenMessage('Token copied to clipboard!', 'success');
+        }
+
+        function showTokenMessage(message, type) {
+            const messageDiv = document.getElementById('tokenMessage');
+            messageDiv.textContent = message;
+            messageDiv.className = `token-message token-${type}`;
+            messageDiv.style.display = 'block';
+
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 3000);
+        }
+
+        // Initialize token visibility
+        document.addEventListener('DOMContentLoaded', function() {
+            const tokenInput = document.getElementById('api_token');
+            if (tokenInput.value) {
+                tokenInput.type = 'password';
+            }
+        });
+
+        function toggleTokenVisibility() {
+            const tokenInput = document.getElementById('api_token');
+            const visibilityIcon = document.getElementById('visibilityIcon');
+
+            if (tokenInput.type === 'password') {
+                tokenInput.type = 'text';
+                visibilityIcon.className = 'ri-eye-off-line';
+            } else {
+                tokenInput.type = 'password';
+                visibilityIcon.className = 'ri-eye-line';
+            }
         }
         function regenerateTokenRequest()
         {
@@ -31,41 +66,53 @@ $__env->startPush('scripts'); ?>
 <?php $__env->startSection("content"); ?>
 
     <div class="contents">
-
         <div class="container">
+            <div class="api-token-glass-card card">
+                <div class="card-body">
+                    <div class="api-header">
+                        <h3>API Token <small>This will be used for API documentation</small></h3>
+                    </div>
 
-            <div class="card m-bottom-50 m-top-50">
-                <div class="card-body ">
                     <div class="row">
-                        <div class="col-xxl-6 col-lg-6 col-sm-12">
-                            <div class="files-area d-flex justify-content-between align-items-center">
-                                <div class="files-area__left d-flex align-items-center">
-                                    <div class="files-area__title">
-                                        <h3 class="mb-10 fw-500 color-dark text-capitalize">API Token <small>(This will be used for API documentation.)</small></h3>
-                                        <input type="text" class="form-control <?php $__errorArgs = ['api_token'];
+                        <div class="col-xxl-8 col-lg-10 col-md-12">
+                            <div class="token-input-group">
+                                <input type="password" class="token-input-glass form-control <?php $__errorArgs = ['api_token'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?> border-danger <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
-unset($__errorArgs, $__bag); ?>" id="api_token" name="api_token" placeholder="" value="<?php echo e(auth()->user()->api_token); ?>">
-                                    </div>
-                                </div>
+unset($__errorArgs, $__bag); ?>"
+                                       id="api_token" name="api_token"
+                                       value="<?php echo e(auth()->user()->api_token); ?>"
+                                       readonly>
+                                <button type="button" class="token-visibility" onclick="toggleTokenVisibility()">
+                                    <i class="ri-eye-line" id="visibilityIcon"></i>
+                                </button>
+                                <button type="button" class="token-copy-btn" onclick="clickToCopy()">
+                                    <i class="ri-file-copy-line"></i> Copy
+                                </button>
                             </div>
+
+                            <div id="tokenMessage" class="token-message"></div>
                         </div>
-                        <div class="col-xxl-6 col-lg-6 col-sm-12 m-top-40">
-                            <a href="javascript:void(0)" onclick="clickToCopy()" id="copyToken" class="btn btn-sm btn-outline-info float-left mr-3">Copy</a>
-                            <a href="javascript:void(0)" onclick="regenerateTokenRequest()" class="btn btn-sm btn-outline-danger float-left  mr-3">Regenerate Token</a>
-                            <a href="<?php echo e(env("DOC_APP_URL") . "/api/documentation"); ?>" class="btn btn-sm btn-outline-warning float-left" target="_blank">View Documentation</a>
-                        </div>
-                        <div class="clearfix"></div>
+                    </div>
+
+                    <div class="token-actions">
+                        <a href="javascript:void(0)" onclick="clickToCopy()" class="btn-token btn-copy">
+                            <i class="ri-file-copy-line"></i> Copy Token
+                        </a>
+                        <a href="javascript:void(0)" onclick="regenerateTokenRequest()" class="btn-token btn-regenerate">
+                            <i class="ri-refresh-line"></i> Regenerate Token
+                        </a>
+                        <a href="<?php echo e(env('DOC_APP_URL') . '/api/documentation'); ?>" class="btn-token btn-docs" target="_blank">
+                            <i class="ri-book-open-line"></i> View Documentation
+                        </a>
                     </div>
                 </div>
             </div>
-
         </div>
-
     </div>
 
 <?php $__env->stopSection(); ?>

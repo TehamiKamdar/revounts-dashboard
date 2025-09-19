@@ -7,68 +7,81 @@
 @if($websites)
     <!-- Profile files Bio -->
     <form action="javascript:void(0)" id="advertiserDeeplinkForm">
-        <div class="card" id="deeplinkWrapper">
+        <div class="deeplink-glass-card card" id="deeplinkWrapper">
             <div class="card-body" id="mainDeeplinkBody">
-                <div class="files-area d-flex justify-content-between align-items-center">
-                    <div class="files-area__left d-flex align-items-center">
-                        <div class="files-area__title">
-                            @if(isset($title))
-                                <h3 class="mb-10 fw-500 color-dark text-capitalize">{{ $title }}</h3>
-                            @else
-                                <p class="mb-0 fs-14 fw-500 color-dark text-capitalize">Create A Link</p>
-                            @endif
-                            @if(isset($description))
-                                <span class="color-light fs-14 d-flex mb-10">{{ $description }}</span>
-                            @else
-                                <span class="color-light fs-12 d-flex ">Promote any brand with a simple link.</span>
-                            @endif
-                        </div>
+                <div class="form-header">
+                    <div class="form-title">
+                        @if(isset($title))
+                            <h3>{{ $title }}</h3>
+                        @else
+                            <h3>Create A Link</h3>
+                        @endif
+                        @if(isset($description))
+                            <span>{{ $description }}</span>
+                        @else
+                            <span>Promote any brand with a simple link.</span>
+                        @endif
                     </div>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-md-12">
+
+                <div class="row">
+                    <div class="col-12">
                         <div class="form-group">
-                            <select class="form-control" id="widgetAdvertiser" name="widgetAdvertiser" required>
-                                <option value="" selected disabled>Please Select</option>
+                            <select class="form-control-glass form-control" id="widgetAdvertiser" name="widgetAdvertiser" required>
+                                <option value="" selected disabled>Select Advertiser</option>
                                 @foreach(\App\Helper\PublisherData::getAdvertiserList() as $advertiserList)
-                                    <option value="{{ $advertiserList['sid'] }}" @if(isset($advertiser->sid) && $advertiser->sid === $advertiserList['sid']) selected @endif data-dd="{{ $advertiserList['deeplink_enabled'] }}">{{ $advertiserList['name'] }}</option>
+                                    <option value="{{ $advertiserList['sid'] }}"
+                                            @if(isset($advertiser->sid) && $advertiser->sid === $advertiserList['sid']) selected @endif
+                                            data-dd="{{ $advertiserList['deeplink_enabled'] }}">
+                                        {{ $advertiserList['name'] }}
+                                    </option>
                                 @endforeach
                             </select>
-                            <div id="deepLinkContent">
+                            <div id="deeplinkContent">
                                 @if(isset($advertiser->deeplink_enabled))
                                     @if($advertiser->deeplink_enabled)
-                                        <div class="pt-1" style="color: green;">
-                                            <i class="fas fa-check-circle"></i>
-                                            <span class="icon-text ml-1">Deep Link</span>
+                                        <div class="deeplink-status status-enabled">
+                                            <i class="ri-checkbox-circle-fill"></i>
+                                            <span>Deep Link Enabled</span>
                                         </div>
                                     @else
-                                        <div class="pt-1" style="color: red;">
-                                            <i class="fas fa-times-circle"></i>
-                                            <span class="icon-text ml-1">Deep Link</span>
+                                        <div class="deeplink-status status-disabled">
+                                            <i class="ri-close-circle-fill"></i>
+                                            <span>Deep Link Not Available</span>
                                         </div>
                                     @endif
                                 @endif
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <input type="text" class="form-control" id="landing_url" name="landing_url" placeholder="Enter a Landing Page Optional" @if(isset($advertiser->deeplink_enabled) && !$advertiser->deeplink_enabled) style="display: none;" @endif>
+                            <input type="text" class="form-control-glass form-control" id="landing_url" name="landing_url"
+                                   placeholder="Enter Landing Page URL (Optional)"
+                                   @if(isset($advertiser->deeplink_enabled) && !$advertiser->deeplink_enabled) style="display: none;" @endif>
                         </div>
+
                         <div class="form-group display-hidden" id="subIDContent">
-                            <input type="text" class="form-control" id="sub_id" name="sub_id" placeholder="Enter a Sud ID Optional">
+                            <input type="text" class="form-control-glass form-control" id="sub_id" name="sub_id"
+                                   placeholder="Enter Sub ID (Optional)">
                         </div>
-                        <div class="form-inline-action d-flex justify-content-between align-items-center">
-                            <button type="submit" class="btn btn-sm text-white btn-primary btn-default btn-squared text-capitalize m-1">Create</button>
-                            <a href="javascript:void(0)" id="advancedOpt"><span class="atbd-tag tag-primary tag-transparented">Advanced</span></a>
+
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary-glass">
+                                <i class="ri-links-line"></i> Create Link
+                            </button>
+                            <a href="javascript:void(0)" id="advancedOpt" class="advanced-link">
+                                <i class="ri-settings-3-line"></i> Advanced Options
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
+
             <div class="loader-overlay display-hidden" id="showLoader">
-                <div class="atbd-spin-dots spin-lg">
-                    <span class="spin-dot badge-dot dot-primary"></span>
-                    <span class="spin-dot badge-dot dot-primary"></span>
-                    <span class="spin-dot badge-dot dot-primary"></span>
-                    <span class="spin-dot badge-dot dot-primary"></span>
+                <div class="spin-dots">
+                    <span class="dot-primary"></span>
+                    <span class="dot-primary"></span>
+                    <span class="dot-primary"></span>
                 </div>
             </div>
         </div>
@@ -76,178 +89,237 @@
     <!-- Profile files End -->
 
     @push("extended_styles")
-        <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/select2.min.css") }}"/>
-    @endpush
-    @push("extended_scripts")
+    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/select2.min.css") }}"/>
+@endpush
 
-        <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/select2.full.min.js") }}"></script>
-        <script>
+@push("extended_scripts")
+    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/select2.full.min.js") }}"></script>
+<script>
+/* ---------- Helper Functions ---------- */
 
-            function copyLink(msg) {
-                copyToClipboard(document.getElementById(`widgetTrackingURL`))
-                normalMsg({"message": `${msg} Successfully Copied.`, "success": true});
-            }
+// Copy link
+function copyLink(msg) {
+    copyToClipboard(document.getElementById('widgetTrackingURL'));
+    normalMsg({
+        "message": `${msg} Successfully Copied.`,
+        "success": true
+    });
+}
 
-            function setDeeplinkContent(response)
-            {
-                $("#mainDeeplinkBody").addClass("border-bottom mb-20");
+// Loader template
+function loaderHTML() {
+    return `
+        <div class="text-center py-4">
+            <div class="spin-dots">
+                <span class="dot-primary"></span>
+                <span class="dot-primary"></span>
+                <span class="dot-primary"></span>
+            </div>
+            <p class="mt-2 text-muted">Generating your link...</p>
+        </div>
+    `;
+}
 
-                let content = '';
+// Inject response
+function setDeeplinkContent(response) {
+    $("#mainDeeplinkBody").addClass("border-bottom mb-20");
 
-                if(response.deeplink_link_url)
-                {
-                    content = `
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="widgetTrackingURL" name="widgetTrackingURL" value="${response.deeplink_link_url}" readonly>
-                    </div>
-                    `;
-                    if(response.deeplink_link_url != 'Generating tracking links.....')
-                        content = `${content}<button type="button" onclick="copyLink('Deeplink')" class="btn btn-sm text-white btn-primary btn-default btn-squared text-capitalize m-1">Copy Deep Link</button>`;
+    let content = '';
+    let buttonText = '';
+    let buttonClass = 'btn-primary-glass';
 
-                }
-                else
-                {
-                    content = `
-                    <div class="form-group">
-                        <input type="text" class="form-control" id="widgetTrackingURL" name="widgetTrackingURL" value="${response.tracking_url}" readonly>
-                    </div>`;
+    if (response.deeplink_link_url) {
+        content = `
+            <div class="form-group">
+                <input type="text" class="form-control-glass form-control"
+                       id="widgetTrackingURL" value="${response.deeplink_link_url}" readonly>
+            </div>`;
 
-                    if(response.tracking_url != 'Generating tracking links.....')
-                        content = `${content}<button type="button" onclick="copyLink('Tracking URL')" class="btn btn-sm text-white btn-primary btn-default btn-squared text-capitalize m-1">Copy Tracking Link</button>`;
-                }
+        if (response.deeplink_link_url !== 'Generating tracking links.....') {
+            buttonText = 'Copy Deep Link';
+            content += `
+                <button type="button" onclick="copyLink('Deeplink')"
+                        class="btn ${buttonClass} mt-2">
+                    <i class="ri-file-copy-line"></i> ${buttonText}
+                </button>`;
+        }
+    } else {
+        content = `
+            <div class="form-group">
+                <input type="text" class="form-control-glass form-control"
+                       id="widgetTrackingURL" value="${response.tracking_url}" readonly>
+            </div>`;
 
-                $("#deeplinkWrapper").append(`
-                            <div class="card-body" id="deeplinkBottomWrapper">
-                                <div class="files-area d-flex justify-content-between align-items-center">
-                                    <div class="files-area__left d-flex align-items-center">
-                                        <div class="files-area__title">
-                                            <span class="color-light fs-12 d-flex ">Use this link to promote ${response.name} updates may take up to 5 min to propagate.</span>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="row mt-2">
-                                    <div class="col-md-12">
-                                        ${content}
-                                    </div>
-                                </div>
-                            </div>
-                        `)
+        if (response.tracking_url !== 'Generating tracking links.....') {
+            buttonText = 'Copy Tracking Link';
+            content += `
+                <button type="button" onclick="copyLink('Tracking URL')"
+                        class="btn ${buttonClass} mt-2">
+                    <i class="ri-file-copy-line"></i> ${buttonText}
+                </button>`;
+        }
+    }
+
+    $("#deeplinkWrapper").append(`
+        <div class="card-body" id="deeplinkBottomWrapper">
+            <div class="result-header">
+                <div class="result-title">
+                    <i class="ri-links-fill"></i>
+                    <span>Generated Link</span>
+                </div>
+                <p class="result-description">
+                    Use this link to promote ${response.name}. Updates may take up to 5 min to propagate.
+                </p>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">${content}</div>
+            </div>
+        </div>
+    `);
+
+    $("#deeplinkContent").html(""); // clear status
+    $("#mainDeeplinkBody").removeClass('disableDiv');
+    $("#showLoader").hide();
+}
+
+/* ---------- Main Script ---------- */
+document.addEventListener("DOMContentLoaded", function () {
+
+    // Advanced options toggle
+    $("#advancedOpt").click(function () {
+        const subIDContent = $("#subIDContent");
+        if (subIDContent.is(":visible")) {
+            $(this).html('<i class="ri-settings-3-line"></i> Advanced Options');
+            subIDContent.hide();
+        } else {
+            $(this).html('<i class="ri-close-line"></i> Close Options');
+            subIDContent.show();
+        }
+    });
+
+    // Select2 init
+    if (!$("#widgetAdvertiser").hasClass("select2-hidden-accessible")) {
+        $("#widgetAdvertiser").select2({
+            placeholder: "Select Advertiser",
+            dropdownCssClass: "select2-glass-dropdown",
+            allowClear: false,
+            width: '100%',
+            theme: "bootstrap-5"
+        });
+    }
+
+    // Advertiser change -> handle deeplink status + show/hide landing_url
+    $('#widgetAdvertiser').on('select2:select', function (e) {
+        let data = e.params.data;
+        const deeplinkContent = $("#deeplinkContent");
+        const landingUrl = $("#landing_url");
+
+        if (data.element.dataset.dd == 1) {
+            deeplinkContent.html(`
+                <div class="deeplink-status status-enabled">
+                    <i class="ri-checkbox-circle-fill"></i>
+                    <span>Deep Link Enabled</span>
+                </div>
+            `);
+            landingUrl.fadeIn();
+        } else {
+            deeplinkContent.html(`
+                <div class="deeplink-status status-disabled">
+                    <i class="ri-close-circle-fill"></i>
+                    <span>Deep Link Not Available</span>
+                </div>
+            `);
+            landingUrl.fadeOut();
+        }
+    });
+
+    // Form submit
+    $("#advertiserDeeplinkForm").submit(function (e) {
+        e.preventDefault();
+
+        $("#deeplinkBottomWrapper").remove();
+        $("#mainDeeplinkBody").removeClass("border-bottom mb-20");
+
+        $("#deeplinkContent").html(loaderHTML());
+        $("#mainDeeplinkBody").addClass('disableDiv');
+        $("#showLoader").show();
+
+        let url = $("#landing_url").val()
+            ? '{{ route("publisher.deeplink.check-availability") }}'
+            : '{{ route("publisher.tracking.check-availability") }}';
+
+        $.ajax({
+            url: url,
+            type: 'POST',
+            headers: {
+                'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
+            },
+            data: $(this).serialize(),
+            success: function (response) {
+                setTimeout(() => {
+                    if (response.success) {
+                        setDeeplinkContent(response);
+                    } else {
+                        $("#deeplinkContent").html("");
+                        normalMsg({
+                            "message": response.message,
+                            "success": response.success
+                        });
+                    }
+                }, 1000);
+            },
+            error: function (response) {
+                showErrors(response);
                 $("#deeplinkContent").html("");
-
+            },
+            complete: function () {
                 $("#mainDeeplinkBody").removeClass('disableDiv');
                 $("#showLoader").hide();
             }
+        });
+    });
 
-            function loaderHTML()
-            {
-                return `
-                <div class="spin-container text-center mt-5 mb-3">
-                    <div class="atbd-spin-dots spin-md">
-                        <span class="spin-dot badge-dot dot-primary"></span>
-                        <span class="spin-dot badge-dot dot-primary"></span>
-                        <span class="spin-dot badge-dot dot-primary"></span>
-                        <span class="spin-dot badge-dot dot-primary"></span>
-                    </div>
-                </div>
-            `
-            }
-
-            document.addEventListener("DOMContentLoaded", function () {
-
-                $("#deeplinkContent").html(loaderHTML());
-
-                $("#advancedOpt").click(function () {
-                    if($('#subIDContent:visible').length)
-                    {
-                        $(this).html("<span class='atbd-tag tag-primary tag-transparented'>Advanced</span>");
-                        $('#subIDContent').hide();
-                    }
-                    else
-                    {
-                        $(this).html("<span class='atbd-tag tag-primary tag-transparented'>Close</span>");
-                        $('#subIDContent').show();
-                    }
-                });
-
-                $("#widgetAdvertiser").select2({
-                    placeholder: "Please Select",
-                    dropdownCssClass: "tag",
-                    allowClear: false
-                });
-
-                $('#widgetAdvertiser').on('select2:select', function (e) {
-                    let data = e.params.data;
-                    if(data.element.dataset.dd == 1)
-                    {
-                        $("#deepLinkContent").html(`
-                            <div class="pt-1" style="color: green;">
-                                <i class="fas fa-check-circle"></i>
-                                <span class="icon-text ml-1">Deep Link</span>
-                            </div>
-                        `);
-                        $("#landing_url").show();
-                    } else {
-                        $("#deepLinkContent").html(`
-                            <div class="pt-1" style="color: red;">
-                                <i class="fas fa-times-circle"></i>
-                                <span class="icon-text ml-1">Deep Link</span>
-                            </div>
-                        `);
-                        $("#landing_url").hide();
-                    }
-                });
-
-                $("#advertiserDeeplinkForm").submit(function () {
-
-                    $("#deeplinkBottomWrapper").remove()
-                    $("#mainDeeplinkBody").removeClass("border-bottom mb-20")
-                    $("#deeplinkContent").html(loaderHTML());
-
-                    $("#mainDeeplinkBody").addClass('disableDiv');
-                    $("#showLoader").show();
-
-                    let url = "";
-
-                    if($("#landing_url").val())
-                    {
-                        url = '{{ route("publisher.deeplink.check-availability") }}';
-                    }
-                    else
-                    {
-                        url = '{{ route("publisher.tracking.check-availability") }}';
-                    }
-
-                    $.ajax({
-                        url: url,
-                        type: 'POST',
-                        headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
-                        data: $(this).serialize(),
-                        success: function (response) {
-                            setTimeout(() => {
-                                if(response.success)
-                                {
-                                    setDeeplinkContent(response);
-                                } else
-                                {
-                                    $("#deeplinkContent").html("");
-                                    normalMsg({"message": response.message, "success": response.success});
-                                }
-                            }, 1000);
-                        },
-                        error: function (response) {
-                            showErrors(response)
-                            $("#deeplinkContent").html("");
-                        }
-                    }).done(function () {
-                        $("#mainDeeplinkBody").removeClass('disableDiv');
-                        $("#showLoader").hide();
-                    });
+    // Extra Select2 styles
+    const style = document.createElement('style');
+    style.textContent = `
+        .select2-glass-dropdown .select2-results__option--highlighted {
+            background-color: rgba(123, 54, 181, 0.1) !important;
+            color: var(--primary-dark-color) !important;
+        }
+        .select2-glass-dropdown .select2-results__option--selected {
+            background-color: var(--primary-color) !important;
+            color: white !important;
+        }
+        .select2-container--bootstrap-5 .select2-selection {
+            border: 1px solid rgba(123, 54, 181, 0.2) !important;
+            border-radius: 10px !important;
+            padding: 12px 16px !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+        }
+        .select2-container--bootstrap-5 .select2-selection:focus {
+            border-color: var(--primary-color) !important;
+            box-shadow: 0 0 0 3px rgba(123, 54, 181, 0.1) !important;
+        }
+        .result-header { margin-bottom: 20px; }
+        .result-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--primary-dark-color);
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .result-description {
+            color: #6c757d;
+            font-size: 0.9rem;
+            margin: 0;
+        }
+    `;
+    document.head.appendChild(style);
+});
+</script>
 
 
-                });
 
-            });
-        </script>
-
-    @endpush
+@endpush
 @endif
