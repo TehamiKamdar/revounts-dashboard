@@ -83,9 +83,9 @@
   <div class="dashboard-container">
     <main class="dashboard-main">
         @yield("content")
-        @include("partial.publisher.footer")
     </main>
-  </div>
+</div>
+@include("partial.publisher.footer")
 
     <div id="overlayer">
         <span class="loader-overlay">

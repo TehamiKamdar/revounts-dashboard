@@ -31,18 +31,7 @@
                             </li>
                         </ul>
                     </div>
-
-                    <div class="footer-social">
-                        <a href="https://facebook.com/linkscircle" class="social-link" target="_blank">
-                            <i class="ri-facebook-fill"></i>
-                        </a>
-                        <a href="https://twitter.com/linkscircle" class="social-link" target="_blank">
-                            <i class="ri-twitter-fill"></i>
-                        </a>
-                        <a href="https://linkedin.com/company/linkscircle" class="social-link" target="_blank">
-                            <i class="ri-linkedin-fill"></i>
-                        </a>
-                    </div>
+                    
                 </div>
             </div>
         </div>
