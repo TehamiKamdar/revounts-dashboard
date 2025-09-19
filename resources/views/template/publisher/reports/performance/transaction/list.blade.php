@@ -564,6 +564,7 @@
                                 <p class="subtitle" id="totalResults">Total Results: <strong>{{ $total }}</strong></p>
                             </div>
                             @include("partial.publisher.transaction_alert")
+                            <hr>
 
                             <div class="date-filter-container my-4 justify-content-end">
                                 <div class="date-input-wrapper">

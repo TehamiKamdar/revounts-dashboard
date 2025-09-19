@@ -1,9 +1,9 @@
-<?php if (! $__env->hasRenderedOnce('335b4839-fbed-4263-a500-0e2698e5c87b')): $__env->markAsRenderedOnce('335b4839-fbed-4263-a500-0e2698e5c87b');
+<?php if (! $__env->hasRenderedOnce('54a92ce8-6ab7-4643-9b9d-f4866896227f')): $__env->markAsRenderedOnce('54a92ce8-6ab7-4643-9b9d-f4866896227f');
 $__env->startPush('styles'); ?>
     <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/daterangepicker.css")); ?>">
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('08949eea-9e3f-4f78-a191-ab60fd9f67e6')): $__env->markAsRenderedOnce('08949eea-9e3f-4f78-a191-ab60fd9f67e6');
+<?php if (! $__env->hasRenderedOnce('2f15e682-5091-4d81-8a23-5fe2762ae6fb')): $__env->markAsRenderedOnce('2f15e682-5091-4d81-8a23-5fe2762ae6fb');
 $__env->startPush('scripts'); ?>
 
     <?php
@@ -306,10 +306,11 @@ $__env->startPush('scripts'); ?>
                 <div class="col-lg-12">
                     <div class="shop-breadcrumb">
 
-                        < class="breadcrumb-main">
+                        <div class="breadcrumb-main">
                             <h1 class="title">Transactions</h1>
 
                             <?php echo $__env->make("partial.publisher.transaction_alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                            <hr>
                             <div class="d-flex justify-content-end">
                                 <p class="subtitle">Total
                                     Results: <strong id="totalResults"><?php echo e($total); ?></strong></p>

@@ -510,6 +510,8 @@
                         <div class="breadcrumb-main">
                             <h1 class="title">Advertiser Performance</h1>
                             @include("partial.publisher.transaction_alert")
+                            <hr>
+
                             <div class="d-flex justify-content-end">
                                 <p class="fs-14 color-gray text-capitalize mb-10 mb-md-0 mr-10 font-weight-bold text-black" id="totalResults">Total Results: <strong>{{ $total }}</strong></p>
                             </div>

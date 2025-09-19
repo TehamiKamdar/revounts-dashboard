@@ -310,6 +310,7 @@
                             <h1 class="title">Transactions</h1>
 
                             @include("partial.publisher.transaction_alert")
+                            <hr>
                             <div class="d-flex justify-content-end">
                                 <p class="subtitle">Total
                                     Results: <strong id="totalResults">{{ $total }}</strong></p>
