@@ -1,4 +1,3 @@
-<div class="tab-content spin-embadded" id="ap-tabContent">
 
     <!-- Start Table Responsive -->
     <div class="table-responsive">
@@ -140,20 +139,8 @@
 
     @include("template.publisher.widgets.loader")
 
-</div>
-
 @if(count($transactions) && $transactions instanceof \Illuminate\Pagination\LengthAwarePaginator )
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="d-flex justify-content-sm-end justify-content-star mt-1 mb-30">
-
-                {{ $transactions->withQueryString()->links() }}
-
-            </div>
-        </div>
-    </div>
-
+    {{ $transactions->withQueryString()->links('vendor.pagination.custom') }}
 @endif
 
 <script>

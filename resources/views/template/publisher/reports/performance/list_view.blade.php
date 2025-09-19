@@ -73,7 +73,7 @@
 
     <div class="d-flex justify-content-sm-end justify-content-start mt-15 pt-25 border-top">
 
-        {{ $performanceOverviewList->withQueryString()->links() }}
+        {{ $performanceOverviewList->withQueryString()->links('vendor.pagination.custom') }}
 
     </div>
 
