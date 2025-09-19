@@ -1,27 +1,50 @@
-<footer class="footer-wrapper">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
+<footer class="footer-glass">
+        <div class="container-fluid">
+            <div class="footer-content">
                 <div class="footer-copyright">
                     <p>
-                        <?php echo e(now()->format("Y")); ?> @ LinksCircle PTY LTD.
+                        <i class="ri-copyright-line"></i>
+                        <?php echo e(now()->format("Y")); ?> @ LinksCircle PTY LTD. All rights reserved.
                     </p>
                 </div>
-            </div>
-            <div class="col-md-6">
-                <div class="footer-menu text-right">
-                    <ul>
-                        <li>
-                            <a href="https://www.linkscircle.com/terms">Terms & Conditions</a>
-                        </li>
-                        <li>
-                            <a href="https://www.linkscircle.com/privacy">Privacy Policy</a>
-                        </li>
-                    </ul>
+
+                <div class="d-flex align-items-center">
+                    <div class="footer-menu">
+                        <ul>
+                            <li>
+                                <a href="https://www.linkscircle.com/terms">
+                                    <i class="ri-file-text-line"></i>
+                                    Terms & Conditions
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkscircle.com/privacy">
+                                    <i class="ri-shield-check-line"></i>
+                                    Privacy Policy
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.linkscircle.com/contact">
+                                    <i class="ri-customer-service-2-line"></i>
+                                    Contact
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="footer-social">
+                        <a href="https://facebook.com/linkscircle" class="social-link" target="_blank">
+                            <i class="ri-facebook-fill"></i>
+                        </a>
+                        <a href="https://twitter.com/linkscircle" class="social-link" target="_blank">
+                            <i class="ri-twitter-fill"></i>
+                        </a>
+                        <a href="https://linkedin.com/company/linkscircle" class="social-link" target="_blank">
+                            <i class="ri-linkedin-fill"></i>
+                        </a>
+                    </div>
                 </div>
-                <!-- ends: .Footer Menu -->
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 <?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/partial/publisher/footer.blade.php ENDPATH**/ ?>
