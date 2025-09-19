@@ -1,9 +1,9 @@
-<?php if (! $__env->hasRenderedOnce('3c01a40e-406d-444c-883c-cdcee2876d96')): $__env->markAsRenderedOnce('3c01a40e-406d-444c-883c-cdcee2876d96');
+<?php if (! $__env->hasRenderedOnce('335b4839-fbed-4263-a500-0e2698e5c87b')): $__env->markAsRenderedOnce('335b4839-fbed-4263-a500-0e2698e5c87b');
 $__env->startPush('styles'); ?>
     <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/daterangepicker.css")); ?>">
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('080a3ffb-3c5f-43e5-9bba-69bcf807f72b')): $__env->markAsRenderedOnce('080a3ffb-3c5f-43e5-9bba-69bcf807f72b');
+<?php if (! $__env->hasRenderedOnce('08949eea-9e3f-4f78-a191-ab60fd9f67e6')): $__env->markAsRenderedOnce('08949eea-9e3f-4f78-a191-ab60fd9f67e6');
 $__env->startPush('scripts'); ?>
 
     <?php
@@ -334,29 +334,7 @@ $__env->startPush('scripts'); ?>
         <div class="container-fluid">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="userDatatable orderDatatable global-shadow border py-30 px-sm-30 px-20 bg-white radius-xl w-100 mb-30">
-                        <div class="project-top-wrapper d-flex justify-content-between flex-wrap mb-25 mt-n10">
-
-                            <div class="d-flex align-items-center flex-wrap justify-content-center">
-                                <div class="project-search order-search  global-shadow mt-10">
-                                    <div class="order-search__form">
-                                        <span data-feather="search"></span>
-                                        <input class="form-control mr-sm-2 border-0 box-shadow-none" type="text"
-                                               placeholder="Filter by name, id etc..." aria-label="Search"
-                                               id="SearchByName" value="<?php echo e(request()->search_by_name); ?>">
-                                    </div>
-                                </div><!-- End: .project-search -->
-                                <div class="project-category d-flex align-items-center mt-xl-10 mt-15">
-                                    <a href="javascript:void(0)" id="clearSearchByName"
-                                       onclick="clearFilter('clearSearchByName')"
-                                       class="margin-left-minus-50px <?php echo e(request()->search_by_name ? null : "display-hidden"); ?>">
-                                        <small>Clear</small>
-                                    </a>
-                                </div>
-                            </div><!-- End: .d-flex -->
-                            <!-- End: .content-center -->
-                        </div><!-- End: .project-top-wrapper -->
-
+                    <div>
                         <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         <div class="table-container">
                             <div class="d-flex justify-content-between">

@@ -306,7 +306,7 @@
                 <div class="col-lg-12">
                     <div class="shop-breadcrumb">
 
-                        < class="breadcrumb-main">
+                        <div class="breadcrumb-main">
                             <h1 class="title">Transactions</h1>
 
                             @include("partial.publisher.transaction_alert")
