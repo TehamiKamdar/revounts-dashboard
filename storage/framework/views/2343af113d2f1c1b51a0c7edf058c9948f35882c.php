@@ -1,9 +1,9 @@
-<?php if (! $__env->hasRenderedOnce('54a92ce8-6ab7-4643-9b9d-f4866896227f')): $__env->markAsRenderedOnce('54a92ce8-6ab7-4643-9b9d-f4866896227f');
+<?php if (! $__env->hasRenderedOnce('0c42f41a-8a0c-4a79-9632-999774b32f74')): $__env->markAsRenderedOnce('0c42f41a-8a0c-4a79-9632-999774b32f74');
 $__env->startPush('styles'); ?>
     <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/daterangepicker.css")); ?>">
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('2f15e682-5091-4d81-8a23-5fe2762ae6fb')): $__env->markAsRenderedOnce('2f15e682-5091-4d81-8a23-5fe2762ae6fb');
+<?php if (! $__env->hasRenderedOnce('fa09a3f8-572a-4427-9687-0b1347e842d4')): $__env->markAsRenderedOnce('fa09a3f8-572a-4427-9687-0b1347e842d4');
 $__env->startPush('scripts'); ?>
 
     <?php
@@ -383,7 +383,7 @@ $__env->startPush('scripts'); ?>
                                     </div>
                                     </div><!-- End: .project-category -->
                                     <div>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center gap-1">
                                         <span class="text-primary-light">Region :</span>
                                         <div class="project-category__select global-shadow ">
                                             <select class="js-example-basic-single js-states form-control" id="region">

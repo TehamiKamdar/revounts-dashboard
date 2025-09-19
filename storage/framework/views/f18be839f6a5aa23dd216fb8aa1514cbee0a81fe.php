@@ -1,34 +1,33 @@
-<div class="tab-content spin-embadded" id="ap-tabContent">
 
     <!-- Start Table Responsive -->
     <div class="table-responsive">
-        <table class="table mb-0 table-hover table-borderless border-0">
+        <table class="table table-hover table-borderless border-0">
             <thead>
-                <tr class="userDatatable-header">
+                <tr>
                     <th>
-                        <span class="userDatatable-title float-right font-weight-bold text-black">Date</span>
+                        Date
                     </th>
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Advertiser</span>
+                        Advertiser
                     </th>
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Transaction ID</span>
-                    </th>
-
-                    <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Sale Amount</span>
+                        Transaction ID
                     </th>
 
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Commission</span>
+                        Sale Amount
                     </th>
 
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Last Commission</span>
+                        Commission
                     </th>
 
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Status</span>
+                        Last Commission
+                    </th>
+
+                    <th>
+                        Status
                     </th>
                 </tr>
             </thead>
@@ -45,6 +44,8 @@
                     </th>
                     <th>
                         <span class="userDatatable-title font-weight-bold text-black"><?php if(count($transactions)): ?><?php echo e(implode(', ', array_unique($transactions->pluck("commission_amount_currency")->toArray()))); ?> <?php echo e(number_format($totalCommissionAmount, 2)); ?> <?php else: ?> - <?php endif; ?></span>
+                    </th>
+                    <th>
                     </th>
                     <th>
                     </th>
@@ -109,22 +110,22 @@
                                 <div class="orderDatatable-status d-inline-block">
                                     <?php if($transaction->payment_status == \App\Models\Transaction::PAYMENT_STATUS_RELEASE_PAYMENT || $transaction->payment_status == \App\Models\Transaction::PAYMENT_STATUS_CONFIRM): ?>
                                     <?php if(isset($transaction->yespaid) && $transaction->yespaid == 1): ?>
-                                        <span class="order-bg-opacity-success text-success rounded-pill active"><?php echo e(\App\Models\Transaction::STATUS_PAID); ?></span>
+                                        <span class="btn btn-sm btn-success text-capitalize"><?php echo e(\App\Models\Transaction::STATUS_PAID); ?></span>
                                         <?php else: ?>
-                                        <span class="order-bg-opacity-success text-success rounded-pill active"><?php echo e(\App\Models\Transaction::STATUS_APPROVED); ?></span>
+                                        <span class="btn btn-sm btn-success text-capitalize"><?php echo e(\App\Models\Transaction::STATUS_APPROVED); ?></span>
                                         <?php endif; ?>
                                     <?php elseif($transaction->payment_status == \App\Models\Transaction::PAYMENT_STATUS_RELEASE): ?>
-                                        <span class="order-bg-opacity-success text-warning rounded-pill active"><?php echo e(ucwords(str_replace('_', ' ', \App\Models\Transaction::STATUS_PENDING_PAID))); ?></span>
+                                        <span class="btn btn-sm btn-warning text-capitalize"><?php echo e(ucwords(str_replace('_', ' ', \App\Models\Transaction::STATUS_PENDING_PAID))); ?></span>
                                     <?php elseif($transaction->commission_status == \App\Models\Transaction::STATUS_PENDING): ?>
-                                        <span class="order-bg-opacity-warning text-warning rounded-pill active"><?php echo e(\App\Models\Transaction::STATUS_PENDING); ?></span>
+                                        <span class="btn btn-sm btn-warning text-capitalize"><?php echo e(\App\Models\Transaction::STATUS_PENDING); ?></span>
                                     <?php elseif($transaction->commission_status == \App\Models\Transaction::STATUS_HOLD): ?>
-                                        <span class="order-bg-opacity-info text-info rounded-pill active"><?php echo e(\App\Models\Transaction::STATUS_HOLD); ?></span>
+                                        <span class="btn btn-sm btn-info text-capitalize"><?php echo e(\App\Models\Transaction::STATUS_HOLD); ?></span>
                                     <?php elseif($transaction->commission_status == \App\Models\Transaction::STATUS_APPROVED): ?>
-                                        <span class="order-bg-opacity-success text-success rounded-pill active"><?php echo e(\App\Models\Transaction::STATUS_APPROVED); ?></span>
+                                        <span class="btn btn-sm btn-success text-capitalize"><?php echo e(\App\Models\Transaction::STATUS_APPROVED); ?></span>
                                     <?php elseif($transaction->commission_status == \App\Models\Transaction::STATUS_PAID): ?>
-                                        <span class="order-bg-opacity-primary text-primary rounded-pill active"><?php echo e(\App\Models\Transaction::STATUS_PAID); ?></span>
+                                        <span class="btn btn-sm btn-primary text-capitalize"><?php echo e(\App\Models\Transaction::STATUS_PAID); ?></span>
                                     <?php elseif($transaction->commission_status == \App\Models\Transaction::STATUS_DECLINED): ?>
-                                        <span class="order-bg-opacity-danger text-danger rounded-pill active"><?php echo e(\App\Models\Transaction::STATUS_DECLINED); ?></span>
+                                        <span class="btn btn-sm btn-danger text-capitalize"><?php echo e(\App\Models\Transaction::STATUS_DECLINED); ?></span>
                                     <?php endif; ?>
                                 </div>
                             </td>
@@ -146,20 +147,8 @@
 
     <?php echo $__env->make("template.publisher.widgets.loader", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-</div>
-
 <?php if(count($transactions) && $transactions instanceof \Illuminate\Pagination\LengthAwarePaginator ): ?>
-
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="d-flex justify-content-sm-end justify-content-star mt-1 mb-30">
-
-                <?php echo e($transactions->withQueryString()->links()); ?>
-
-
-            </div>
-        </div>
-    </div>
+    <?php echo e($transactions->withQueryString()->links('vendor.pagination.custom')); ?>
 
 <?php endif; ?>
 

@@ -383,7 +383,7 @@
                                     </div>
                                     </div><!-- End: .project-category -->
                                     <div>
-                                        <div class="d-flex align-items-center">
+                                        <div class="d-flex align-items-center gap-1">
                                         <span class="text-primary-light">Region :</span>
                                         <div class="project-category__select global-shadow ">
                                             <select class="js-example-basic-single js-states form-control" id="region">

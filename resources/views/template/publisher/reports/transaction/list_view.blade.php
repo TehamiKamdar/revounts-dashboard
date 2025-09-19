@@ -1,33 +1,33 @@
 
     <!-- Start Table Responsive -->
     <div class="table-responsive">
-        <table class="table mb-0 table-hover table-borderless border-0">
+        <table class="table table-hover table-borderless border-0">
             <thead>
-                <tr class="userDatatable-header">
+                <tr>
                     <th>
-                        <span class="userDatatable-title float-right font-weight-bold text-black">Date</span>
+                        Date
                     </th>
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Advertiser</span>
+                        Advertiser
                     </th>
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Transaction ID</span>
-                    </th>
-
-                    <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Sale Amount</span>
+                        Transaction ID
                     </th>
 
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Commission</span>
+                        Sale Amount
                     </th>
 
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Last Commission</span>
+                        Commission
                     </th>
 
                     <th>
-                        <span class="userDatatable-title font-weight-bold text-black">Status</span>
+                        Last Commission
+                    </th>
+
+                    <th>
+                        Status
                     </th>
                 </tr>
             </thead>
@@ -44,6 +44,8 @@
                     </th>
                     <th>
                         <span class="userDatatable-title font-weight-bold text-black">@if(count($transactions)){{ implode(', ', array_unique($transactions->pluck("commission_amount_currency")->toArray())) }} {{ number_format($totalCommissionAmount, 2) }} @else - @endif</span>
+                    </th>
+                    <th>
                     </th>
                     <th>
                     </th>
@@ -102,22 +104,22 @@
                                 <div class="orderDatatable-status d-inline-block">
                                     @if($transaction->payment_status == \App\Models\Transaction::PAYMENT_STATUS_RELEASE_PAYMENT || $transaction->payment_status == \App\Models\Transaction::PAYMENT_STATUS_CONFIRM)
                                     @if(isset($transaction->yespaid) && $transaction->yespaid == 1)
-                                        <span class="order-bg-opacity-success text-success rounded-pill active">{{ \App\Models\Transaction::STATUS_PAID }}</span>
+                                        <span class="btn btn-sm btn-success text-capitalize">{{ \App\Models\Transaction::STATUS_PAID }}</span>
                                         @else
-                                        <span class="order-bg-opacity-success text-success rounded-pill active">{{ \App\Models\Transaction::STATUS_APPROVED }}</span>
+                                        <span class="btn btn-sm btn-success text-capitalize">{{ \App\Models\Transaction::STATUS_APPROVED }}</span>
                                         @endif
                                     @elseif($transaction->payment_status == \App\Models\Transaction::PAYMENT_STATUS_RELEASE)
-                                        <span class="order-bg-opacity-success text-warning rounded-pill active">{{ ucwords(str_replace('_', ' ', \App\Models\Transaction::STATUS_PENDING_PAID)) }}</span>
+                                        <span class="btn btn-sm btn-warning text-capitalize">{{ ucwords(str_replace('_', ' ', \App\Models\Transaction::STATUS_PENDING_PAID)) }}</span>
                                     @elseif($transaction->commission_status == \App\Models\Transaction::STATUS_PENDING)
-                                        <span class="order-bg-opacity-warning text-warning rounded-pill active">{{ \App\Models\Transaction::STATUS_PENDING }}</span>
+                                        <span class="btn btn-sm btn-warning text-capitalize">{{ \App\Models\Transaction::STATUS_PENDING }}</span>
                                     @elseif($transaction->commission_status == \App\Models\Transaction::STATUS_HOLD)
-                                        <span class="order-bg-opacity-info text-info rounded-pill active">{{ \App\Models\Transaction::STATUS_HOLD }}</span>
+                                        <span class="btn btn-sm btn-info text-capitalize">{{ \App\Models\Transaction::STATUS_HOLD }}</span>
                                     @elseif($transaction->commission_status == \App\Models\Transaction::STATUS_APPROVED)
-                                        <span class="order-bg-opacity-success text-success rounded-pill active">{{ \App\Models\Transaction::STATUS_APPROVED }}</span>
+                                        <span class="btn btn-sm btn-success text-capitalize">{{ \App\Models\Transaction::STATUS_APPROVED }}</span>
                                     @elseif($transaction->commission_status == \App\Models\Transaction::STATUS_PAID)
-                                        <span class="order-bg-opacity-primary text-primary rounded-pill active">{{ \App\Models\Transaction::STATUS_PAID }}</span>
+                                        <span class="btn btn-sm btn-primary text-capitalize">{{ \App\Models\Transaction::STATUS_PAID }}</span>
                                     @elseif($transaction->commission_status == \App\Models\Transaction::STATUS_DECLINED)
-                                        <span class="order-bg-opacity-danger text-danger rounded-pill active">{{ \App\Models\Transaction::STATUS_DECLINED }}</span>
+                                        <span class="btn btn-sm btn-danger text-capitalize">{{ \App\Models\Transaction::STATUS_DECLINED }}</span>
                                     @endif
                                 </div>
                             </td>
