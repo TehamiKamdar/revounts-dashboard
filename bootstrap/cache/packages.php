@@ -12,17 +12,17 @@
   ),
   'artesaos/seotools' => 
   array (
+    'aliases' => 
+    array (
+      'SEO' => 'Artesaos\\SEOTools\\Facades\\SEOTools',
+      'JsonLd' => 'Artesaos\\SEOTools\\Facades\\JsonLd',
+      'SEOMeta' => 'Artesaos\\SEOTools\\Facades\\SEOMeta',
+      'Twitter' => 'Artesaos\\SEOTools\\Facades\\TwitterCard',
+      'OpenGraph' => 'Artesaos\\SEOTools\\Facades\\OpenGraph',
+    ),
     'providers' => 
     array (
       0 => 'Artesaos\\SEOTools\\Providers\\SEOToolsServiceProvider',
-    ),
-    'aliases' => 
-    array (
-      'SEOMeta' => 'Artesaos\\SEOTools\\Facades\\SEOMeta',
-      'OpenGraph' => 'Artesaos\\SEOTools\\Facades\\OpenGraph',
-      'Twitter' => 'Artesaos\\SEOTools\\Facades\\TwitterCard',
-      'JsonLd' => 'Artesaos\\SEOTools\\Facades\\JsonLd',
-      'SEO' => 'Artesaos\\SEOTools\\Facades\\SEOTools',
     ),
   ),
   'ashallendesign/laravel-exchange-rates' => 
@@ -73,13 +73,13 @@
   ),
   'jenssegers/agent' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Jenssegers\\Agent\\AgentServiceProvider',
-    ),
     'aliases' => 
     array (
       'Agent' => 'Jenssegers\\Agent\\Facades\\Agent',
+    ),
+    'providers' => 
+    array (
+      0 => 'Jenssegers\\Agent\\AgentServiceProvider',
     ),
   ),
   'knuckleswtf/scribe' => 
@@ -210,13 +210,13 @@
   ),
   'stevebauman/location' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Stevebauman\\Location\\LocationServiceProvider',
-    ),
     'aliases' => 
     array (
       'Location' => 'Stevebauman\\Location\\Facades\\Location',
+    ),
+    'providers' => 
+    array (
+      0 => 'Stevebauman\\Location\\LocationServiceProvider',
     ),
   ),
   'yajra/laravel-datatables-buttons' => 

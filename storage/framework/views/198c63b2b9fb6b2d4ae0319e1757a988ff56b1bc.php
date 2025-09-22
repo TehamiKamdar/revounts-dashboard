@@ -1,17 +1,19 @@
-@extends('layouts.admin.panel_table')
+<?php if (! $__env->hasRenderedOnce('ba5c6d57-26e8-4d6c-aa46-d9780fa84813')): $__env->markAsRenderedOnce('ba5c6d57-26e8-4d6c-aa46-d9780fa84813');
+$__env->startPush('styles'); ?>
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('styles')
-@endpushonce
-
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('271428e6-eed1-412e-99b6-f53db1ff613f')): $__env->markAsRenderedOnce('271428e6-eed1-412e-99b6-f53db1ff613f');
+$__env->startPush('scripts'); ?>
     <script type="text/javascript">
         $(function() {
 
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-            let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
+
+
+            let deleteButtonTrans = '<?php echo e(trans('global.datatables.delete')); ?>'
             let deleteButton = {
                 text: deleteButtonTrans,
-                url: "{{ route('admin.user-management.permissions.massDestroy') }}",
+                url: "<?php echo e(route('admin.user-management.roles.massDestroy')); ?>",
                 className: 'btn-danger btn-xs ml-3',
                 action: function(e, dt, node, config) {
                     let ids = $.map(dt.rows({
@@ -20,10 +22,10 @@
                         return $(entry).attr("id");
                     });
                     if (ids.length === 0) {
-                        alert('{{ trans('global.datatables.zero_selected') }}')
+                        alert('<?php echo e(trans('global.datatables.zero_selected')); ?>')
                         return
                     }
-                    if (confirm('{{ trans('global.areYouSure') }}')) {
+                    if (confirm('<?php echo e(trans('global.areYouSure')); ?>')) {
                         $.ajax({
                                 headers: {
                                     'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
@@ -43,7 +45,7 @@
             }
             dtButtons.push(deleteButton)
 
-            $('#datatablePermission').dataTable({
+            $('#datatableRole').dataTable({
                 order: [
                     [1, 'asc']
                 ],
@@ -54,7 +56,7 @@
                 autoWidth: true,
                 deferRender: true,
                 sScrollXInner: "99.5%",
-                ajax: "{{ route('admin.user-management.permissions.index') }}",
+                ajax: "<?php echo e(route('admin.user-management.roles.index')); ?>",
                 columns: [{
                         data: 'id',
                         name: 'id'
@@ -62,6 +64,10 @@
                     {
                         data: 'title',
                         name: 'title'
+                    },
+                    {
+                        data: 'permissions',
+                        name: 'permissions'
                     },
                     {
                         data: 'action',
@@ -76,37 +82,43 @@
 
         });
     </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
-                <div class="breadcrumb-main">
-                    <h1 class="title">{{ trans('cruds.permission.title') }} {{ trans('global.list') }}</h1>
-                    <div class="d-flex justify-content-end my-3">
-                        <a href="{{ route('admin.user-management.permissions.create') }}" class="btn btn-sm btn-primary">
-                            <i class="ri-add-line"></i> {{ trans('global.add') }}
-                            {{ trans('cruds.advertiser_configuration.title_singular') }}
-                        </a>
-                    </div>
-                </div>
+                    <h4 class="title"><?php echo e(trans('cruds.role.title')); ?> <?php echo e(trans('global.list')); ?></h4>
+
+                        <div class="d-flex justify-content-end my-3">
+                            <a href="<?php echo e(route('admin.user-management.roles.create')); ?>"
+                                class="btn btn-sm btn-primary btn-add">
+                                <i class="la la-plus"></i> <?php echo e(trans('global.add')); ?> <?php echo e(trans('cruds.role.title_singular')); ?>
+
+                            </a>
+                        </div>
+
             </div>
         </div>
-
-        @include('partial.admin.alert')
+        <?php echo $__env->make('partial.admin.alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <div class="table-container">
             <div class="table-responsive">
-                <table class="table table-borderless table-hover datatable" id="datatablePermission">
+                <table class="table table-borderless table-hover datatable" id="datatableRole">
                     <thead>
-                        <tr class="userDatatable-header footable-header">
+                        <tr>
                             <th></th>
                             <th>
-                                {{ trans('cruds.permission.fields.title') }}
+                                <?php echo e(trans('cruds.role.fields.title')); ?>
+
                             </th>
                             <th>
-                                {{ trans('global.action') }}
+                                <?php echo e(trans('cruds.role.fields.permissions')); ?>
+
+                            </th>
+                            <th>
+                                <?php echo e(trans('global.action')); ?>
+
                             </th>
                         </tr>
                     </thead>
@@ -114,4 +126,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin.panel_table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Tehami\Desktop\revounts-dashboard\resources\views/template/admin/roles/index.blade.php ENDPATH**/ ?>

@@ -1,23 +1,23 @@
-@extends("layouts.admin.panel_app")
+@extends('layouts.admin.panel_app')
 
 @pushonce('styles')
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/select2.min.css") }}"/>
+    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/select2.min.css') }}" />
 @endpushonce
 
 @pushonce('scripts')
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/select2.full.min.js") }}"></script>
+    <script src="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/js/select2.full.min.js') }}"></script>
     <script>
         $("#permissions").select2({
             placeholder: "Please Select",
             dropdownCssClass: "tag",
             allowClear: true,
         });
-        $('.select-all').click(function () {
+        $('.select-all').click(function() {
             let $select2 = $(this).parent().siblings('.select2')
             $select2.find('option').prop('selected', 'selected')
             $select2.trigger('change')
         });
-        $('.deselect-all').click(function () {
+        $('.deselect-all').click(function() {
             let $select2 = $(this).parent().siblings('.select2')
             $select2.find('option').prop('selected', '')
             $select2.trigger('change')
@@ -25,7 +25,7 @@
     </script>
 @endpushonce
 
-@section("content")
+@section('content')
     <div class="contents">
 
         <div class="container-fluid">
@@ -34,13 +34,12 @@
                     <div class="col-lg-12">
 
                         <div class="breadcrumb-main">
-                            <h4 class="text-capitalize breadcrumb-title">{{ trans('global.add') }} {{ trans('cruds.permission.title_singular') }}</h4>
-                            <div class="breadcrumb-action justify-content-center flex-wrap">
-                                <div class="action-btn">
-                                    <a href="{{ route("admin.user-management.roles.index") }}" class="btn btn-sm btn-gray btn-add">
-                                        <i class="la la-undo"></i> {{ trans('global.back_to_list') }}</a>
-                                </div>
-                            </div>
+                            <h1 class="title">{{ trans('global.add') }} {{ trans('cruds.permission.title_singular') }}</h1>
+                            <a href="{{ route('admin.user-management.roles.index') }}"
+                            class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
+                            style="width: 40px; height: 40px; cursor: pointer;">
+                            <i class="ri-arrow-left-line text-white"></i>
+                        </a>
                         </div>
 
                     </div>
@@ -50,11 +49,11 @@
                         <div class="card">
                             <div class="card-body">
 
-                                @include("partial.admin.alert")
+                                @include('partial.admin.alert')
 
-                                <form action="{{ route("admin.user-management.roles.store") }}" method="POST">
+                                <form action="{{ route('admin.user-management.roles.store') }}" method="POST">
                                     @csrf
-                                    @include("template.admin.roles.form")
+                                    @include('template.admin.roles.form')
                                 </form>
 
                             </div>

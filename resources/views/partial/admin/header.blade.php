@@ -200,6 +200,23 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                         <span class="nav-text">Users Management</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
+                    <ul class="submenu">
+                        @can('admin_permissions_users_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.user-management.permissions.index") }}" data-layout="light" class="nav-link {{ request()->is("$urlType/user-management/permissions") || request()->is("$urlType/user-management/permissions/*") ? "active" : null }}"><span>{{ trans('cruds.permission.title') }}</span></a>
+                            </li>
+                        @endcan
+                        @can('admin_roles_users_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.user-management.roles.index") }}" data-layout="light" class="nav-link {{ request()->is("$urlType/user-management/roles") || request()->is("$urlType/user-management/roles/*") ? "active" : null }}"><span>{{ trans('cruds.role.title') }}</span></a>
+                            </li>
+                        @endcan
+                        @can('admin_users_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.user-management.users.index") }}" data-layout="light" class="nav-link {{ request()->is("$urlType/user-management/users") || request()->is("$urlType/user-management/users/*") ? "active" : null }}"><span>{{ trans('cruds.user.title') }}</span></a>
+                            </li>
+                        @endcan
+                    </ul>
                 </div>
 
                 <div class="nav-item has-dropdown">

@@ -1,9 +1,9 @@
-@extends('layouts.admin.panel_table')
+<?php if (! $__env->hasRenderedOnce('ec2488a2-2965-4266-bb88-34eccd589401')): $__env->markAsRenderedOnce('ec2488a2-2965-4266-bb88-34eccd589401');
+$__env->startPush('styles'); ?>
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('styles')
-@endpushonce
-
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('3c0de1ea-a4ba-4b3d-b8f5-94f675ee270e')): $__env->markAsRenderedOnce('3c0de1ea-a4ba-4b3d-b8f5-94f675ee270e');
+$__env->startPush('scripts'); ?>
     <script type="text/javascript">
         function openModal(id) {
             $("#transaction_id").val(id);
@@ -22,12 +22,12 @@
                 deferRender: true,
                 sScrollXInner: "150%",
                 ajax: {
-                    url: "{{ route('admin.transactions.index') }}",
+                    url: "<?php echo e(route('admin.transactions.index')); ?>",
                     data: function(d) {
                         d.source = $('#source').val();
                         d.country = $('#country').val();
                         d.search_filter = $('#search_filter').val();
-                        d.route_name = "{{ request()->route()->getName() }}";
+                        d.route_name = "<?php echo e(request()->route()->getName()); ?>";
                     }
                 },
                 columns: [{
@@ -116,7 +116,7 @@
 
             $("#publisher").change(() => {
                 $.ajax({
-                    url: '{{ route('get-websites-by-user') }}',
+                    url: '<?php echo e(route('get-websites-by-user')); ?>',
                     type: 'POST',
                     headers: {
                         'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')
@@ -151,15 +151,15 @@
 
         });
     </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
 
                 <div class="breadcrumb-main">
-                    <h1 class="title">{{ trans('cruds.transaction_missing.title') }} {{ trans('global.list') }}</h4>
+                    <h1 class="title"><?php echo e(trans('cruds.transaction_missing.title')); ?> <?php echo e(trans('global.list')); ?></h4>
                         <div class="horizontal-filters">
                             <div class="filter-header">
                                 <h5 class="mb-0"><i class="ri-filter-3-line"></i> Filters</h5>
@@ -175,9 +175,9 @@
                                     <select class="js-example-basic-single js-states form-control" id="source"
                                         name="source">
                                         <option value="" disabled selected>Select</option>
-                                        @foreach (\App\Helper\Static\Vars::OPTION_LIST as $list)
-                                            <option value="{{ $list }}">{{ ucwords($list) }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = \App\Helper\Static\Vars::OPTION_LIST; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($list); ?>"><?php echo e(ucwords($list)); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
 
@@ -189,9 +189,9 @@
                                     <select class="js-example-basic-single js-states form-control" id="country"
                                         name="country">
                                         <option value="" disabled selected>Select</option>
-                                        @foreach ($countries as $country)
-                                            <option value="{{ $country['iso2'] }}">{{ $country['name'] }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($country['iso2']); ?>"><?php echo e($country['name']); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
 
@@ -203,9 +203,9 @@
                                     <select class="js-example-basic-single js-states form-control" id="search_filter"
                                         name="search_filter">
                                         <option value="" disabled selected>Select</option>
-                                        @foreach ($columns as $column)
-                                            <option value="{{ $column }}">{{ $column }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $columns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $column): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($column); ?>"><?php echo e($column); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -215,54 +215,69 @@
             </div>
         </div>
 
-        @include('partial.admin.alert')
+        <?php echo $__env->make('partial.admin.alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <div class="table-container">
             <div class="table-responsive">
-                <table class="table table-borderless table-hover datatable" id="datatableTransaction">
+                <table class="table table-borderless table-hover datatable"
+                    id="datatableTransaction">
                     <thead>
                         <tr class="userDatatable-header footable-header">
                             <th>
-                                {{ trans('cruds.transaction.fields.transaction_id') }}
+                                <?php echo e(trans('cruds.transaction.fields.transaction_id')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.assign') }}
+                                <?php echo e(trans('cruds.transaction.fields.assign')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.advertiser_name') }}
+                                <?php echo e(trans('cruds.transaction.fields.advertiser_name')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.transaction_date') }}
+                                <?php echo e(trans('cruds.transaction.fields.transaction_date')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.publisher_url') }}
+                                <?php echo e(trans('cruds.transaction.fields.publisher_url')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.customer_country') }}
+                                <?php echo e(trans('cruds.transaction.fields.customer_country')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.advertiser_country') }}
+                                <?php echo e(trans('cruds.transaction.fields.advertiser_country')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.commission_status') }}
+                                <?php echo e(trans('cruds.transaction.fields.commission_status')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.commission_amount') }}
+                                <?php echo e(trans('cruds.transaction.fields.commission_amount')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.commission_amount_currency') }}
+                                <?php echo e(trans('cruds.transaction.fields.commission_amount_currency')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.sale_amount') }}
+                                <?php echo e(trans('cruds.transaction.fields.sale_amount')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.sale_amount_currency') }}
+                                <?php echo e(trans('cruds.transaction.fields.sale_amount_currency')); ?>
+
                             </th>
                             <th>
-                                {{ trans('advertiser.api-advertiser.fields.source') }}
+                                <?php echo e(trans('advertiser.api-advertiser.fields.source')); ?>
+
                             </th>
                             <th>
-                                {{ trans('global.action') }}
+                                <?php echo e(trans('global.action')); ?>
+
                             </th>
                         </tr>
                     </thead>
@@ -272,9 +287,9 @@
     </div>
     <div class="website-modal modal fade show" id="missing-modal" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md" role="document">
-            <form action="{{ route('admin.transactions.missing.store') }}" method="post" enctype="multipart/form-data"
+            <form action="<?php echo e(route('admin.transactions.missing.store')); ?>" method="post" enctype="multipart/form-data"
                 id="setMissingTransactionForm" class="p-5">
-                @csrf
+                <?php echo csrf_field(); ?>
 
                 <input type="hidden" id="transaction_id" name="transaction_id">
                 <div class="modal-content modal-bg-white">
@@ -291,10 +306,11 @@
                                     <select class="js-example-basic-single js-states form-control" id="publisher"
                                         name="publisher">
                                         <option value="" selected>Please Select</option>
-                                        @foreach ($publishers as $publisher)
-                                            <option value="{{ $publisher->id }}">{{ $publisher->first_name }}
-                                                {{ $publisher->last_name }}</option>
-                                        @endforeach
+                                        <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                            <option value="<?php echo e($publisher->id); ?>"><?php echo e($publisher->first_name); ?>
+
+                                                <?php echo e($publisher->last_name); ?></option>
+                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                     </select>
                                 </div>
                             </div>
@@ -328,4 +344,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin.panel_table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Tehami\Desktop\revounts-dashboard\resources\views/template/admin/transaction_missing/index.blade.php ENDPATH**/ ?>

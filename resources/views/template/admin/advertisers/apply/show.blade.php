@@ -93,7 +93,7 @@
                     <div class="d-flex align-items-center gap-3">
                         <!-- Back button -->
                         <a href="{{ route("admin.approval.index", ['status' => $status->value]) }}"
-                            class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none"
+                            class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
                             style="width: 40px; height: 40px; cursor: pointer;">
                             <i class="ri-arrow-left-line text-white"></i>
                         </a>
