@@ -1,9 +1,9 @@
-@extends("layouts.admin.panel_table")
+<?php if (! $__env->hasRenderedOnce('93d91bf6-5ac2-4091-bb21-6b76c71cfdce')): $__env->markAsRenderedOnce('93d91bf6-5ac2-4091-bb21-6b76c71cfdce');
+$__env->startPush('styles'); ?>
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('styles')
-@endpushonce
-
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('6cccacab-0bee-4fb3-a3de-77305fbd3892')): $__env->markAsRenderedOnce('6cccacab-0bee-4fb3-a3de-77305fbd3892');
+$__env->startPush('scripts'); ?>
 
 <script type="text/javascript">
     $(function () {
@@ -18,13 +18,13 @@
             deferRender: true,
             sScrollXInner: "170%",
             ajax: {
-                url: "{{ route('admin.transactions.index') }}",
+                url: "<?php echo e(route('admin.transactions.index')); ?>",
                 data: function (d) {
                     d.source = $('#source').val();
                     d.country = $('#country').val();
                     d.search_filter = $('#search_filter').val();
-                    d.payment_id = "{{ request()->input('payment_id') ?? '' }}";
-                    d.r_name = "{{ request()->input('r_name') ?? '' }}";
+                    d.payment_id = "<?php echo e(request()->input('payment_id') ?? ''); ?>";
+                    d.r_name = "<?php echo e(request()->input('r_name') ?? ''); ?>";
                 }
             },
             columns: [
@@ -69,9 +69,9 @@
 
     });
 </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
 
 
     <div class="container-fluid">
@@ -79,8 +79,10 @@
             <div class="col-lg-12">
 
                 <div class="breadcrumb-main">
-                    <h1 class="title">{{ trans('cruds.transaction.title') }}
-                        {{ trans('global.list') }}
+                    <h1 class="title"><?php echo e(trans('cruds.transaction.title')); ?>
+
+                        <?php echo e(trans('global.list')); ?>
+
                     </h1>
                     <!-- Horizontal Filters -->
                     <div class="horizontal-filters">
@@ -97,9 +99,9 @@
                                 </div>
                                 <select class="js-example-basic-single js-states form-control" id="source" name="source">
                                     <option value="" disabled selected>Select</option>
-                                    @foreach(\App\Helper\Static\Vars::OPTION_LIST as $list)
-                                        <option value="{{ $list }}">{{ ucwords($list) }}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = \App\Helper\Static\Vars::OPTION_LIST; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($list); ?>"><?php echo e(ucwords($list)); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
 
@@ -110,9 +112,9 @@
                                 </div>
                                 <select class="js-example-basic-single js-states form-control" id="country" name="country">
                                     <option value="" disabled selected>Select</option>
-                                    @foreach($countries as $country)
-                                        <option value="{{ $country['iso2'] }}">{{ $country['name'] }}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($country['iso2']); ?>"><?php echo e($country['name']); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
 
@@ -124,9 +126,9 @@
                                 <select class="js-example-basic-single js-states form-control" id="search_filter"
                                     name="search_filter">
                                     <option value="" disabled selected>Select</option>
-                                    @foreach($columns as $column)
-                                        <option value="{{ $column }}">{{ $column }}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $columns; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $column): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($column); ?>"><?php echo e($column); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
@@ -136,7 +138,7 @@
             </div>
         </div>
 
-        @include("partial.admin.alert")
+        <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <div class="table-container">
             <div class="table-responsive">
@@ -144,55 +146,72 @@
                     <thead>
                         <tr class="userDatatable-header footable-header">
                             <th>
-                                {{ trans('cruds.transaction.fields.transaction_id') }}
+                                <?php echo e(trans('cruds.transaction.fields.transaction_id')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.advertiser_name') }}
+                                <?php echo e(trans('cruds.transaction.fields.advertiser_name')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.transaction_date') }}
+                                <?php echo e(trans('cruds.transaction.fields.transaction_date')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.customer_country') }}
+                                <?php echo e(trans('cruds.transaction.fields.customer_country')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.advertiser_country') }}
+                                <?php echo e(trans('cruds.transaction.fields.advertiser_country')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.paid_to_publisher') }}
+                                <?php echo e(trans('cruds.transaction.fields.paid_to_publisher')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.commission_status') }}
+                                <?php echo e(trans('cruds.transaction.fields.commission_status')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.payment_status') }}
+                                <?php echo e(trans('cruds.transaction.fields.payment_status')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.commission_amount') }}
+                                <?php echo e(trans('cruds.transaction.fields.commission_amount')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.commission_amount_currency') }}
+                                <?php echo e(trans('cruds.transaction.fields.commission_amount_currency')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.sale_amount') }}
+                                <?php echo e(trans('cruds.transaction.fields.sale_amount')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.received_commission_amount') }}
+                                <?php echo e(trans('cruds.transaction.fields.received_commission_amount')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.received_sale_amount') }}
+                                <?php echo e(trans('cruds.transaction.fields.received_sale_amount')); ?>
+
                             </th>
                             <th>
-                                {{ trans('cruds.transaction.fields.sale_amount_currency') }}
+                                <?php echo e(trans('cruds.transaction.fields.sale_amount_currency')); ?>
+
                             </th>
                             <th>
-                                {{ trans('advertiser.api-advertiser.fields.received_commission_amount_currency') }}
+                                <?php echo e(trans('advertiser.api-advertiser.fields.received_commission_amount_currency')); ?>
+
                             </th>
                             <th>
-                                {{ trans('advertiser.api-advertiser.fields.source') }}
+                                <?php echo e(trans('advertiser.api-advertiser.fields.source')); ?>
+
                             </th>
                             <th>
-                                {{ trans('global.action') }}
+                                <?php echo e(trans('global.action')); ?>
+
                             </th>
                         </tr>
                     </thead>
@@ -201,4 +220,5 @@
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.admin.panel_table", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/transactions/index.blade.php ENDPATH**/ ?>

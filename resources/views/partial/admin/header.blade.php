@@ -9,7 +9,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
 
             <nav class="header-nav">
                 <div class="nav-item has-dropdown">
-                    <a href="index.html" class="nav-link active">
+                    <a href="#" class="nav-link active">
                         <i class="ri-user-smile-line"></i>
                         <span class="nav-text">Publishers</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -82,7 +82,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="payments.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-money-dollar-box-line"></i>
                         <span class="nav-text">Payments</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -137,7 +137,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="profile.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-profile-line"></i>
                         <span class="nav-text">Stats.</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -163,7 +163,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="profile.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-profile-line"></i>
                         <span class="nav-text">Transaction Management</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -195,7 +195,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="payments.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-money-dollar-box-line"></i>
                         <span class="nav-text">Users Management</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -203,7 +203,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="payments.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-money-dollar-box-line"></i>
                         <span class="nav-text">Settings</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -237,3 +237,50 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
         </div>
     </div>
 </header>
+{{-- 
+<li class="nav-author">
+                    <div class="dropdown-custom">
+                        <a href="javascript:;" class="nav-item-toggle"><img src="{{ \App\Helper\Static\Methods::staticAsset("img/author-nav.jpg") }}" alt="" class="rounded-circle"></a>
+                        <div class="dropdown-wrapper">
+                            <div class="nav-author__info">
+                                <div class="author-img">
+                                    <img src="{{ \App\Helper\Static\Methods::staticAsset("img/author-nav.jpg") }}" alt="" class="rounded-circle">
+                                </div>
+                                <div>
+                                    <h6>{{ auth()->user()->full_name }}</h6>
+                                    <span>{{ auth()->user()->getRoleName() }}</span>
+                                </div>
+                            </div>
+                            <div class="nav-author__options">
+                                <ul>
+                                    <li>
+                                        <a href="">
+                                            <span data-feather="user"></span> Profile</a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span data-feather="settings"></span> Settings</a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span data-feather="key"></span> Billing</a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span data-feather="users"></span> Activity</a>
+                                    </li>
+                                    <li>
+                                        <a href="">
+                                            <span data-feather="bell"></span> Help</a>
+                                    </li>
+                                </ul>
+                                <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logoutform').submit();" class="nav-author__signout">
+                                    <span data-feather="log-out"></span> Sign Out</a>
+                                <form id="logoutform" action="{{ route('logout') }}" method="POST" class="display-hidden">
+                                    {{ csrf_field() }}
+                                </form>
+                            </div>
+                        </div>
+                        <!-- ends: .dropdown-wrapper -->
+                    </div>
+                </li> --}}
