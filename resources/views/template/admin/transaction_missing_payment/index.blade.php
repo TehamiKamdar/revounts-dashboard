@@ -161,6 +161,20 @@
                             <!-- Country Filter -->
                             <div class="filter-card">
                                 <div class="filter-title">
+                                    <h6>Publisher</h6>
+                                </div>
+                                <select class="js-example-basic-single js-states form-control" id="publisher_id"
+                                    name="publisher_id">
+                                    <option value="" disabled selected>Select</option>
+                                    @foreach($publishers as $publisher)
+                                        <option value="{{ $publisher->id }}">{{ ucwords($publisher->user_name) }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <!-- Advertiser Type Filter -->
+                            <div class="filter-card">
+                                <div class="filter-title">
                                     <h6>Source</h6>
                                 </div>
                                 <select class="js-example-basic-single js-states form-control" id="source" name="source">
@@ -171,7 +185,7 @@
                                 </select>
                             </div>
 
-                            <!-- Advertiser Type Filter -->
+                            <!-- Category Filter -->
                             <div class="filter-card">
                                 <div class="filter-title">
                                     <h6>Country</h6>
@@ -183,57 +197,9 @@
                                     @endforeach
                                 </select>
                             </div>
-
-                            <!-- Category Filter -->
-                            <div class="filter-card">
-                                <div class="filter-title">
-                                    <h6>Search Filter</h6>
-                                </div>
-                                <select class="js-example-basic-single js-states form-control" id="search_filter"
-                                    name="search_filter">
-                                    <option value="" disabled selected>Select</option>
-                                    @foreach($columns as $column)
-                                        <option value="{{ $column }}">{{ $column }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="breadcrumb-action justify-content-center flex-wrap">
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label for="source" class="font-weight-bold text-black">Publisher: </label>
-                                <select class="js-example-basic-single js-states form-control" id="publisher_id"
-                                    name="publisher_id">
-                                    <option value="" disabled selected>Select</option>
-                                    @foreach($publishers as $publisher)
-                                        <option value="{{ $publisher->id }}">{{ ucwords($publisher->user_name) }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="col-lg-4">
-                                <label for="source" class="font-weight-bold text-black">Source: </label>
-                                <select class="js-example-basic-single js-states form-control" id="source" name="source">
-                                    <option value="" disabled selected>Select</option>
-                                    @foreach(\App\Helper\Static\Vars::OPTION_LIST as $list)
-                                        <option value="{{ $list }}">{{ ucwords($list) }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="col-lg-4">
-                                <label for="source" class="font-weight-bold text-black">Country: </label>
-                                <select class="js-example-basic-single js-states form-control" id="country" name="country">
-                                    <option value="" disabled selected>Select</option>
-                                    @foreach($countries as $country)
-                                        <option value="{{ $country['iso2'] }}">{{ $country['name'] }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
 
@@ -241,8 +207,7 @@
 
         <div class="table-container">
             <div class="table-responsive">
-                <table class="table table table-condensed table-bordered table-striped table-hover datatable"
-                    id="datatableTransaction">
+                <table class="table table-borderless table-hover datatable" id="datatableTransaction">
                     <thead>
                         <tr class="userDatatable-header footable-header">
                             <th>

@@ -9,7 +9,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
 
             <nav class="header-nav">
                 <div class="nav-item has-dropdown">
-                    <a href="index.html" class="nav-link active">
+                    <a href="#" class="nav-link active">
                         <i class="ri-user-smile-line"></i>
                         <span class="nav-text">Publishers</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -82,7 +82,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="payments.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-money-dollar-box-line"></i>
                         <span class="nav-text">Payments</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -137,7 +137,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="profile.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-profile-line"></i>
                         <span class="nav-text">Stats.</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -163,7 +163,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="profile.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-profile-line"></i>
                         <span class="nav-text">Transaction Management</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -195,7 +195,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="payments.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-money-dollar-box-line"></i>
                         <span class="nav-text">Users Management</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -203,7 +203,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                 </div>
 
                 <div class="nav-item has-dropdown">
-                    <a href="payments.html" class="nav-link">
+                    <a href="#" class="nav-link">
                         <i class="ri-money-dollar-box-line"></i>
                         <span class="nav-text">Settings</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
@@ -236,4 +236,5 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
             </div>
         </div>
     </div>
-</header><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/partial/admin/header.blade.php ENDPATH**/ ?>
+</header>
+<?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/partial/admin/header.blade.php ENDPATH**/ ?>
