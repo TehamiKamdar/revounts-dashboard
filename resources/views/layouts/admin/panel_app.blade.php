@@ -6,28 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="icon" type="image/png" href="{{ \App\Helper\Static\Methods::staticAsset("new_assets/favicon.png") }}">
+    <link rel="icon" type="image/png" href="{{ asset("admin_assets/favicon.png") }}">
 
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
     {!! JsonLd::generate() !!}
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
-    <!-- inject:css-->
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/bootstrap/bootstrap.css") }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/fontawesome.css") }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/line-awesome.min.css") }}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- RemixIcons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
 
     @stack('styles')
 
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("new_assets/css/style.css") }}">
+    <link rel="stylesheet" href="{{ asset("admin_assets/css/style.css") }}">
 
     <style>
-        .contents {
-            padding: 60px 15px 72px 295px !important;
-        }
         .select2-container--default .select2-selection--multiple .select2-selection__clear {
             margin: -3px -6px;
         }
@@ -51,13 +49,15 @@
 
 </head>
 
-<body class="side-menu layout-light overlayScroll">
+<body>
 
     @include("partial.admin.header")
-    <main class="main-content">
-        @yield("content")
-        @include("partial.admin.footer")
-    </main>
+    <div class="dashboard-container">
+        <main class="dashboard-main">
+            @yield("content")
+        </main>
+    </div>
+    @include("partial.admin.footer")
 
     <div id="overlayer">
         <span class="loader-overlay">
@@ -70,12 +70,12 @@
         </span>
     </div>
 
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-3.5.1.min.js") }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-ui.js") }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/bootstrap/popper.js") }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/bootstrap/bootstrap.min.js") }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/feather.min.js") }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/admin_extra.js") }}"></script>
+    <script src="{{ asset("vendor_assets/js/jquery/jquery-3.5.1.min.js") }}"></script>
+    <script src="{{ asset("vendor_assets/js/jquery/jquery-ui.js") }}"></script>
+    <script src="{{ asset("vendor_assets/js/bootstrap/popper.js") }}"></script>
+    <script src="{{ asset("vendor_assets/js/bootstrap/bootstrap.min.js") }}"></script>
+    <script src="{{ asset("vendor_assets/js/feather.min.js") }}"></script>
+    <script src="{{ asset("vendor_assets/js/admin_extra.js") }}"></script>
 
     @stack("editor")
 

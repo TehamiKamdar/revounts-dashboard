@@ -98,34 +98,7 @@
 
                                 @include("partial.admin.alert")
 
-                                <table class="table table table-condensed table-bordered table-striped table-hover datatable"
-                                       id="datatableAdvertiser">
-                                    <thead>
-                                        <tr class="userDatatable-header footable-header">
-                                            <th>
-                                                {{ trans('cruds.advertiser.fields.created_at') }}
-                                            </th>
-                                            <th>
-                                                {{ trans('cruds.advertiser.fields.first_name') }}
-                                            </th>
-                                            <th>
-                                                {{ trans('cruds.advertiser.fields.last_name') }}
-                                            </th>
-                                            <th>
-                                                {{ trans('cruds.advertiser.fields.user_name') }}
-                                            </th>
-                                            <th>
-                                                {{ trans('cruds.advertiser.fields.email') }}
-                                            </th>
-                                            <th>
-                                                {{ trans('cruds.advertiser.fields.status') }}
-                                            </th>
-                                            <th>
-                                                {{ trans('global.action') }}
-                                            </th>
-                                        </tr>
-                                    </thead>
-                                </table>
+                                
                             </div>
                         </div>
                     </div>

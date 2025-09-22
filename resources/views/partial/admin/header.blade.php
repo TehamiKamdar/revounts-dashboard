@@ -734,68 +734,298 @@
         <!-- ends: .navbar-right -->
     </nav>
 </header> --}}
+
+<?php
+$urlType = \App\Enums\AccountType::ADMIN->value;
+?>
+
 <header class="dashboard-header">
     <div class="header-content">
         <div class="brand">
             <div class="dashboard-logo"></div>
 
             <nav class="header-nav">
-                <div class="nav-item">
+                <div class="nav-item has-dropdown">
                     <a href="index.html" class="nav-link active">
                         <i class="ri-user-smile-line"></i>
-                        <span class="nav-text">Advertisers</span>
+                        <span class="nav-text">Publishers</span>
+                        <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
+                    <ul class="submenu">
+                        @can('admin_pending_publishers_access')
+                            <li>
+                                <a href="{{ route("admin.publisher-management.publishers.index", ['status' => 'pending']) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/publisher-management/publisher/pending") ? "active" : null }}">
+                                    <span>Pending {{ trans('cruds.publisher.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_hold_publishers_access')
+                            <li>
+                                <a href="{{ route("admin.publisher-management.publishers.index", ['status' => 'hold']) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/publisher-management/publisher/hold") ? "active" : null }}">
+                                    <span>Hold {{ trans('cruds.publisher.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_active_publishers_access')
+                            <li>
+                                <a href="{{ route("admin.publisher-management.publishers.index", ['status' => 'active']) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/publisher-management/publisher/active") ? "active" : null }}">
+                                    <span>Active {{ trans('cruds.publisher.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_rejected_publishers_access')
+                            <li>
+                                <a href="{{ route("admin.publisher-management.publishers.index", ['status' => 'rejected']) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/publisher-management/publisher/rejected") ? "active" : null }}">
+                                    <span>Rejected {{ trans('cruds.publisher.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
                 </div>
 
                 <div class="nav-item has-dropdown">
                     <a href="#" class="nav-link">
                         <i class="ri-line-chart-fill"></i>
-                        <span class="nav-text">Reports</span>
+                        <span class="nav-text">Approval Reqs.</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="transactions.html" class="nav-link"><span>Transactions</span></a></li>
-                        <li><a href="performance.html" class="nav-link"><span>Daily Performance</span></a></li>
+                        @can('admin_pending_approval_requests_access')
+                            <li>
+                                <a href="{{ route("admin.approval.index", ["status" => \App\Models\AdvertiserApply::STATUS_PENDING]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/approval/pending") || request()->is("$urlType/approval/pending/*") ? "active" : null }}">
+                                    <span>{{ trans('advertiser.approval.pending.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_joined_approval_requests_access')
+                            <li>
+                                <a href="{{ route("admin.approval.index", ["status" => \App\Models\AdvertiserApply::STATUS_ACTIVE]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/approval/joined") || request()->is("$urlType/approval/joined/*") ? "active" : null }}">
+                                    <span>{{ trans('advertiser.approval.joined.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_hold_approval_requests_access')
+                            <li>
+                                <a href="{{ route("admin.approval.index", ["status" => \App\Models\AdvertiserApply::STATUS_HOLD]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/approval/hold") || request()->is("$urlType/approval/hold/*") ? "active" : null }}">
+                                    <span>{{ trans('advertiser.approval.hold.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_admitad_hold_approval_requests_access')
+                            <li>
+                                <a href="{{ route("admin.approval.index", ["status" => \App\Models\AdvertiserApply::STATUS_ADMITAD_HOLD]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/approval/admitad_hold") || request()->is("$urlType/approval/admitad_hold/*") ? "active" : null }}">
+                                    <span>Admitad {{ trans('advertiser.approval.hold.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_rejected_approval_requests_access')
+                            <li>
+                                <a href="{{ route("admin.approval.index", ["status" => \App\Models\AdvertiserApply::STATUS_REJECTED]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/approval/rejected") || request()->is("$urlType/approval/rejected/*") ? "active" : null }}">
+                                    <span>{{ trans('advertiser.approval.rejected.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </div>
 
                 <div class="nav-item has-dropdown">
                     <a href="#" class="nav-link">
                         <i class="ri-tools-fill"></i>
-                        <span class="nav-text">Tools</span>
+                        <span class="nav-text">Advertisers</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="link-shortner.html" class="nav-link"><span>Link Shortner</span></a></li>
+                        @can('admin_advertisers_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.advertiser-management.advertisers.index") }}" data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/advertiser-management/advertisers") || request()->is("$urlType/advertiser-management/advertisers/*") ? "active" : null }}">
+                                    <span>{{ trans('cruds.advertiser.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_api_advertisers_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.advertiser-management.api-advertisers.index") }}"
+                                    data-layout="light"
+                                    class="nav-link {{ (request()->is("$urlType/advertiser-management/api-advertisers") || request()->is("$urlType/advertiser-management/api-advertisers/*")) && !(request()->is("$urlType/advertiser-management/api-advertisers/show-on-publisher") || request()->is("$urlType/advertiser-management/api-advertisers/show-on-publisher/*") || request()->is("$urlType/advertiser-management/api-advertisers/duplicate-records") || request()->is("$urlType/advertiser-management/api-advertisers/duplicate-records/*")) ? "active" : null }}">
+                                    <span>{{ trans('advertiser.api-advertiser.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_api_advertisers_show_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.advertiser-management.api-advertisers.show_on_publisher.index") }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/advertiser-management/api-advertisers/show-on-publisher") || request()->is("$urlType/advertiser-management/api-advertisers/show-on-publisher/*") ? "active" : null }}">
+                                    <span>{{ trans('advertiser.api-advertiser.show_on_publisher.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_manual_join_publishers_advertisers_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.advertiser-management.manual_join_publisher") }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/advertiser-management/manual-join-publisher") || request()->is("$urlType/advertiser-management/manual-join-publisher/*") ? "active" : null }}">
+                                    <span>{{ trans('advertiser.manual_join_publisher.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_api_advertisers_duplicate_records_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.advertiser-management.api-advertisers.duplicate_record") }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/advertiser-management/api-advertisers/duplicate-records") || request()->is("$urlType/advertiser-management/api-advertisers/duplicate-records/*") ? "active" : null }}">
+                                    <span>{{ trans('advertiser.api-advertiser.duplicate_record.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </div>
 
                 <div class="nav-item has-dropdown">
                     <a href="#" class="nav-link">
                         <i class="ri-code-s-slash-line"></i>
-                        <span class="nav-text">Dev Tools</span>
+                        <span class="nav-text">Creatives</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="authentication.html" class="nav-link"><span>Authentication</span></a></li>
-                        <li><a href="link-wrapper.html" class="nav-link"><span>Link Wrapper</span></a></li>
-                        <li><a href="merchant-api.html" class="nav-link"><span>Merchant API</span></a></li>
-                        <li><a href="transaction-api.html" class="nav-link"><span>Transaction API</span></a></li>
-                        <li><a href="postback-settings.html" class="nav-link"><span>Postback Settings</span></a></li>
+                        @can('admin_coupons_creatives_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.creative-management.coupons.index") }}" data-layout="light"
+                                    class=" nav-link {{ request()->is("$urlType/creative-management/coupons") || request()->is("$urlType/creative-management/coupons/*") ? "active" : null }}">
+                                    <span>{{ trans('creative.creativeManagement.coupon.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
                     </ul>
                 </div>
 
-                <div class="nav-item">
-                    <a href="profile.html" class="nav-link">
-                        <i class="ri-profile-line"></i>
-                        <span class="nav-text">Profile</span>
-                    </a>
-                </div>
-
-                <div class="nav-item">
+                <div class="nav-item has-dropdown">
                     <a href="payments.html" class="nav-link">
                         <i class="ri-money-dollar-box-line"></i>
                         <span class="nav-text">Payments</span>
+                        <i class="chevron ri-arrow-down-s-line"></i>
+                    </a>
+                    <ul class="submenu">
+                        @can('admin_pending_to_pay_payments_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.payment-management.index", ["section" => \App\Models\PaymentHistory::PENDING_TO_PAY]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/payment-management/pending-to-pay") || request()->is("$urlType/payment-management/pending-to-pay/*") ? "active" : null }}">
+                                    <span>{{ trans('advertiser.approval.pending.title') }} To Pay</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_paid_to_publisher_payments_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.payment-management.index", ["section" => \App\Models\PaymentHistory::PAID_TO_PUBLISHER]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/payment-management/paid-to-publisher") || request()->is("$urlType/payment-management/paid-to-publisher/*") ? "active" : null }}">
+                                    <span>Paid To Publisher</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_release_payments_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.payment-management.index", ["section" => \App\Models\PaymentHistory::RELEASE_PAYMENT]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/payment-management/release-payment") || request()->is("$urlType/payment-management/release-payment/*") ? "active" : null }}">
+                                    <span>Release Payment</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_history_payments_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.payment-management.index", ["section" => \App\Models\PaymentHistory::PAYMENT_HISTORY]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/payment-management/payment-history") || request()->is("$urlType/payment-management/payment-history/*") ? "active" : null }}">
+                                    <span>Payment History</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_no_publisher_payments_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.payment-management.index", ["section" => \App\Models\PaymentHistory::NO_PUBLISHER_PAYMENT]) }}"
+                                    data-layout="light"
+                                    class="nav-link {{ request()->is("$urlType/payment-management/no-publisher-payment") || request()->is("$urlType/payment-management/no-publisher-payment/*") ? "active" : null }}">
+                                    <span>No Publisher Payment</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+
+                <div class="nav-item has-dropdown">
+                    <a href="profile.html" class="nav-link">
+                        <i class="ri-profile-line"></i>
+                        <span class="nav-text">Stats.</span>
+                        <i class="chevron ri-arrow-down-s-line"></i>
+                    </a>
+                    <ul class="submenu">
+                        @can('admin_tracking_links_statistics_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.statistics.links.index") }}" data-layout="light" class="nav-link {{ request()->is("$urlType/statistics/links") || request()->is("$urlType/statistics/links/*") ? "active" : null }}">
+                                    <span>{{ trans('link.statistics.links.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_deep_links_statistics_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.statistics.deeplinks.index") }}" data-layout="light" class="nav-link {{ request()->is("$urlType/statistics/deeplinks") || request()->is("$urlType/statistics/deeplinks/*") ? "active" : null }}">
+                                    <span>{{ trans('link.statistics.links.deep_title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+
+                <div class="nav-item has-dropdown">
+                    <a href="payments.html" class="nav-link">
+                        <i class="ri-money-dollar-box-line"></i>
+                        <span class="nav-text">Settings</span>
+                        <i class="chevron ri-arrow-down-s-line"></i>
+                    </a>
+                    <ul class="submenu">
+                        @can('admin_advertiser_configurations_settings_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.settings.advertiser-configs.index") }}" data-layout="light" class="nav-link {{ request()->is("$urlType/settings/advertiser-configs") || request()->is("$urlType/settings/advertiser-configs/*") ? "active" : null }}">
+                                    <span>{{ trans('cruds.advertiser_configuration.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                        @can('admin_notification_settings_access')
+                            <li class="l_sidebar">
+                                <a href="{{ route("admin.settings.notification.index") }}" data-layout="light" class="nav-link {{ request()->is("$urlType/settings/notification") || request()->is("$urlType/settings/notification/*") ? "active" : null }}">
+                                    <span>{{ trans('cruds.notification.title') }}</span>
+                                </a>
+                            </li>
+                        @endcan
+                    </ul>
+                </div>
+
+                <div class="nav-item has-dropdown">
+                    <a href="payments.html" class="nav-link">
+                        <i class="ri-money-dollar-box-line"></i>
+                        <span class="nav-text">Management</span>
+                        <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
                 </div>
             </nav>

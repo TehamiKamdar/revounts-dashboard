@@ -23,9 +23,12 @@
                         <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="<?php echo e(route("publisher.find-advertisers")); ?>?section=new" class="nav-link"><span>New Advertiser</span></a></li>
-                        <li><a href="<?php echo e(route("publisher.own-advertisers")); ?>" class="nav-link"><span>My Advertiser</span></a></li>
-                        <li><a href="<?php echo e(route("publisher.find-advertisers")); ?>" class="nav-link"><span>Find Advertiser</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.find-advertisers")); ?>?section=new" class="nav-link"><span>New
+                                    Advertiser</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.own-advertisers")); ?>" class="nav-link"><span>My
+                                    Advertiser</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.find-advertisers")); ?>" class="nav-link"><span>Find
+                                    Advertiser</span></a></li>
                     </ul>
                 </div>
 
@@ -36,9 +39,12 @@
                         <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="<?php echo e(route("publisher.reports.performance-by-clicks.list")); ?>" class="nav-link"><span>Clicks Performance</span></a></li>
-                        <li><a href="<?php echo e(route("publisher.reports.performance-by-transactions.list")); ?>" class="nav-link"><span>Advertiser Performance</span></a></li>
-                        <li><a href="<?php echo e(route("publisher.reports.transactions.list")); ?>" class="nav-link"><span>Transactions</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.reports.performance-by-clicks.list")); ?>"
+                                class="nav-link"><span>Clicks Performance</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.reports.performance-by-transactions.list")); ?>"
+                                class="nav-link"><span>Advertiser Performance</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.reports.transactions.list")); ?>"
+                                class="nav-link"><span>Transactions</span></a></li>
                     </ul>
                 </div>
 
@@ -49,9 +55,12 @@
                         <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="<?php echo e(route("publisher.creatives.coupons.list")); ?>" class="nav-link"><span>Coupons</span></a></li>
-                        <li><a href="<?php echo e(route("publisher.creatives.text-links.list")); ?>" class="nav-link"><span>Text Links</span></a></li>
-                        <li><a href="<?php echo e(route("publisher.creatives.deep-links.list")); ?>" class="nav-link"><span>Deep Links</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.creatives.coupons.list")); ?>"
+                                class="nav-link"><span>Coupons</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.creatives.text-links.list")); ?>" class="nav-link"><span>Text
+                                    Links</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.creatives.deep-links.list")); ?>" class="nav-link"><span>Deep
+                                    Links</span></a></li>
                     </ul>
                 </div>
 
@@ -62,8 +71,10 @@
                         <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
                     <ul class="submenu">
-                        <li><a href="<?php echo e(route("publisher.tools.deep-links.generate")); ?>" class="nav-link"><span>Deep Link Generator</span></a></li>
-                        <li><a href="<?php echo e(route("publisher.tools.api-info.index")); ?>" class="nav-link"><span>API</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.tools.deep-links.generate")); ?>" class="nav-link"><span>Deep
+                                    Link Generator</span></a></li>
+                        <li><a href="<?php echo e(route("publisher.tools.api-info.index")); ?>"
+                                class="nav-link"><span>API</span></a></li>
                     </ul>
                 </div>
 
@@ -79,8 +90,37 @@
         <div class="header-actions">
             <div class="user-profile">
                 <div class="avatar">JD</div>
+                <div class="profile-dropdown">
+                    <!-- User Info -->
+                    <div class="user-info">
+                        <div class="user-name"><?php echo e(auth()->user()->full_name); ?></div>
+                        <div class="user-email"><?php echo e(auth()->user()->getRoleName()); ?> ID: <?php echo e(auth()->user()->sid); ?></div>
+                    </div>
+
+                    <!-- First two menu items -->
+                    <a href="#" class="dropdown-item">
+                        <i class="ri-user-line"></i>
+                        <span>Profile</span>
+                    </a>
+                    <a href="#" class="dropdown-item">
+                        <i class="ri-settings-3-line"></i>
+                        <span>Settings</span>
+                    </a>
+
+                    <!-- Divider -->
+                    <div class="dropdown-divider"></div>
+
+                    <!-- Logout button -->
+                    <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logoutform').submit();" class="dropdown-item logout-item">
+                        <i class="ri-logout-box-r-line"></i>
+                        <span>Logout</span>
+                        <form id="logoutform" action="<?php echo e(route('logout')); ?>" method="POST" class="display-hidden">
+                            <?php echo e(csrf_field()); ?>
+
+                        </form>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</header>
-<?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/partial/publisher/header.blade.php ENDPATH**/ ?>
+</header><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/partial/publisher/header.blade.php ENDPATH**/ ?>
