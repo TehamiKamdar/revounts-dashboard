@@ -1,6 +1,4 @@
-@extends("layouts.admin.panel_app")
-
-@section("content")
+<?php $__env->startSection("content"); ?>
     <div class="contents">
 
         <div class="container-fluid">
@@ -8,17 +6,8 @@
                 <div class="row">
                     <div class="col-lg-12">
 
-                        <div class="breadcrumb-main">
-                            <h1 class="title">{{ trans('global.add') }} {{ trans('cruds.advertiser_configuration.title_singular') }}</h1>
-                            <div class="breadcrumb-action justify-content-center flex-wrap">
-                                <div class="action-btn">
-                                    {{-- <a href="{{ route("admin.settings.advertiser-configs.index") }}" class="btn btn-sm btn-gray btn-add">
-                                        <i class="la la-undo"></i> {{ trans('global.back_to_list') }}</a> --}}
-                                        <a href="{{ route("admin.settings.advertiser-configs.index") }}" class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3" style="width: 40px; height: 40px; cursor: pointer;">
-                                        <i class="ri-arrow-left-line text-white"></i>
-                                    </a>
-                                </div>
-                            </div>
+                        <div class="breadcrumb-main mt-4">
+                            <h4 class="text-capitalize breadcrumb-title"><?php echo e(trans('cruds.notification.title_singular')); ?></h4>
                         </div>
 
                     </div>
@@ -28,12 +17,12 @@
                         <div class="card">
                             <div class="card-body">
 
-                                @include("partial.admin.alert")
+                                <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                                <form action="{{ route("admin.settings.advertiser-configs.store") }}" method="POST"
+                                <form action="<?php echo e(route("admin.settings.notification.store")); ?>" method="POST"
                                       enctype="multipart/form-data" id="advertiserConfigForm">
-                                    @csrf
-                                    @include("template.admin.settings.advertiser_config.form")
+                                    <?php echo csrf_field(); ?>
+                                    <?php echo $__env->make("template.admin.settings.notification.form", compact('setting'), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                                 </form>
 
                             </div>
@@ -44,13 +33,15 @@
         </div>
 
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@pushonce('styles')
-@endpushonce
+<?php if (! $__env->hasRenderedOnce('6674f9e2-5205-48be-a297-0d3da40df3ad')): $__env->markAsRenderedOnce('6674f9e2-5205-48be-a297-0d3da40df3ad');
+$__env->startPush('styles'); ?>
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('scripts')
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery.validate.min.js") }}"></script>
+<?php if (! $__env->hasRenderedOnce('090c37af-abf8-467f-acac-87f3db331e02')): $__env->markAsRenderedOnce('090c37af-abf8-467f-acac-87f3db331e02');
+$__env->startPush('scripts'); ?>
+    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery.validate.min.js")); ?>"></script>
     <script>
         $(document).ready(function () {
             $("#advertiserConfigForm").validate({
@@ -79,5 +70,7 @@
             });
         });
     </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
+
+<?php echo $__env->make("layouts.admin.panel_app", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/settings/notification/create.blade.php ENDPATH**/ ?>

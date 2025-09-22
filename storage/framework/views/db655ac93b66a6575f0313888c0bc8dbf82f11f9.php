@@ -1,6 +1,5 @@
-@extends("layouts.admin.panel_table")
-
-@pushonce('styles')
+<?php if (! $__env->hasRenderedOnce('214b6625-c654-449e-bf6e-5673df9b9a9f')): $__env->markAsRenderedOnce('214b6625-c654-449e-bf6e-5673df9b9a9f');
+$__env->startPush('styles'); ?>
 
 <style>
     .table-social tbody tr td:not(:first-child) {
@@ -52,9 +51,9 @@
     }
 </style>
 
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
 
 
     <div class="container-fluid">
@@ -62,8 +61,9 @@
             <div class="col-lg-12">
 
                 <div class="breadcrumb-main">
-                    <h1 class="title">{{ trans('global.show') }}
-                        {{ trans('cruds.advertiser_configuration.title_singular') }}</h1>
+                    <h1 class="title"><?php echo e(trans('global.show')); ?>
+
+                        <?php echo e(trans('cruds.advertiser_configuration.title_singular')); ?></h1>
                 </div>
 
             </div>
@@ -73,14 +73,14 @@
                 <div class="approval-header">
                     <div class="d-flex align-items-center gap-3">
                         <!-- Back button -->
-                        <a href="{{ route("admin.settings.advertiser-configs.index") }}"
+                        <a href="<?php echo e(route("admin.settings.advertiser-configs.index")); ?>"
                             class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none"
                             style="width: 40px; height: 40px; cursor: pointer;">
                             <i class="ri-arrow-left-line text-white"></i>
                         </a>
 
                         <!-- Publisher name -->
-                        <h4 class="mb-0">{{ $advertiserConfig->name }}</h4>
+                        <h4 class="mb-0"><?php echo e($advertiserConfig->name); ?></h4>
                     </div>
 
                     <div class="card-tab btn-group nav nav-tabs">
@@ -92,7 +92,7 @@
                 </div>
 
                 <div class="approval-body">
-                    @include("partial.admin.alert")
+                    <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                     <div class="table-container">
                         <div class="table-responsive">
@@ -106,34 +106,42 @@
                                 <tbody>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.advertiser_configuration.fields.id') }}
+                                            <?php echo e(trans('cruds.advertiser_configuration.fields.id')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $advertiserConfig->id }}
+                                            <?php echo e($advertiserConfig->id); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.advertiser_configuration.fields.name') }}
+                                            <?php echo e(trans('cruds.advertiser_configuration.fields.name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $advertiserConfig->name }}
+                                            <?php echo e($advertiserConfig->name); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.advertiser_configuration.fields.key') }}
+                                            <?php echo e(trans('cruds.advertiser_configuration.fields.key')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $advertiserConfig->key }}
+                                            <?php echo e($advertiserConfig->key); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.advertiser_configuration.fields.value') }}
+                                            <?php echo e(trans('cruds.advertiser_configuration.fields.value')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $advertiserConfig->value }}
+                                            <?php echo e($advertiserConfig->value); ?>
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -144,73 +152,7 @@
             </div>
         </div>
     </div>
-    {{-- <div class="table-responsive">
-        <table class="table table-bordered table-social">
-            <thead>
-                <tr>
-                    <th scope="col" style="width: 15%">Field</th>
-                    <th scope="col">Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>
-                        {{ trans('cruds.advertiser_configuration.fields.id') }}
-                    </th>
-                    <td>
-                        {{ $advertiserConfig->id }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{ trans('cruds.advertiser_configuration.fields.name') }}
-                    </th>
-                    <td>
-                        {{ $advertiserConfig->name }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{ trans('cruds.advertiser_configuration.fields.key') }}
-                    </th>
-                    <td>
-                        {{ $advertiserConfig->key }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{ trans('cruds.advertiser_configuration.fields.value') }}
-                    </th>
-                    <td>
-                        {{ $advertiserConfig->value }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        &nbsp;
-                    </th>
-                    <td>
-                        &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        &nbsp;
-                    </th>
-                    <td>
-                        &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        &nbsp;
-                    </th>
-                    <td>
-                        &nbsp;
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div> --}}
+    
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.admin.panel_table", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/settings/advertiser_config/show.blade.php ENDPATH**/ ?>

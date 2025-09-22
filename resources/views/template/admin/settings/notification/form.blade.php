@@ -2,7 +2,7 @@
     <div class="col-lg-12">
         <div class="form-group {{ $errors->has('message') ? 'has-error' : '' }}">
             <label for="key" class="font-weight-bold text-black">{{ trans('cruds.notification.fields.message') }}</label>
-            <textarea id="message" name="message" class="form-control" rows="20" cols="30">{{ $setting->value ?? null }}</textarea>
+            <textarea id="message" name="message" class="form-control" rows="20" cols="5">{{ $setting->value ?? null }}</textarea>
             @if($errors->has('message'))
                 <em class="invalid-feedback">
                     {{ $errors->first('message') }}

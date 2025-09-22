@@ -46,15 +46,6 @@ body {
 p {
     margin-bottom: 0.35rem !important;
 }
-
-p::after {
-    content: '.';
-}
-
-p.info::before {
-    content: ">";
-}
-
 b {
     color: #535353 !important;
 }

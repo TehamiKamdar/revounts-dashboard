@@ -56,32 +56,36 @@
 
         @include("partial.admin.alert")
 
-        <table class="table table-borderless table-hover datatable" id="datatableStatisticLink">
-            <thead>
-                <tr>
-                    <th>
-                        {{ trans('link.statistics.links.fields.publisher_name') }}
-                    </th>
-                    <th>
-                        {{ trans('link.statistics.links.fields.advertiser_name') }}
-                    </th>
-                    <th>
-                        {{ trans('link.statistics.links.fields.website_name') }}
-                    </th>
-                    <th>
-                        {{ trans('link.statistics.links.fields.last_activity') }}
-                    </th>
-                    <th>
-                        {{ trans('link.statistics.links.fields.hits') }}
-                    </th>
-                    <th>
-                        {{ trans('link.statistics.links.fields.unique_visitor') }}
-                    </th>
-                    <th>
-                        {{ trans('global.action') }}
-                    </th>
-                </tr>
-            </thead>
-        </table>
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-borderless table-hover datatable" id="datatableStatisticLink">
+                    <thead>
+                        <tr>
+                            <th>
+                                {{ trans('link.statistics.links.fields.publisher_name') }}
+                            </th>
+                            <th>
+                                {{ trans('link.statistics.links.fields.advertiser_name') }}
+                            </th>
+                            <th>
+                                {{ trans('link.statistics.links.fields.website_name') }}
+                            </th>
+                            <th>
+                                {{ trans('link.statistics.links.fields.last_activity') }}
+                            </th>
+                            <th>
+                                {{ trans('link.statistics.links.fields.hits') }}
+                            </th>
+                            <th>
+                                {{ trans('link.statistics.links.fields.unique_visitor') }}
+                            </th>
+                            <th>
+                                {{ trans('global.action') }}
+                            </th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
     </div>
 @endsection
