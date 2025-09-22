@@ -1,29 +1,29 @@
-@extends("layouts.admin.panel_table")
-
-@pushonce('styles')
+<?php if (! $__env->hasRenderedOnce('661181b1-3814-46a6-a2bf-a15941864af0')): $__env->markAsRenderedOnce('661181b1-3814-46a6-a2bf-a15941864af0');
+$__env->startPush('styles'); ?>
 <style>
 </style>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('5d69fc25-75bd-4ffa-bf07-c45e816cb129')): $__env->markAsRenderedOnce('5d69fc25-75bd-4ffa-bf07-c45e816cb129');
+$__env->startPush('scripts'); ?>
 <script type="text/javascript">
     $(function () {
 
         let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
-        let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
+        let deleteButtonTrans = '<?php echo e(trans('global.datatables.delete')); ?>'
         let deleteButton = {
             text: deleteButtonTrans,
-            url: "{{ route('admin.creative-management.coupons.massDestroy') }}",
+            url: "<?php echo e(route('admin.creative-management.coupons.massDestroy')); ?>",
             className: 'btn-danger btn-xs ml-3',
             action: function (e, dt, node, config) {
                 let ids = $.map(dt.rows({ selected: true }).nodes(), function (entry) {
                     return $(entry).attr("id");
                 });
                 if (ids.length === 0) {
-                    alert('{{ trans('global.datatables.zero_selected') }}')
+                    alert('<?php echo e(trans('global.datatables.zero_selected')); ?>')
                     return
                 }
-                if (confirm('{{ trans('global.areYouSure') }}')) {
+                if (confirm('<?php echo e(trans('global.areYouSure')); ?>')) {
                     $.ajax({
                         headers: { 'x-csrf-token': $('meta[name="csrf-token"]').attr('content') },
                         method: 'POST',
@@ -46,7 +46,7 @@
             deferRender: true,
             sScrollXInner: "99.5%",
             ajax: {
-                url: "{{ route('admin.creative-management.coupons.index') }}",
+                url: "<?php echo e(route('admin.creative-management.coupons.index')); ?>",
             },
             columns: [
                 { data: 'id', name: 'id', width: "1%" },
@@ -62,33 +62,37 @@
 
     });
 </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-main">
-                    <h1 class="title">{{ trans('creative.creativeManagement.coupon.title') }}
-                        {{ trans('global.list') }}
+                    <h1 class="title"><?php echo e(trans('creative.creativeManagement.coupon.title')); ?>
+
+                        <?php echo e(trans('global.list')); ?>
+
                     </h1>
-                    @can('role_create')
+                    <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('role_create')): ?>
                         <div class="breadcrumb-action justify-content-center flex-wrap">
                             <div class="action-btn">
-                                <a href="{{ route("admin.creative-management.coupons.create") }}"
+                                <a href="<?php echo e(route("admin.creative-management.coupons.create")); ?>"
                                     class="btn btn-sm btn-primary btn-add">
-                                    <i class="la la-plus"></i> {{ trans('global.add') }}
-                                    {{ trans('cruds.creativeManagement.coupon.title_singular') }}
+                                    <i class="la la-plus"></i> <?php echo e(trans('global.add')); ?>
+
+                                    <?php echo e(trans('cruds.creativeManagement.coupon.title_singular')); ?>
+
                                 </a>
                             </div>
                         </div>
-                    @endcan
+                    <?php endif; ?>
                 </div>
 
             </div>
         </div>
-        @include("partial.admin.alert")
+        <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-borderless table-hover datatable" id="datatableCoupon">
@@ -96,22 +100,28 @@
                         <tr class="userDatatable-header footable-header">
                             <th></th>
                             <th>
-                                {{ trans('creative.creativeManagement.coupon.fields.advertiser_name') }}
+                                <?php echo e(trans('creative.creativeManagement.coupon.fields.advertiser_name')); ?>
+
                             </th>
                             <th>
-                                {{ trans('creative.creativeManagement.coupon.fields.title') }}
+                                <?php echo e(trans('creative.creativeManagement.coupon.fields.title')); ?>
+
                             </th>
                             <th>
-                                {{ trans('creative.creativeManagement.coupon.fields.start_date') }}
+                                <?php echo e(trans('creative.creativeManagement.coupon.fields.start_date')); ?>
+
                             </th>
                             <th>
-                                {{ trans('creative.creativeManagement.coupon.fields.end_date') }}
+                                <?php echo e(trans('creative.creativeManagement.coupon.fields.end_date')); ?>
+
                             </th>
                             <th>
-                                {{ trans('creative.creativeManagement.coupon.fields.source') }}
+                                <?php echo e(trans('creative.creativeManagement.coupon.fields.source')); ?>
+
                             </th>
                             <th>
-                                {{ trans('global.action') }}
+                                <?php echo e(trans('global.action')); ?>
+
                             </th>
                         </tr>
                     </thead>
@@ -120,4 +130,5 @@
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.admin.panel_table", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/coupons/index.blade.php ENDPATH**/ ?>

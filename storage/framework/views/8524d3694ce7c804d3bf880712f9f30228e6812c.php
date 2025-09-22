@@ -62,6 +62,11 @@
             white-space: nowrap;
             color: var(--primary-light-color);
         }
+    table.dataTable tbody>tr.selected>td {
+        background-color: #3C1A55 !important;
+        /* apna desired color */
+        color: #fff !important;
+    }
     </style>
 
 </head>
@@ -90,10 +95,8 @@
 <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-ui.js")); ?>"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/feather.min.js")); ?>"></script>
-<script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/feather.min.js")); ?>"></script>
 <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/loader.js")); ?>"></script>
 <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/moment.js")); ?>"></script>
-<script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/popover.js")); ?>"></script>
 <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/pdfmake.min.js")); ?>"></script>
 <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/vfs_fonts.js")); ?>"></script>
 <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>

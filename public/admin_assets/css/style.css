@@ -59,6 +59,15 @@ b {
     color: #535353 !important;
 }
 
+h1,.h1,
+h2,.h2,
+h3,.h3,
+h4,.h4,
+h5,.h5,
+h6,.h6{
+    color: var(--primary-dark-color);
+    font-weight: 700;
+}
 
 h6 {
     font-size: 1rem;
@@ -166,19 +175,23 @@ li {
     position: relative;
 }
 
-.nav-link {
+a, a.nav-link, .nav-link {
     display: flex;
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem;
-    color: white;
+    color: var(--primary-light-color);
     text-decoration: none;
     border-radius: 0.5rem;
     transition: all 0.3s ease;
     font-weight: 500;
 }
 
-.nav-link:hover {
+a{
+    text-decoration: underline;
+}
+
+a:hover, a.nav-link:hover, .nav-link:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -2846,3 +2859,213 @@ h2 {
         right: 62px;
     }
 }
+
+        .approval-glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+
+        .approval-header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .card-tab {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 0.25rem;
+            border: 1px solid rgba(123, 54, 181, 0.2);
+        }
+
+        .card-tab .btn {
+            padding: 0.5rem 1rem;
+            font-size: 0.85rem;
+            font-weight: 500;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .card-tab .btn.active {
+            background: var(--primary-color);
+            color: white;
+            box-shadow: 0 4px 12px rgba(123, 54, 181, 0.2);
+        }
+
+        .approval-body {
+            padding: 0;
+        }
+
+        .table-social {
+            margin: 0;
+            border: none;
+            width: 100%;
+        }
+
+        .table-social thead {
+            background: linear-gradient(135deg, rgba(123, 54, 181, 0.1) 0%, rgba(123, 54, 181, 0.05) 100%);
+        }
+
+        .table-social th {
+            font-weight: 600;
+            color: var(--primary-light-color);
+            padding: 1rem 1.5rem;
+            border: none;
+            font-size: 0.9rem;
+            width: 15%;
+        }
+
+        .table-social td {
+            padding: 1rem 1.5rem;
+            border: none;
+            color: var(--primary-light-color);
+            vertical-align: middle;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 0.35rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-right: 0.5rem;
+        }
+
+        .status-active {
+            background: rgba(40, 167, 69, 0.15);
+            color: #28a745;
+        }
+
+        .status-hold {
+            background: rgba(23, 162, 184, 0.15);
+            color: #17a2b8;
+        }
+
+        .status-rejected {
+            background: rgba(220, 53, 69, 0.15);
+            color: #dc3545;
+        }
+
+        .status-pending {
+            background: rgba(255, 193, 7, 0.15);
+            color: #ffc107;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.5rem;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+        }
+
+        .btn-status {
+            padding: 0.4rem 0.8rem;
+            font-size: 0.75rem;
+            font-weight: 500;
+            border-radius: 8px;
+            border: none;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .btn-status:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-success {
+            background: rgba(40, 167, 69, 0.15);
+            color: #28a745;
+            border: 1px solid rgba(40, 167, 69, 0.2);
+        }
+
+        .btn-success:hover {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-info {
+            background: rgba(23, 162, 184, 0.15);
+            color: #17a2b8;
+            border: 1px solid rgba(23, 162, 184, 0.2);
+        }
+
+        .btn-info:hover {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-danger {
+            background: rgba(220, 53, 69, 0.15);
+            color: #dc3545;
+            border: 1px solid rgba(220, 53, 69, 0.2);
+        }
+
+        .btn-danger:hover {
+            background: #dc3545;
+            color: white;
+        }
+
+        .url-link {
+            color: var(--primary-light-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .url-link:hover {
+            color: var(--primary-color);
+            text-decoration: underline;
+        }
+
+        .text-uppercase {
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--primary-light-color);
+        }
+
+        @media (max-width: 768px) {
+            .approval-header {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 1rem;
+            }
+
+            .table-social th,
+            .table-social td {
+                padding: 0.75rem 1rem;
+                display: block;
+                width: 100%;
+            }
+
+            .table-social th {
+                background: rgba(123, 54, 181, 0.05);
+                border-bottom: 1px solid rgba(123, 54, 181, 0.1);
+            }
+
+            .table-social tr {
+                display: block;
+                margin-bottom: 1rem;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            }
+
+            .action-buttons {
+                justify-content: flex-start;
+                margin-top: 0.5rem;
+            }
+        }

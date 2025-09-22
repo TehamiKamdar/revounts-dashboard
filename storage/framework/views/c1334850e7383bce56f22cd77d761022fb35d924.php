@@ -1,6 +1,5 @@
-@extends("layouts.admin.panel_app")
-
-@pushonce('styles')
+<?php if (! $__env->hasRenderedOnce('c4ab6068-0280-4587-afea-0eb0cefbe40f')): $__env->markAsRenderedOnce('c4ab6068-0280-4587-afea-0eb0cefbe40f');
+$__env->startPush('styles'); ?>
 
     <style>
         .width-100 {
@@ -50,9 +49,10 @@
         }
     </style>
 
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('8c81f756-260d-41a4-94a3-09502d5051ee')): $__env->markAsRenderedOnce('8c81f756-260d-41a4-94a3-09502d5051ee');
+$__env->startPush('scripts'); ?>
     <script>
         function openModal(status)
         {
@@ -60,9 +60,9 @@
             $("#programStatus").html(`STATUS: ${status.toUpperCase()}`)
         }
     </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
     <div class="contents">
 
         <div class="container-fluid">
@@ -71,7 +71,7 @@
                     <div class="col-lg-12">
 
                         <div class="breadcrumb-main">
-                            <h1 class="title">{{ trans('global.show') }} {{ trans('advertiser.approval.title_singular') }}</h1>
+                            <h1 class="title"><?php echo e(trans('global.show')); ?> <?php echo e(trans('advertiser.approval.title_singular')); ?></h1>
                         </div>
 
                     </div>
@@ -81,12 +81,12 @@
                         <div class="approval-header">
                             <div class="d-flex align-items-center gap-3">
   <!-- Back button -->
-                                <a href="{{ route("admin.approval.index", ['status' => $status->value]) }}" class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none" style="width: 40px; height: 40px; cursor: pointer;">
+                                <a href="<?php echo e(route("admin.approval.index", ['status' => $status->value])); ?>" class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none" style="width: 40px; height: 40px; cursor: pointer;">
                                     <i class="ri-arrow-left-line text-white"></i>
                                 </a>
 
                                 <!-- Publisher name -->
-                                <h4 class="mb-0">{{ $approval->publisher_name }}</h4>
+                                <h4 class="mb-0"><?php echo e($approval->publisher_name); ?></h4>
                             </div>
 
                             <div class="card-tab btn-group nav nav-tabs">
@@ -97,37 +97,38 @@
                         </div>
 
                         <div class="approval-body">
-                            @include("partial.admin.alert")
+                            <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                             <div class="table-container">
                                 <div class="table-responsive">
                                     <table class="table table-social">
                                         <tbody>
                                             <tr>
-                                                <th>{{ trans('advertiser.approval.fields.advertiser_name') }}</th>
-                                                <td>{{ $approval->advertiser_name ?? "-" }}</td>
+                                                <th><?php echo e(trans('advertiser.approval.fields.advertiser_name')); ?></th>
+                                                <td><?php echo e($approval->advertiser_name ?? "-"); ?></td>
                                             </tr>
                                             <tr>
-                                                <th>{{ trans('advertiser.approval.fields.publisher_name') }}</th>
-                                                <td>{{ $approval->publisher_name ?? "-" }}</td>
+                                                <th><?php echo e(trans('advertiser.approval.fields.publisher_name')); ?></th>
+                                                <td><?php echo e($approval->publisher_name ?? "-"); ?></td>
                                             </tr>
                                             <tr>
-                                                <th>{{ trans('advertiser.approval.fields.approver_name') }}</th>
-                                                <td>{{ $approval->approver->name ?? "-" }}</td>
+                                                <th><?php echo e(trans('advertiser.approval.fields.approver_name')); ?></th>
+                                                <td><?php echo e($approval->approver->name ?? "-"); ?></td>
                                             </tr>
                                             <tr>
-                                                <th>{{ trans('advertiser.approval.fields.website_url') }}</th>
+                                                <th><?php echo e(trans('advertiser.approval.fields.website_url')); ?></th>
                                                 <td>
-                                                    <a href="{{ $approval->website->url ?? '#' }}" target="_blank" class="url-link">
+                                                    <a href="<?php echo e($approval->website->url ?? '#'); ?>" target="_blank" class="url-link">
                                                         <i class="ri-external-link-line"></i>
-                                                        {{ $approval->website->url ?? "-" }}
+                                                        <?php echo e($approval->website->url ?? "-"); ?>
+
                                                     </a>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>{{ trans('advertiser.approval.fields.status') }}</th>
+                                                <th><?php echo e(trans('advertiser.approval.fields.status')); ?></th>
                                                 <td>
-                                                    @php
+                                                    <?php
                                                         $statusClass = 'status-pending';
                                                         if ($approval->status === \App\Models\AdvertiserApply::STATUS_ACTIVE) {
                                                             $statusClass = 'status-active';
@@ -136,60 +137,63 @@
                                                         } elseif ($approval->status === \App\Models\AdvertiserApply::STATUS_REJECTED) {
                                                             $statusClass = 'status-rejected';
                                                         }
-                                                    @endphp
-                                                    <span class="status-badge {{ $statusClass }}">
-                                                        {{ ucwords($approval->status ?? "-") }}
+                                                    ?>
+                                                    <span class="status-badge <?php echo e($statusClass); ?>">
+                                                        <?php echo e(ucwords($approval->status ?? "-")); ?>
+
                                                     </span>
 
                                                     <div class="action-buttons">
-                                                        @if($approval->status != \App\Models\AdvertiserApply::STATUS_ACTIVE)
-                                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-basic" onclick="openModal('{{ \App\Models\AdvertiserApply::STATUS_ACTIVE }}')" class="btn-status btn-success">
+                                                        <?php if($approval->status != \App\Models\AdvertiserApply::STATUS_ACTIVE): ?>
+                                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-basic" onclick="openModal('<?php echo e(\App\Models\AdvertiserApply::STATUS_ACTIVE); ?>')" class="btn-status btn-success">
                                                                 <i class="ri-check-line"></i> Active
                                                             </a>
-                                                        @endif
-                                                        @if($approval->status != \App\Models\AdvertiserApply::STATUS_HOLD)
-                                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-basic" onclick="openModal('{{ \App\Models\AdvertiserApply::STATUS_HOLD }}')" class="btn-status btn-info">
+                                                        <?php endif; ?>
+                                                        <?php if($approval->status != \App\Models\AdvertiserApply::STATUS_HOLD): ?>
+                                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-basic" onclick="openModal('<?php echo e(\App\Models\AdvertiserApply::STATUS_HOLD); ?>')" class="btn-status btn-info">
                                                                 <i class="ri-time-line"></i> Hold
                                                             </a>
-                                                        @endif
-                                                        @if($approval->status != \App\Models\AdvertiserApply::STATUS_REJECTED)
-                                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-basic" onclick="openModal('{{ \App\Models\AdvertiserApply::STATUS_REJECTED }}')" class="btn-status btn-danger">
+                                                        <?php endif; ?>
+                                                        <?php if($approval->status != \App\Models\AdvertiserApply::STATUS_REJECTED): ?>
+                                                            <a href="javascript:void(0)" data-toggle="modal" data-target="#modal-basic" onclick="openModal('<?php echo e(\App\Models\AdvertiserApply::STATUS_REJECTED); ?>')" class="btn-status btn-danger">
                                                                 <i class="ri-close-line"></i> Rejected
                                                             </a>
-                                                        @endif
+                                                        <?php endif; ?>
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>{{ trans('advertiser.approval.fields.type') }}</th>
+                                                <th><?php echo e(trans('advertiser.approval.fields.type')); ?></th>
                                                 <td>
-                                                    <span class="text-uppercase">{{ $approval->type ?? "-" }}</span>
+                                                    <span class="text-uppercase"><?php echo e($approval->type ?? "-"); ?></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>{{ trans('advertiser.approval.fields.source') }}</th>
+                                                <th><?php echo e(trans('advertiser.approval.fields.source')); ?></th>
                                                 <td>
-                                                    <span class="text-uppercase">{{ $approval->source ?? "-" }}</span>
+                                                    <span class="text-uppercase"><?php echo e($approval->source ?? "-"); ?></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>{{ trans('advertiser.approval.fields.publisher_apply_message') }}</th>
+                                                <th><?php echo e(trans('advertiser.approval.fields.publisher_apply_message')); ?></th>
                                                 <td>
                                                     <div class="message-content" style="background: rgba(123, 54, 181, 0.05); padding: 1rem; border-radius: 8px; border-left: 3px solid var(--primary-color);">
-                                                        {{ $approval->message ?? "-" }}
+                                                        <?php echo e($approval->message ?? "-"); ?>
+
                                                     </div>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th>{{ trans('advertiser.approval.fields.reject_approve_reason') }}</th>
+                                                <th><?php echo e(trans('advertiser.approval.fields.reject_approve_reason')); ?></th>
                                                 <td>
-                                                    @if($approval->reject_approve_reason)
+                                                    <?php if($approval->reject_approve_reason): ?>
                                                         <div class="reason-content" style="background: rgba(220, 53, 69, 0.05); padding: 1rem; border-radius: 8px; border-left: 3px solid #dc3545;">
-                                                            {{ $approval->reject_approve_reason }}
+                                                            <?php echo e($approval->reject_approve_reason); ?>
+
                                                         </div>
-                                                    @else
+                                                    <?php else: ?>
                                                         -
-                                                    @endif
+                                                    <?php endif; ?>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -204,11 +208,11 @@
 
         <div class="modal-basic modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
-                <form action="{{ route("admin.approval.statusUpdate") }}" method="POST">
-                    @csrf
-                    <input type="hidden" id="a_id" name="a_id[]" value="{{ $approval->id }}">
+                <form action="<?php echo e(route("admin.approval.statusUpdate")); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
+                    <input type="hidden" id="a_id" name="a_id[]" value="<?php echo e($approval->id); ?>">
                     <input type="hidden" id="status" name="status">
-                    <input type="hidden" id="current_status" name="current_status" value="{{ $status->value }}">
+                    <input type="hidden" id="current_status" name="current_status" value="<?php echo e($status->value); ?>">
                     <div class="modal-content modal-bg-white ">
                         <div class="modal-header">
                             <h6 class="modal-title">Approve To Program</h6>
@@ -231,4 +235,6 @@
         </div>
 
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("layouts.admin.panel_app", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/advertisers/apply/show.blade.php ENDPATH**/ ?>

@@ -45,6 +45,11 @@
         .select2-container--default .select2-selection--multiple .select2-selection__rendered {
             padding: 0 20px 0 5px !important;
         }
+    table.dataTable tbody>tr.selected>td {
+        background-color: #3C1A55 !important;
+        /* apna desired color */
+        color: #fff !important;
+    }
     </style>
 
 </head>

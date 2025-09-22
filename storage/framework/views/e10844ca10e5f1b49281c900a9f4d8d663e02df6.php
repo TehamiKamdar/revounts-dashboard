@@ -1,11 +1,11 @@
-@extends("layouts.admin.panel_table")
-
-@pushonce('styles')
+<?php if (! $__env->hasRenderedOnce('6a2ac9f2-4429-4188-b381-7e7e94770e4b')): $__env->markAsRenderedOnce('6a2ac9f2-4429-4188-b381-7e7e94770e4b');
+$__env->startPush('styles'); ?>
 <style>
 </style>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('d2e4d1e1-a6b5-4cd2-be9f-3814e7061de2')): $__env->markAsRenderedOnce('d2e4d1e1-a6b5-4cd2-be9f-3814e7061de2');
+$__env->startPush('scripts'); ?>
 <script type="text/javascript">
 
     function sendStatusData(id) {
@@ -17,7 +17,7 @@
 
         let columns, sortColumn = 0;
 
-        @if($section->value == \App\Models\PaymentHistory::RELEASE_PAYMENT)
+        <?php if($section->value == \App\Models\PaymentHistory::RELEASE_PAYMENT): ?>
             columns = [
                 { data: 'created_at', name: 'created_at' },
                 { data: 'url', name: 'url' },
@@ -28,7 +28,7 @@
                 { data: 'amount_to_pay', name: 'amount_to_pay' },
                 { data: 'action', name: 'action', orderable: false, searchable: false, width: "10%" },
             ];
-        @else
+        <?php else: ?>
             columns =[
                 { data: 'created_at', name: 'created_at' },
                 { data: 'paid_date', name: 'paid_date' },
@@ -41,7 +41,7 @@
                 { data: 'action', name: 'action', orderable: false, searchable: false, width: "10%" },
             ];
             sortColumn = 1;
-        @endif
+        <?php endif; ?>
 
         $('#datatableTransaction').dataTable({
             order: [[sortColumn, 'desc']],
@@ -53,7 +53,7 @@
             deferRender: true,
             sScrollXInner: "120%",
             ajax: {
-                url: `{{ route("admin.payment-management.index", ["section" => $section->value]) }}`,
+                url: `<?php echo e(route("admin.payment-management.index", ["section" => $section->value])); ?>`,
                 data: function (d) {
                     d.publisher = $('#publisher').val();
                 }
@@ -74,20 +74,20 @@
 
     });
 </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
 
     <div class="contents">
 
         <div class="container-fluid">
             <div class="social-dash-wrap">
                 <div class="row">
-                    <h1 class="title">{{ $title }} {{ trans('global.list') }}</h1>
+                    <h1 class="title"><?php echo e($title); ?> <?php echo e(trans('global.list')); ?></h1>
                     <div class="d-flex justify-content-end mb-4">
                         <div class="col-lg-2">
                             <div class="breadcrumb-main p-0">
-                                <a href="{{ route("admin.payment-management.releasePaymentExport") }}"
+                                <a href="<?php echo e(route("admin.payment-management.releasePaymentExport")); ?>"
                                     class="btn btn-sm btn-primary">Export XSLX</a>
                             </div>
                         </div>
@@ -104,39 +104,17 @@
                                 </div>
                                 <select class="js-example-basic-single js-states form-control" id="publisher" name="publisher">
                                     <option value="" disabled selected>Select Publisher</option>
-                                    @foreach($publishers as $publisher)
-                                        <option value="{{ $publisher['id'] }}">{{ $publisher['name'] }}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $publishers; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $publisher): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($publisher['id']); ?>"><?php echo e($publisher['name']); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="col-lg-2">
-                        <div class="breadcrumb-main p-0">
-                            <a href="{{ route("admin.payment-management.releasePaymentExport") }}"
-                                class="btn btn-xs btn-primary">Export XSLX</a>
-                        </div>
-                    </div>
-                    <div class="col-lg-8">
-                        <div class="breadcrumb-main">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-4">
-                                        <select class="js-example-basic-single js-states form-control" id="publisher"
-                                            name="publisher">
-                                            <option value="" disabled selected>Select Publisher</option>
-                                            @foreach($publishers as $publisher)
-                                                <option value="{{ $publisher['id'] }}">{{ $publisher['name'] }}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> --}}
+                    
                 </div>
 
-                @include("partial.admin.alert")
+                <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                 <div class="table-container">
                     <div class="table-responsive">
@@ -144,33 +122,41 @@
                             <thead>
                                 <tr class="userDatatable-header footable-header">
                                     <th>
-                                        {{ trans('cruds.paymentManagement.fields.created_at') }}
+                                        <?php echo e(trans('cruds.paymentManagement.fields.created_at')); ?>
+
                                     </th>
-                                    @if($section->value == \App\Models\PaymentHistory::PAYMENT_HISTORY)
+                                    <?php if($section->value == \App\Models\PaymentHistory::PAYMENT_HISTORY): ?>
                                         <th>
                                             Paid Date
                                         </th>
-                                    @endif
+                                    <?php endif; ?>
                                     <th>
-                                        {{ trans('cruds.paymentManagement.fields.publisher_domain') }}
+                                        <?php echo e(trans('cruds.paymentManagement.fields.publisher_domain')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('cruds.paymentManagement.fields.payment_method') }}
+                                        <?php echo e(trans('cruds.paymentManagement.fields.payment_method')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('cruds.paymentManagement.fields.payment_details') }}
+                                        <?php echo e(trans('cruds.paymentManagement.fields.payment_details')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('cruds.paymentManagement.fields.payment_option') }}
+                                        <?php echo e(trans('cruds.paymentManagement.fields.payment_option')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('cruds.paymentManagement.fields.amount') }}
+                                        <?php echo e(trans('cruds.paymentManagement.fields.amount')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('cruds.paymentManagement.fields.amount_to_pay') }}
+                                        <?php echo e(trans('cruds.paymentManagement.fields.amount_to_pay')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('global.action') }}
+                                        <?php echo e(trans('global.action')); ?>
+
                                     </th>
                                 </tr>
                             </thead>
@@ -182,8 +168,8 @@
 
         <div class="modal-basic modal fade" id="modal-basic" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog modal-md" role="document">
-                <form action="{{ route("admin.payment-management.statusUpdateReleasePayment") }}" method="POST">
-                    @csrf
+                <form action="<?php echo e(route("admin.payment-management.statusUpdateReleasePayment")); ?>" method="POST">
+                    <?php echo csrf_field(); ?>
                     <input type="hidden" id="paymentID" name="paymentID">
 
                     <div class="modal-content modal-bg-white ">
@@ -218,4 +204,5 @@
 
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.admin.panel_table", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/payments/release.blade.php ENDPATH**/ ?>

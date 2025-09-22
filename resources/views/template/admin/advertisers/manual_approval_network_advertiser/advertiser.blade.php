@@ -146,11 +146,7 @@
         <div class="container-fluid">
             <div class="social-dash-wrap">
                 <div class="row">
-                    <div class="col-lg-4">
-                        <div class="breadcrumb-main">
-                            <h4 class="text-capitalize breadcrumb-title">{{ trans('advertiser.manual_approval_advertiser_is_delete_from_network.title') }} {{ ucwords($type->value) }}</h4>
-                        </div>
-                    </div>
+                    <h1 class="title">{{ trans('advertiser.manual_approval_advertiser_is_delete_from_network.title') }} {{ ucwords($type->value) }}</h1>
                     <div class="col-lg-8">
                         <div class="breadcrumb-main">
                             <div class="container">

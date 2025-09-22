@@ -1,9 +1,9 @@
-@extends("layouts.admin.panel_table")
+<?php if (! $__env->hasRenderedOnce('c428582a-a0f3-485f-99a5-94bdc2aad221')): $__env->markAsRenderedOnce('c428582a-a0f3-485f-99a5-94bdc2aad221');
+$__env->startPush('styles'); ?>
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('styles')
-@endpushonce
-
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('5ba2d2e0-b51b-4231-bcd6-e63de5646a64')): $__env->markAsRenderedOnce('5ba2d2e0-b51b-4231-bcd6-e63de5646a64');
+$__env->startPush('scripts'); ?>
 <script type="text/javascript">
     $(function () {
 
@@ -17,7 +17,7 @@
             deferRender: true,
             sScrollXInner: "99.5%",
             ajax: {
-                url: "{{ route('admin.statistics.deeplinks.index') }}",
+                url: "<?php echo e(route('admin.statistics.deeplinks.index')); ?>",
                 data: function (d) {
 
                 }
@@ -42,46 +42,55 @@
 
     });
 </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
 
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb-main">
-                    <h1 class="title">{{ trans('link.statistics.links.deep_title') }}
-                        {{ trans('global.list') }}
+                    <h1 class="title"><?php echo e(trans('link.statistics.links.deep_title')); ?>
+
+                        <?php echo e(trans('global.list')); ?>
+
                     </h1>
                 </div>
             </div>
         </div>
-        @include("partial.admin.alert")
+        <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-borderless table-hover datatable" id="datatableStatisticDeepLink">
                     <thead>
                         <tr>
                             <th>
-                                {{ trans('link.statistics.links.fields.publisher_name') }}
+                                <?php echo e(trans('link.statistics.links.fields.publisher_name')); ?>
+
                             </th>
                             <th>
-                                {{ trans('link.statistics.links.fields.advertiser_name') }}
+                                <?php echo e(trans('link.statistics.links.fields.advertiser_name')); ?>
+
                             </th>
                             <th>
-                                {{ trans('link.statistics.links.fields.website_name') }}
+                                <?php echo e(trans('link.statistics.links.fields.website_name')); ?>
+
                             </th>
                             <th>
-                                {{ trans('link.statistics.links.fields.last_activity') }}
+                                <?php echo e(trans('link.statistics.links.fields.last_activity')); ?>
+
                             </th>
                             <th>
-                                {{ trans('link.statistics.links.fields.hits') }}
+                                <?php echo e(trans('link.statistics.links.fields.hits')); ?>
+
                             </th>
                             <th>
-                                {{ trans('link.statistics.links.fields.unique_visitor') }}
+                                <?php echo e(trans('link.statistics.links.fields.unique_visitor')); ?>
+
                             </th>
                             <th>
-                                {{ trans('global.action') }}
+                                <?php echo e(trans('global.action')); ?>
+
                             </th>
                         </tr>
                     </thead>
@@ -89,4 +98,5 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.admin.panel_table", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/statistics/deep_links/index.blade.php ENDPATH**/ ?>

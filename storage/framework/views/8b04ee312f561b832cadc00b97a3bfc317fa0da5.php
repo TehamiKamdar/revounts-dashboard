@@ -1,13 +1,13 @@
-@extends("layouts.admin.panel_table")
+<?php if (! $__env->hasRenderedOnce('33386b24-9aeb-43c4-8ef3-450bb802bf72')): $__env->markAsRenderedOnce('33386b24-9aeb-43c4-8ef3-450bb802bf72');
+$__env->startPush('styles'); ?>
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('styles')
-@endpushonce
-
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('3c3fe11e-85fe-47dc-9f24-b65b4b32603a')): $__env->markAsRenderedOnce('3c3fe11e-85fe-47dc-9f24-b65b4b32603a');
+$__env->startPush('scripts'); ?>
 <script type="text/javascript">
     function showOnPublisher(id) {
         $.ajax({
-            url: `/{{ \App\Helper\Static\Vars::ADMIN_ROUTE }}/advertiser-management/api-advertisers/status/${id}`,
+            url: `/<?php echo e(\App\Helper\Static\Vars::ADMIN_ROUTE); ?>/advertiser-management/api-advertisers/status/${id}`,
             type: 'GET',
         });
     }
@@ -23,7 +23,7 @@
             deferRender: true,
             sScrollXInner: "99.5%",
             ajax: {
-                url: "{{ route('admin.advertiser-management.api-advertisers.index') }}",
+                url: "<?php echo e(route('admin.advertiser-management.api-advertisers.index')); ?>",
                 data: function (d) {
                     d.manual_update = $('#manualUpdate').val();
                     d.source = $('#source').val();
@@ -62,16 +62,16 @@
 
     });
 </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
 
     <div class="contents">
 
         <div class="container-fluid">
             <div class="social-dash-wrap">
                 <div class="row">
-                    <h1 class="title">{{ trans('advertiser.api-advertiser.title') }} {{ trans('global.list') }}</h1>
+                    <h1 class="title"><?php echo e(trans('advertiser.api-advertiser.title')); ?> <?php echo e(trans('global.list')); ?></h1>
                     <!-- Horizontal Filters -->
                     <div class="horizontal-filters">
                         <div class="filter-header">
@@ -100,9 +100,9 @@
                                 </div>
                                 <select class="js-example-basic-single js-states form-control" id="source" name="source">
                                     <option value="" disabled selected>Select Source</option>
-                                    @foreach(\App\Helper\Static\Vars::OPTION_LIST as $list)
-                                        <option value="{{ $list }}">{{ ucwords($list) }}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = \App\Helper\Static\Vars::OPTION_LIST; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $list): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($list); ?>"><?php echo e(ucwords($list)); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
 
@@ -113,16 +113,16 @@
                                 </div>
                                 <select class="js-example-basic-single js-states form-control" id="country" name="country">
                                     <option value="" disabled selected>Select Country</option>
-                                    @foreach($countries as $country)
-                                        <option value="{{ $country['iso2'] }}">{{ $country['name'] }}</option>
-                                    @endforeach
+                                    <?php $__currentLoopData = $countries; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $country): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                        <option value="<?php echo e($country['iso2']); ?>"><?php echo e($country['name']); ?></option>
+                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                 </select>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                @include("partial.admin.alert")
+                <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                 <div class="table-container">
                     <div class="table-responsive">
@@ -130,25 +130,32 @@
                             <thead>
                                 <tr class="userDatatable-header footable-header">
                                     <th>
-                                        {{ trans('advertiser.api-advertiser.fields.short_advertiser_id') }}
+                                        <?php echo e(trans('advertiser.api-advertiser.fields.short_advertiser_id')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('advertiser.api-advertiser.fields.name') }}
+                                        <?php echo e(trans('advertiser.api-advertiser.fields.name')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('advertiser.api-advertiser.fields.url') }}
+                                        <?php echo e(trans('advertiser.api-advertiser.fields.url')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('advertiser.api-advertiser.fields.source') }}
+                                        <?php echo e(trans('advertiser.api-advertiser.fields.source')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('advertiser.api-advertiser.fields.is_available_tracking_url') }}
+                                        <?php echo e(trans('advertiser.api-advertiser.fields.is_available_tracking_url')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('advertiser.api-advertiser.fields.manual_update') }}
+                                        <?php echo e(trans('advertiser.api-advertiser.fields.manual_update')); ?>
+
                                     </th>
                                     <th>
-                                        {{ trans('global.action') }}
+                                        <?php echo e(trans('global.action')); ?>
+
                                     </th>
                                 </tr>
                             </thead>
@@ -159,4 +166,5 @@
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.admin.panel_table", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/advertisers/api/index.blade.php ENDPATH**/ ?>

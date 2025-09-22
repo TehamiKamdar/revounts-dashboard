@@ -35,5 +35,4 @@
                 </div>
             </div>
         </div>
-    </footer>
-<?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/partial/admin/footer.blade.php ENDPATH**/ ?>
+    </footer><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/partial/admin/footer.blade.php ENDPATH**/ ?>
