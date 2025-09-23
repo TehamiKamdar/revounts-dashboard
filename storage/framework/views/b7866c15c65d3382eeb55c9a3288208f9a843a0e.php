@@ -89,7 +89,7 @@
 
         <div class="header-actions">
             <div class="user-profile">
-                <div class="avatar">JD</div>
+                <div class="avatar"><i class="ri-user-2-fill"></i></div>
                 <div class="profile-dropdown">
                     <!-- User Info -->
                     <div class="user-info">
@@ -97,21 +97,50 @@
                         <div class="user-email"><?php echo e(auth()->user()->getRoleName()); ?> ID: <?php echo e(auth()->user()->sid); ?></div>
                     </div>
 
-                    <!-- First two menu items -->
-                    <a href="#" class="dropdown-item">
-                        <i class="ri-user-line"></i>
-                        <span>Profile</span>
-                    </a>
-                    <a href="#" class="dropdown-item">
-                        <i class="ri-settings-3-line"></i>
-                        <span>Settings</span>
-                    </a>
+                    <?php if(auth()->user()->type == \App\Models\User::PUBLISHER): ?>
+                        <a class="dropdown-item" href="<?php echo e(route("publisher.profile.basic-information.index")); ?>">
+                            <i class="ri-settings-3-line"></i>
+                            <span>Settings</span>
+                        </a>
+                        <a class="dropdown-item" href="<?php echo e(route("publisher.profile.websites.index")); ?>">
+                            <i class="ri-global-line"></i>
+                            <span>Websites</span>
+                        </a>
+                        <a class="dropdown-item" href="<?php echo e(route("publisher.payments.payment-settings.index")); ?>">
+                            <i class="ri-currency-line"></i>
+                            <span>Payment Settings</span>
+                        </a>
+                    <?php else: ?>
+                            <a class="dropdown-item" href="">
+
+                                <span>Profile</span>
+
+                            </a>
+                            <a class="dropdown-item" href="">
+
+                                <span>Settings</span>
+                            </a>
+                            <a class="dropdown-item" href="">
+
+                                <span>Billing</span>
+                            </a>
+                            <a class="dropdown-item" href="">
+
+                                <span>Activity</span>
+                            </a>
+                            <a class="dropdown-item" href="">
+
+                                <span>Help</span>
+                            </a>
+                    <?php endif; ?>
 
                     <!-- Divider -->
                     <div class="dropdown-divider"></div>
 
                     <!-- Logout button -->
-                    <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logoutform').submit();" class="dropdown-item logout-item">
+                    <a href="javascript:void(0)"
+                        onclick="event.preventDefault(); document.getElementById('logoutform').submit();"
+                        class="dropdown-item logout-item">
                         <i class="ri-logout-box-r-line"></i>
                         <span>Logout</span>
                         <form id="logoutform" action="<?php echo e(route('logout')); ?>" method="POST" class="display-hidden">
