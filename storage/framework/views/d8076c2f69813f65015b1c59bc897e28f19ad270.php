@@ -3,107 +3,108 @@
         <div id="accordionCompanies">
             <?php $__currentLoopData = $publisher->companies; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $company): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                 <div class="card">
-                    <div class="card-header w-100" id="companyContent<?php echo e($company->id); ?>">
-                        <div role="button" class="w-100 changelog__accordingCollapsed <?php echo e($key > 0 ? "collapsed" : null); ?>" data-toggle="collapse" data-target="#collapse<?php echo e($company->id); ?>" aria-expanded="<?php echo e($key == 0); ?>" aria-controls="collapse<?php echo e($company->id); ?>">
+                    <div class="card-header bg-primary-dark w-100" id="companyContent<?php echo e($company->id); ?>">
+                        <div role="button" class="w-100 changelog__accordingCollapsed <?php echo e($key > 0 ? "collapsed" : null); ?>"
+                            data-bs-toggle="collapse" data-bs-target="#collapse<?php echo e($company->id); ?>"
+                            aria-expanded="<?php echo e($key == 0); ?>" aria-controls="collapse<?php echo e($company->id); ?>">
                             <div class="changelog__accordingTitle d-flex justify-content-between w-100">
                                 <div class="v-num">Company Information (<?php echo e($company->company_name); ?>)</div>
                                 <div class="changelog__accordingArrow">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-chevron-right">
+                                        <polyline points="9 18 15 12 9 6"></polyline>
+                                    </svg>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div id="collapse<?php echo e($company->id); ?>" class="collapse <?php echo e($key == 0 ? "show" : null); ?>" aria-labelledby="companyContent<?php echo e($company->id); ?>" data-parent="#accordionCompanies">
+                    <div id="collapse<?php echo e($company->id); ?>" class="collapse <?php echo e($key == 0 ? "show" : null); ?>"
+                        aria-labelledby="companyContent<?php echo e($company->id); ?>" data-parent="#accordionCompanies">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-social">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col" style="width: 15%">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                    </thead>
+                                <table class="table table-borderless table-social">
                                     <tbody>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.company.fields.id')); ?>
+                                        <tr>
+                                            <th>
+                                                <?php echo e(trans('cruds.publisher.company.fields.id')); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($company->id); ?>
+                                            </th>
+                                            <td>
+                                                <?php echo e($company->id); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.company.fields.company_name')); ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php echo e(trans('cruds.publisher.company.fields.company_name')); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($company->company_name); ?>
+                                            </th>
+                                            <td>
+                                                <?php echo e($company->company_name); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.company.fields.legal_entity_type')); ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php echo e(trans('cruds.publisher.company.fields.legal_entity_type')); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($company->legal_entity_type); ?>
+                                            </th>
+                                            <td>
+                                                <?php echo e($company->legal_entity_type); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.company.fields.country')); ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php echo e(trans('cruds.publisher.company.fields.country')); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e(\App\Helper\Static\Methods::getCountryByID($company->country)->name ?? "-"); ?>
+                                            </th>
+                                            <td>
+                                                <?php echo e(\App\Helper\Static\Methods::getCountryByID($company->country)->name ?? "-"); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.company.fields.city')); ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php echo e(trans('cruds.publisher.company.fields.city')); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e(\App\Helper\Static\Methods::getCityByID($company->city)->name ?? "-"); ?>
+                                            </th>
+                                            <td>
+                                                <?php echo e(\App\Helper\Static\Methods::getCityByID($company->city)->name ?? "-"); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.company.fields.state')); ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php echo e(trans('cruds.publisher.company.fields.state')); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e(\App\Helper\Static\Methods::getStateByID($company->state)->name ?? "-"); ?>
+                                            </th>
+                                            <td>
+                                                <?php echo e(\App\Helper\Static\Methods::getStateByID($company->state)->name ?? "-"); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.company.fields.zip_code')); ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php echo e(trans('cruds.publisher.company.fields.zip_code')); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($company->zip_code); ?>
+                                            </th>
+                                            <td>
+                                                <?php echo e($company->zip_code); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.company.fields.address')); ?>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>
+                                                <?php echo e(trans('cruds.publisher.company.fields.address')); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($company->address); ?>
+                                            </th>
+                                            <td>
+                                                <?php echo e($company->address); ?>
 
-                                        </td>
-                                    </tr>
+                                            </td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -113,5 +114,4 @@
             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
         </div>
     </div>
-</div>
-<?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/publishers/companies.blade.php ENDPATH**/ ?>
+</div><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/publishers/companies.blade.php ENDPATH**/ ?>

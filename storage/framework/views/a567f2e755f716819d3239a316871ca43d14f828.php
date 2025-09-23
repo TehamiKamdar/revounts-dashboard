@@ -1,11 +1,6 @@
 <div class="table-responsive">
-    <table class="table table-bordered table-social">
-        <thead>
-        <tr>
-            <th scope="col" style="width: 15%">Field</th>
-            <th scope="col">Value</th>
-        </tr>
-        </thead>
+    <table class="table table-borderless table-social">
+        
         <tbody>
             <tr>
                 <th>

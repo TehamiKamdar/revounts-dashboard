@@ -3060,3 +3060,18 @@ h2 {
                 margin-top: 0.5rem;
             }
         }
+
+        .bg-primary{
+            background-color: var(--primary-color) !important;
+            color: var(--primary-light-color) !important;
+        }
+
+        .bg-primary-dark{
+            background-color: var(--primary-dark-color) !important;
+            color: var(--primary-light-color) !important;
+        }
+
+        .bg-primary-light{
+            background-color: var(--primary-light-color) !important;
+            color: var(--primary-dark-color) !important;
+        }

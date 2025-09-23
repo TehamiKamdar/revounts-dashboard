@@ -3,13 +3,13 @@
         <div id="accordionWebsites">
             @foreach($publisher->websites as $key => $website)
                     <?php
-                    $url = $website->url ? "<a href='{$website->url}'>{$website->url}</a>" : "N/A";
+                    $url = $website->url ? "<a class='text-primary' href='{$website->url}'>{$website->url}</a>" : "N/A";
                     ?>
                 <div class="card">
-                    <div class="card-header w-100" id="websiteContent{{ $website->id }}">
-                        <div role="button" class="w-100 changelog__accordingCollapsed {{ $key > 0 ? "collapsed" : null }}" data-toggle="collapse" data-target="#collapse{{ $website->id }}" aria-expanded="{{ $key == 0 }}" aria-controls="collapse{{ $website->id }}">
+                    <div class="card-header bg-primary-dark w-100" id="websiteContent{{ $website->id }}">
+                        <div role="button" class="w-100 changelog__accordingCollapsed {{ $key > 0 ? "collapsed" : null }}" data-bs-toggle="collapse" data-bs-target="#collapse{{ $website->id }}" aria-expanded="{{ $key == 0 }}" aria-controls="collapse{{ $website->id }}">
                             <div class="changelog__accordingTitle d-flex justify-content-between w-100">
-                                <div class="v-num">Website Information ({!! strtolower($url) !!})</div>
+                                <div>Website Information {!! strtolower($url) !!}</div>
                                 <div class="changelog__accordingArrow">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>
                                 </div>
@@ -19,13 +19,8 @@
                     <div id="collapse{{ $website->id }}" class="collapse {{ $key == 0 ? "show" : null }}" aria-labelledby="websiteContent{{ $website->id }}" data-parent="#accordionWebsites">
                         <div class="card-body">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-social">
-                                    <thead>
-                                    <tr>
-                                        <th scope="col" style="width: 15%">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                    </thead>
+                                <table class="table table-borderless table-social">
+
                                     <tbody>
                                     <tr>
                                         <th>

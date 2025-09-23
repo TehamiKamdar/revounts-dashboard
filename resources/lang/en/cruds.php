@@ -194,6 +194,8 @@ return [
                 'partner_type_helper'      => '',
                 'status'                   => 'Status',
                 'status_helper'            => '',
+                'intro'                   => 'Intro',
+                'intro_helper'            => '',
                 'property_type_website'    => 'Partner Type',
                 'property_type_website_helper' => '',
                 'property_type_app'        => 'Property Type App',

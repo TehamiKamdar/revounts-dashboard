@@ -1,4 +1,4 @@
-<?php if (! $__env->hasRenderedOnce('d31e2651-0b22-4e0a-b3b4-60751a1e7653')): $__env->markAsRenderedOnce('d31e2651-0b22-4e0a-b3b4-60751a1e7653');
+<?php if (! $__env->hasRenderedOnce('f370542c-a226-4e0a-bf85-bf12659ea69a')): $__env->markAsRenderedOnce('f370542c-a226-4e0a-bf85-bf12659ea69a');
 $__env->startPush('styles'); ?>
 
 <style>
@@ -137,8 +137,8 @@ $__env->startPush('styles'); ?>
     }
 
     .tab-pane-modern {
-        padding: 2rem;
-        min-height: 400px;
+        padding: 1rem;
+        min-height: 130px;
     }
 
     /* Responsive Design */
