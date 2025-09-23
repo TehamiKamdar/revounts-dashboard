@@ -1,52 +1,52 @@
-<?php if (! $__env->hasRenderedOnce('13420fdc-7f63-4fa5-8971-382f5d118d6d')): $__env->markAsRenderedOnce('13420fdc-7f63-4fa5-8971-382f5d118d6d');
+<?php if (! $__env->hasRenderedOnce('2335de4c-dc9f-4c86-8bf2-dd7de7363243')): $__env->markAsRenderedOnce('2335de4c-dc9f-4c86-8bf2-dd7de7363243');
 $__env->startPush('scripts'); ?>
 <script type="text/javascript">
+    // Ek hi dafa listener bind karo
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $($.fn.dataTable.tables(true)).DataTable()
+            .columns.adjust();
+    });
+
     function showDetails() {
-        $('#datatableStatisticLink').dataTable({
-            order: [[0, 'desc']],
-            scrollY: true,
-            scrollX: true,
-            scrollCollapse: true,
-            paging: true,
-            autoWidth: true,
-            deferRender: true,
-            sScrollXInner: "150%",
-            ajax: {
-                url: "<?php echo e(route('admin.statistics.links.show', ['link' => $link->id])); ?>"
-            },
-            columns: [
-                { data: 'ip_address', name: 'ip_address', },
-                { data: 'operating_system', name: 'operating_system' },
-                { data: 'browser', name: 'browser' },
-                { data: 'device', name: 'device' },
-                { data: 'referer_url', name: 'referer_url' },
-                { data: 'country', name: 'country' },
-                { data: 'iso2', name: 'iso2' },
-                { data: 'region', name: 'region' },
-                { data: 'city', name: 'city' },
-                { data: 'zipcode', name: 'zipcode' },
-                { data: 'created_at', name: 'created_at' }
-            ],
-            columnDefs: [{
-                orderable: false,
-                className: '',
-                targets: 0
-            }, {
-            }],
-            buttons: [{}]
-        });
-
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            $($.fn.dataTable.tables(true)).DataTable()
-                .columns.adjust();
-        });
-
-        $("#detail-tab").removeAttr("onclick")
+        if (!$.fn.DataTable.isDataTable('#datatableStatisticLink')) {
+            $('#datatableStatisticLink').DataTable({
+                order: [[0, 'desc']],
+                scrollY: true,
+                scrollX: true,
+                scrollCollapse: true,
+                paging: true,
+                autoWidth: true,
+                deferRender: true,
+                sScrollXInner: "150%",
+                ajax: {
+                    url: "<?php echo e(route('admin.statistics.links.show', ['link' => $link->id])); ?>"
+                },
+                columns: [
+                    { data: 'ip_address', name: 'ip_address' },
+                    { data: 'operating_system', name: 'operating_system' },
+                    { data: 'browser', name: 'browser' },
+                    { data: 'device', name: 'device' },
+                    { data: 'referer_url', name: 'referer_url' },
+                    { data: 'country', name: 'country' },
+                    { data: 'iso2', name: 'iso2' },
+                    { data: 'region', name: 'region' },
+                    { data: 'city', name: 'city' },
+                    { data: 'zipcode', name: 'zipcode' },
+                    { data: 'created_at', name: 'created_at' }
+                ],
+                columnDefs: [{
+                    orderable: false,
+                    className: '',
+                    targets: 0
+                }],
+                buttons: [{}]
+            });
+        }
     }
 </script>
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('a9de422e-512c-41d2-a5e2-e0e22f83a89e')): $__env->markAsRenderedOnce('a9de422e-512c-41d2-a5e2-e0e22f83a89e');
+<?php if (! $__env->hasRenderedOnce('a70d74b2-7b98-4a8a-9a0a-918cc6210e34')): $__env->markAsRenderedOnce('a70d74b2-7b98-4a8a-9a0a-918cc6210e34');
 $__env->startPush('styles'); ?>
 
 <style>
@@ -286,8 +286,8 @@ $__env->startPush('styles'); ?>
                         data-bs-target="#basic_intro" role="tab" area-controls="intro" aria-selected="true">
                         <i class="ri-information-line"></i> Intro
                     </a>
-                    <a class="tab-btn-modern" style="cursor:pointer;" id="detail" data-bs-toggle="tab"
-                        data-bs-target="#detail" role="tab" area-controls="commission_rates" aria-selected="false">
+                    <a class="tab-btn-modern" style="cursor:pointer;" id="detail-tab" data-bs-toggle="tab"
+                        data-bs-target="#detail" role="tab" aria-controls="detail" aria-selected="false">
                         <i class="ri-file-text-line"></i> Tracking Detail
                     </a>
                 </div>
@@ -347,14 +347,14 @@ $__env->startPush('styles'); ?>
                                             <td>
                                                 <?php
     if (isset($link->click_through_url)) {
-                                                                                    ?>
+                                                                                        ?>
                                                 <a href="<?php echo e($link->click_through_url); ?>"
                                                     target="_blank"><?php echo e($link->click_through_url); ?></a>
                                                 <?php
     } else {
         echo "-";
     }
-                                                                                    ?>
+                                                                                        ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -365,14 +365,14 @@ $__env->startPush('styles'); ?>
                                             <td>
                                                 <?php
     if (isset($link->tracking_url_short)) {
-                                                                                    ?>
+                                                                                        ?>
                                                 <a href="<?php echo e($link->tracking_url_short); ?>"
                                                     target="_blank"><?php echo e($link->tracking_url_short); ?></a>
                                                 <?php
     } else {
         echo "-";
     }
-                                                                                    ?>
+                                                                                        ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -383,14 +383,14 @@ $__env->startPush('styles'); ?>
                                             <td>
                                                 <?php
     if (isset($link->tracking_url)) {
-                                                                                    ?>
+                                                                                        ?>
                                                 <a href="<?php echo e($link->tracking_url); ?>"
                                                     target="_blank"><?php echo e($link->tracking_url); ?></a>
                                                 <?php
     } else {
         echo "-";
     }
-                                                                                    ?>
+                                                                                        ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -441,55 +441,20 @@ $__env->startPush('styles'); ?>
                     <div class="tab-pane fade p-3" id="detail" role="tabpanel" aria-labelledby="detail-tab">
                         <div class="table-container">
                             <div class="table-responsive">
-                                <table
-                                    class="table m-0 table-bordered adv-table adv-data-table footable footable-1 footable-filtering footable-filtering-right footable-paging footable-paging-right breakpoint-lg"
-                                    id="datatableStatisticLink">
+                                <table class="table table-borderless table-hover" id="datatableStatisticLink">
                                     <thead>
-                                        <tr class="userDatatable-header footable-header">
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.ip_address')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.operating_system')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.browser')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.device')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.referer_url')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.country')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.iso2')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.region')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.city')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.zipcode')); ?>
-
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                <?php echo e(trans('link.statistics.links.fields.created_at')); ?>
-
-                                            </th>
+                                        <tr>
+                                            <th><?php echo e(trans('link.statistics.links.fields.ip_address')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.operating_system')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.browser')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.device')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.referer_url')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.country')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.iso2')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.region')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.city')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.zipcode')); ?></th>
+                                            <th><?php echo e(trans('link.statistics.links.fields.created_at')); ?></th>
                                         </tr>
                                     </thead>
                                 </table>

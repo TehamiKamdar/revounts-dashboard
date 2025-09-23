@@ -26,7 +26,6 @@
     <link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdn.datatables.net/select/1.3.0/css/select.dataTables.min.css" rel="stylesheet" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('libs/datatables.net-select-bs4/css/select.bootstrap4.min.css') }}"/>
 
     @stack('styles')
 

@@ -1,6 +1,5 @@
-@extends("layouts.admin.panel_app")
-
-@pushonce('styles')
+<?php if (! $__env->hasRenderedOnce('07e26c71-bf3f-4cb5-8ef2-5f8e038ee07e')): $__env->markAsRenderedOnce('07e26c71-bf3f-4cb5-8ef2-5f8e038ee07e');
+$__env->startPush('styles'); ?>
 
 <style>
     /* Main Layout Structure */
@@ -214,12 +213,12 @@
     }
 </style>
 
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
     <div class="container-fluid">
-        <h1 class="title">{{ trans('global.show') }} {{ trans('cruds.transaction.title_singular') }}</h1>
-        <a href="{{ route("admin.transactions.index") }}"
+        <h1 class="title"><?php echo e(trans('global.show')); ?> <?php echo e(trans('cruds.transaction.title_singular')); ?></h1>
+        <a href="<?php echo e(route("admin.transactions.index")); ?>"
             class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
             style="width: 40px; height: 40px; cursor: pointer;">
             <i class="ri-arrow-left-line text-white"></i>
@@ -228,7 +227,7 @@
         <div class="content-card">
             <!-- Card Header with Tabs -->
             <div class="card-header-modern">
-                <h2>Transaction ID: {{ $transaction->transaction_id }}</h2>
+                <h2>Transaction ID: <?php echo e($transaction->transaction_id); ?></h2>
 
                 <div class="tab-nav-modern nav" role="tablist">
                     <a class="tab-btn-modern active" style="cursor:pointer;" id="overview_tab" data-bs-toggle="tab"
@@ -246,7 +245,7 @@
             </div>
             <div class="card-body p-0">
 
-                @include("partial.admin.alert")
+                <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="overview" role="" aria-labelledby="overview_tab">
@@ -261,216 +260,263 @@
                                 <tbody>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.id') }}
+                                            <?php echo e(trans('cruds.transaction.fields.id')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->transaction_id }}
+                                            <?php echo e($transaction->transaction_id); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.advertiser_name') }}
+                                            <?php echo e(trans('cruds.transaction.fields.advertiser_name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->advertiser->name }}
+                                            <?php echo e($transaction->advertiser->name); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.campaign_name') }}
+                                            <?php echo e(trans('cruds.transaction.fields.campaign_name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->campaign_name ?? "-" }}
+                                            <?php echo e($transaction->campaign_name ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.site_name') }}
+                                            <?php echo e(trans('cruds.transaction.fields.site_name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->site_name ?? "-" }}
+                                            <?php echo e($transaction->site_name ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.url') }}
+                                            <?php echo e(trans('cruds.transaction.fields.url')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->url ?? "-" }}
+                                            <?php echo e($transaction->url ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.publisher_url') }}
+                                            <?php echo e(trans('cruds.transaction.fields.publisher_url')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->publisher_url ?? "-" }}
+                                            <?php echo e($transaction->publisher_url ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.publisher_id') }}
+                                            <?php echo e(trans('cruds.transaction.fields.publisher_id')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->publisher_id ?? "-" }}
+                                            <?php echo e($transaction->publisher_id ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.commission_sharing_publisher_id') }}
+                                            <?php echo e(trans('cruds.transaction.fields.commission_sharing_publisher_id')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->commission_sharing_publisher_id ?? "-" }}
+                                            <?php echo e($transaction->commission_sharing_publisher_id ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.commission_sharing_selected_rate_publisher_id') }}
+                                            <?php echo e(trans('cruds.transaction.fields.commission_sharing_selected_rate_publisher_id')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->commission_sharing_selected_rate_publisher_id ?? "-" }}
+                                            <?php echo e($transaction->commission_sharing_selected_rate_publisher_id ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.payment_id') }}
+                                            <?php echo e(trans('cruds.transaction.fields.payment_id')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->payment_id ?? "-" }}
+                                            <?php echo e($transaction->payment_id ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.transaction_query_id') }}
+                                            <?php echo e(trans('cruds.transaction.fields.transaction_query_id')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->transaction_query_id ?? "-" }}
+                                            <?php echo e($transaction->transaction_query_id ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.customer_country') }}
+                                            <?php echo e(trans('cruds.transaction.fields.customer_country')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->customer_country ?? "-" }}
+                                            <?php echo e($transaction->customer_country ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.click_refs') }}
+                                            <?php echo e(trans('cruds.transaction.fields.click_refs')); ?>
+
                                         </th>
                                         <td>
-                                            @if (!empty($transaction->click_refs))
-                                                {{ is_array($transaction->click_refs) ? implode(" | ", $transaction->click_refs) : $transaction->click_refs }}
-                                            @else
+                                            <?php if(!empty($transaction->click_refs)): ?>
+                                                <?php echo e(is_array($transaction->click_refs) ? implode(" | ", $transaction->click_refs) : $transaction->click_refs); ?>
+
+                                            <?php else: ?>
                                                 -
-                                            @endif
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.click_date') }}
+                                            <?php echo e(trans('cruds.transaction.fields.click_date')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->click_date ?? "-" }}
+                                            <?php echo e($transaction->click_date ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.transaction_date') }}
+                                            <?php echo e(trans('cruds.transaction.fields.transaction_date')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->transaction_date ?? "-" }}
+                                            <?php echo e($transaction->transaction_date ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.validation_date') }}
+                                            <?php echo e(trans('cruds.transaction.fields.validation_date')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->validation_date ?? "-" }}
+                                            <?php echo e($transaction->validation_date ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.voucher_code') }}
+                                            <?php echo e(trans('cruds.transaction.fields.voucher_code')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->voucher_code ?? "-" }}
+                                            <?php echo e($transaction->voucher_code ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.lapse_time') }}
+                                            <?php echo e(trans('cruds.transaction.fields.lapse_time')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->lapse_time ?? "-" }}
+                                            <?php echo e($transaction->lapse_time ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.click_device') }}
+                                            <?php echo e(trans('cruds.transaction.fields.click_device')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->click_device ?? "-" }}
+                                            <?php echo e($transaction->click_device ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.advertiser_country') }}
+                                            <?php echo e(trans('cruds.transaction.fields.advertiser_country')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->advertiser_country ?? "-" }}
+                                            <?php echo e($transaction->advertiser_country ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.order_ref') }}
+                                            <?php echo e(trans('cruds.transaction.fields.order_ref')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->order_ref ?? "-" }}
+                                            <?php echo e($transaction->order_ref ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.ip_hash') }}
+                                            <?php echo e(trans('cruds.transaction.fields.ip_hash')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->ip_hash ?? "-" }}
+                                            <?php echo e($transaction->ip_hash ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.source') }}
+                                            <?php echo e(trans('cruds.transaction.fields.source')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->source ?? "-" }}
+                                            <?php echo e($transaction->source ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.custom_parameters') }}
+                                            <?php echo e(trans('cruds.transaction.fields.custom_parameters')); ?>
+
                                         </th>
                                         <td>
-                                            @php
+                                            <?php
                                                 $params = $transaction->custom_parameters;
 
                                                 if (is_string($params)) {
                                                     $params = json_decode($params, true); // Convert JSON string to array
                                                 }
-                                            @endphp
+                                            ?>
 
-                                            @if(is_array($params))
+                                            <?php if(is_array($params)): ?>
                                                 <ol>
-                                                    @foreach($params as $item)
-                                                        @if(isset($item['value']))
-                                                            <li>{{ $item['value'] }}</li>
-                                                        @endif
-                                                    @endforeach
+                                                    <?php $__currentLoopData = $params; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $item): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                        <?php if(isset($item['value'])): ?>
+                                                            <li><?php echo e($item['value']); ?></li>
+                                                        <?php endif; ?>
+                                                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                                                 </ol>
-                                            @else
+                                            <?php else: ?>
                                                 -
-                                            @endif
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -489,122 +535,152 @@
                                 <tbody>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.commission_type') }}
+                                            <?php echo e(trans('cruds.transaction.fields.commission_type')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->commission_type ?? "-" }}
+                                            <?php echo e($transaction->commission_type ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.commission_status') }}
+                                            <?php echo e(trans('cruds.transaction.fields.commission_status')); ?>
+
                                         </th>
                                         <td>
-                                            {{ ucwords($transaction->commission_status) }}
+                                            <?php echo e(ucwords($transaction->commission_status)); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.received_sale_amount') }}
+                                            <?php echo e(trans('cruds.transaction.fields.received_sale_amount')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->received_sale_amount ?? "-" }}
+                                            <?php echo e($transaction->received_sale_amount ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.received_commission') }}
+                                            <?php echo e(trans('cruds.transaction.fields.received_commission')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->received_commission_amount ?? "-" }}
+                                            <?php echo e($transaction->received_commission_amount ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.received_commission_amount_currency') }}
+                                            <?php echo e(trans('cruds.transaction.fields.received_commission_amount_currency')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->received_commission_amount_currency ?? "-" }}
+                                            <?php echo e($transaction->received_commission_amount_currency ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.commission_amount') }}
+                                            <?php echo e(trans('cruds.transaction.fields.commission_amount')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->commission_amount ?? "-" }}
+                                            <?php echo e($transaction->commission_amount ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.commission_amount_currency') }}
+                                            <?php echo e(trans('cruds.transaction.fields.commission_amount_currency')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->commission_amount_currency ?? "-" }}
+                                            <?php echo e($transaction->commission_amount_currency ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.sale_amount') }}
+                                            <?php echo e(trans('cruds.transaction.fields.sale_amount')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->sale_amount ?? "-" }}
+                                            <?php echo e($transaction->sale_amount ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.sale_amount_currency') }}
+                                            <?php echo e(trans('cruds.transaction.fields.sale_amount_currency')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->sale_amount_currency ?? "-" }}
+                                            <?php echo e($transaction->sale_amount_currency ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.old_sale_amount') }}
+                                            <?php echo e(trans('cruds.transaction.fields.old_sale_amount')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->old_sale_amount ?? "-" }}
+                                            <?php echo e($transaction->old_sale_amount ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.old_commission_amount') }}
+                                            <?php echo e(trans('cruds.transaction.fields.old_commission_amount')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->old_commission_amount ?? "-" }}
+                                            <?php echo e($transaction->old_commission_amount ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.tracked_currency_amount') }}
+                                            <?php echo e(trans('cruds.transaction.fields.tracked_currency_amount')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->tracked_currency_amount ?? "-" }}
+                                            <?php echo e($transaction->tracked_currency_amount ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.tracked_currency_currency') }}
+                                            <?php echo e(trans('cruds.transaction.fields.tracked_currency_currency')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->tracked_currency_currency ?? "-" }}
+                                            <?php echo e($transaction->tracked_currency_currency ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.paid_to_publisher') }}
+                                            <?php echo e(trans('cruds.transaction.fields.paid_to_publisher')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->paid_to_publisher ?? "-" }}
+                                            <?php echo e($transaction->paid_to_publisher ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.original_sale_amount') }}
+                                            <?php echo e(trans('cruds.transaction.fields.original_sale_amount')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $transaction->original_sale_amount ?? "-" }}
+                                            <?php echo e($transaction->original_sale_amount ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -623,26 +699,32 @@
                                 <tbody>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.amended_reason') }}
+                                            <?php echo e(trans('cruds.transaction.fields.amended_reason')); ?>
+
                                         </th>
                                         <td>
-                                            {!! $transaction->amended_reason ?? "-" !!}
+                                            <?php echo $transaction->amended_reason ?? "-"; ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.decline_reason') }}
+                                            <?php echo e(trans('cruds.transaction.fields.decline_reason')); ?>
+
                                         </th>
                                         <td>
-                                            {!! $transaction->decline_reason ?? "-" !!}
+                                            <?php echo $transaction->decline_reason ?? "-"; ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.transaction.fields.customer_acquisition') }}
+                                            <?php echo e(trans('cruds.transaction.fields.customer_acquisition')); ?>
+
                                         </th>
                                         <td>
-                                            {!! $transaction->customer_acquisition ?? "-" !!}
+                                            <?php echo $transaction->customer_acquisition ?? "-"; ?>
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -653,4 +735,5 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.admin.panel_app", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/transactions/show.blade.php ENDPATH**/ ?>

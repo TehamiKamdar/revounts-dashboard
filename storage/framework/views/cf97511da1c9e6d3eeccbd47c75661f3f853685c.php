@@ -1,6 +1,5 @@
-@extends("layouts.admin.panel_table")
-
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('326f4197-86b2-4473-adf1-e369ce108d47')): $__env->markAsRenderedOnce('326f4197-86b2-4473-adf1-e369ce108d47');
+$__env->startPush('scripts'); ?>
     <script type="text/javascript">
         function showDetails()
         {
@@ -14,7 +13,7 @@
                 deferRender:    true,
                 sScrollXInner:  "150%",
                 ajax: {
-                    url: "{{ route('admin.statistics.deeplinks.show', ['deeplink' => $deeplink->id]) }}"
+                    url: "<?php echo e(route('admin.statistics.deeplinks.show', ['deeplink' => $deeplink->id])); ?>"
                 },
                 columns: [
                     {data: 'ip_address', name: 'ip_address', },
@@ -46,9 +45,10 @@
             $("#detail-tab").removeAttr("onclick")
         }
     </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('styles')
+<?php if (! $__env->hasRenderedOnce('97f3b2ac-e836-4359-b5e0-802995c17086')): $__env->markAsRenderedOnce('97f3b2ac-e836-4359-b5e0-802995c17086');
+$__env->startPush('styles'); ?>
 
 <style>
     /* Main Layout Structure */
@@ -262,13 +262,13 @@
     }
 </style>
 
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
 
         <div class="container-fluid">
-            <h1 class="title">{{ trans('global.show') }} {{ trans('link.statistics.links.deep_title') }}</h1>
-        <a href="{{ route("admin.statistics.deeplinks.index") }}"
+            <h1 class="title"><?php echo e(trans('global.show')); ?> <?php echo e(trans('link.statistics.links.deep_title')); ?></h1>
+        <a href="<?php echo e(route("admin.statistics.deeplinks.index")); ?>"
             class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
             style="width: 40px; height: 40px; cursor: pointer;">
             <i class="ri-arrow-left-line text-white"></i>
@@ -278,7 +278,9 @@
             <!-- Card Header with Tabs -->
             <div class="card-header-modern">
                 <h2 class="card-title-modern">
-                    <i class="ri-user-3-line"></i>{{ isset($deeplink->publisher->first_name) && isset($deeplink->publisher->last_name) ? $deeplink->publisher->first_name . " " . $deeplink->publisher->last_name : "-" }}
+                    <i
+                        class="ri-user-3-line"></i><?php echo e(isset($deeplink->publisher->first_name) && isset($deeplink->publisher->last_name) ? $deeplink->publisher->first_name . " " . $deeplink->publisher->last_name : "-"); ?>
+
                 </h2>
                 <div class="tab-nav-modern nav" role="tablist">
                     <a class="tab-btn-modern active" style="cursor:pointer;" id="basic_intro_tab" data-bs-toggle="tab"
@@ -293,7 +295,7 @@
             </div>
             <div class="card-body p-0">
 
-                @include("partial.admin.alert")
+                <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                 <div class="tab-content">
                     <div class="tab-pane fade active show" id="basic_intro" role="" aria-labelledby="basic_intro_tab">
@@ -309,74 +311,90 @@
                                 <tbody>
                                     <tr>
                                         <th>
-                                            {{ trans('link.statistics.links.fields.publisher_name') }}
+                                            <?php echo e(trans('link.statistics.links.fields.publisher_name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ isset($deeplink->publisher->first_name) && isset($deeplink->publisher->last_name) ? $deeplink->publisher->first_name . " " . $deeplink->publisher->last_name : "-" }}
+                                            <?php echo e(isset($deeplink->publisher->first_name) && isset($deeplink->publisher->last_name) ? $deeplink->publisher->first_name . " " . $deeplink->publisher->last_name : "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('link.statistics.links.fields.advertiser_name') }}
+                                            <?php echo e(trans('link.statistics.links.fields.advertiser_name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $deeplink->advertiser->name ?? "-" }}
+                                            <?php echo e($deeplink->advertiser->name ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('link.statistics.links.fields.website_name') }}
+                                            <?php echo e(trans('link.statistics.links.fields.website_name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $deeplink->website->name ?? "-" }}
+                                            <?php echo e($deeplink->website->name ?? "-"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('link.statistics.links.fields.click_through_url') }}
+                                            <?php echo e(trans('link.statistics.links.fields.click_through_url')); ?>
+
                                         </th>
                                         <td>
-                                            <a href="{{ $deeplink->click_through_url }}" target="_blank">{{ $deeplink->click_through_url }}</a>
+                                            <a href="<?php echo e($deeplink->click_through_url); ?>" target="_blank"><?php echo e($deeplink->click_through_url); ?></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('link.statistics.links.fields.tracking_url') }}
+                                            <?php echo e(trans('link.statistics.links.fields.tracking_url')); ?>
+
                                         </th>
                                         <td>
-                                            <a href="{{ $deeplink->tracking_url }}" target="_blank">{{ $deeplink->tracking_url }}</a>
+                                            <a href="<?php echo e($deeplink->tracking_url); ?>" target="_blank"><?php echo e($deeplink->tracking_url); ?></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('link.statistics.links.fields.hits') }}
+                                            <?php echo e(trans('link.statistics.links.fields.hits')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $deeplink->hits ?? "0" }}
+                                            <?php echo e($deeplink->hits ?? "0"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('link.statistics.links.fields.unique_visitor') }}
+                                            <?php echo e(trans('link.statistics.links.fields.unique_visitor')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $deeplink->unique_visitor ?? "0" }}
+                                            <?php echo e($deeplink->unique_visitor ?? "0"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('link.statistics.links.fields.generated_at') }}
+                                            <?php echo e(trans('link.statistics.links.fields.generated_at')); ?>
+
                                         </th>
                                         <td>
-                                            {{ \Carbon\Carbon::parse($deeplink->created_at)->format("Y-m-d h:i:s a") }}
+                                            <?php echo e(\Carbon\Carbon::parse($deeplink->created_at)->format("Y-m-d h:i:s a")); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('link.statistics.links.fields.last_activity') }}
+                                            <?php echo e(trans('link.statistics.links.fields.last_activity')); ?>
+
                                         </th>
                                         <td>
-                                            {{ \Carbon\Carbon::parse($deeplink->updated_at)->format("Y-m-d h:i:s a") }}
+                                            <?php echo e(\Carbon\Carbon::parse($deeplink->updated_at)->format("Y-m-d h:i:s a")); ?>
+
                                         </td>
                                     </tr>
                                 </tbody>
@@ -391,37 +409,48 @@
                             <thead>
                                 <tr class="userDatatable-header footable-header">
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.ip_address') }}
+                                        <?php echo e(trans('link.statistics.links.fields.ip_address')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.operating_system') }}
+                                        <?php echo e(trans('link.statistics.links.fields.operating_system')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.browser') }}
+                                        <?php echo e(trans('link.statistics.links.fields.browser')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.device') }}
+                                        <?php echo e(trans('link.statistics.links.fields.device')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.referer_url') }}
+                                        <?php echo e(trans('link.statistics.links.fields.referer_url')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.country') }}
+                                        <?php echo e(trans('link.statistics.links.fields.country')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.iso2') }}
+                                        <?php echo e(trans('link.statistics.links.fields.iso2')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.region') }}
+                                        <?php echo e(trans('link.statistics.links.fields.region')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.city') }}
+                                        <?php echo e(trans('link.statistics.links.fields.city')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.zipcode') }}
+                                        <?php echo e(trans('link.statistics.links.fields.zipcode')); ?>
+
                                     </th>
                                     <th class="footable-sortable footable-first-visible table-cell">
-                                        {{ trans('link.statistics.links.fields.created_at') }}
+                                        <?php echo e(trans('link.statistics.links.fields.created_at')); ?>
+
                                     </th>
                                 </tr>
                             </thead>
@@ -431,4 +460,6 @@
                 </div>
             </div>
         </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("layouts.admin.panel_table", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/statistics/deep_links/show.blade.php ENDPATH**/ ?>

@@ -2,47 +2,47 @@
 
 @pushonce('scripts')
 <script type="text/javascript">
+    // Ek hi dafa listener bind karo
+    $('a[data-bs-toggle="tab"]').on('shown.bs.tab', function (e) {
+        $($.fn.dataTable.tables(true)).DataTable()
+            .columns.adjust();
+    });
+
     function showDetails() {
-        $('#datatableStatisticLink').dataTable({
-            order: [[0, 'desc']],
-            scrollY: true,
-            scrollX: true,
-            scrollCollapse: true,
-            paging: true,
-            autoWidth: true,
-            deferRender: true,
-            sScrollXInner: "150%",
-            ajax: {
-                url: "{{ route('admin.statistics.links.show', ['link' => $link->id]) }}"
-            },
-            columns: [
-                { data: 'ip_address', name: 'ip_address', },
-                { data: 'operating_system', name: 'operating_system' },
-                { data: 'browser', name: 'browser' },
-                { data: 'device', name: 'device' },
-                { data: 'referer_url', name: 'referer_url' },
-                { data: 'country', name: 'country' },
-                { data: 'iso2', name: 'iso2' },
-                { data: 'region', name: 'region' },
-                { data: 'city', name: 'city' },
-                { data: 'zipcode', name: 'zipcode' },
-                { data: 'created_at', name: 'created_at' }
-            ],
-            columnDefs: [{
-                orderable: false,
-                className: '',
-                targets: 0
-            }, {
-            }],
-            buttons: [{}]
-        });
-
-        $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
-            $($.fn.dataTable.tables(true)).DataTable()
-                .columns.adjust();
-        });
-
-        $("#detail-tab").removeAttr("onclick")
+        if (!$.fn.DataTable.isDataTable('#datatableStatisticLink')) {
+            $('#datatableStatisticLink').DataTable({
+                order: [[0, 'desc']],
+                scrollY: true,
+                scrollX: true,
+                scrollCollapse: true,
+                paging: true,
+                autoWidth: true,
+                deferRender: true,
+                sScrollXInner: "150%",
+                ajax: {
+                    url: "{{ route('admin.statistics.links.show', ['link' => $link->id]) }}"
+                },
+                columns: [
+                    { data: 'ip_address', name: 'ip_address' },
+                    { data: 'operating_system', name: 'operating_system' },
+                    { data: 'browser', name: 'browser' },
+                    { data: 'device', name: 'device' },
+                    { data: 'referer_url', name: 'referer_url' },
+                    { data: 'country', name: 'country' },
+                    { data: 'iso2', name: 'iso2' },
+                    { data: 'region', name: 'region' },
+                    { data: 'city', name: 'city' },
+                    { data: 'zipcode', name: 'zipcode' },
+                    { data: 'created_at', name: 'created_at' }
+                ],
+                columnDefs: [{
+                    orderable: false,
+                    className: '',
+                    targets: 0
+                }],
+                buttons: [{}]
+            });
+        }
     }
 </script>
 @endpushonce
@@ -285,8 +285,8 @@
                         data-bs-target="#basic_intro" role="tab" area-controls="intro" aria-selected="true">
                         <i class="ri-information-line"></i> Intro
                     </a>
-                    <a class="tab-btn-modern" style="cursor:pointer;" id="detail" data-bs-toggle="tab"
-                        data-bs-target="#detail" role="tab" area-controls="commission_rates" aria-selected="false">
+                    <a class="tab-btn-modern" style="cursor:pointer;" id="detail-tab" data-bs-toggle="tab"
+                        data-bs-target="#detail" role="tab" aria-controls="detail" aria-selected="false">
                         <i class="ri-file-text-line"></i> Tracking Detail
                     </a>
                 </div>
@@ -339,14 +339,14 @@
                                             <td>
                                                 <?php
     if (isset($link->click_through_url)) {
-                                                                                    ?>
+                                                                                        ?>
                                                 <a href="{{ $link->click_through_url }}"
                                                     target="_blank">{{ $link->click_through_url }}</a>
                                                 <?php
     } else {
         echo "-";
     }
-                                                                                    ?>
+                                                                                        ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -356,14 +356,14 @@
                                             <td>
                                                 <?php
     if (isset($link->tracking_url_short)) {
-                                                                                    ?>
+                                                                                        ?>
                                                 <a href="{{ $link->tracking_url_short }}"
                                                     target="_blank">{{ $link->tracking_url_short }}</a>
                                                 <?php
     } else {
         echo "-";
     }
-                                                                                    ?>
+                                                                                        ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -373,14 +373,14 @@
                                             <td>
                                                 <?php
     if (isset($link->tracking_url)) {
-                                                                                    ?>
+                                                                                        ?>
                                                 <a href="{{ $link->tracking_url }}"
                                                     target="_blank">{{ $link->tracking_url }}</a>
                                                 <?php
     } else {
         echo "-";
     }
-                                                                                    ?>
+                                                                                        ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -423,44 +423,20 @@
                     <div class="tab-pane fade p-3" id="detail" role="tabpanel" aria-labelledby="detail-tab">
                         <div class="table-container">
                             <div class="table-responsive">
-                                <table
-                                    class="table m-0 table-bordered adv-table adv-data-table footable footable-1 footable-filtering footable-filtering-right footable-paging footable-paging-right breakpoint-lg"
-                                    id="datatableStatisticLink">
+                                <table class="table table-borderless table-hover" id="datatableStatisticLink">
                                     <thead>
-                                        <tr class="userDatatable-header footable-header">
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.ip_address') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.operating_system') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.browser') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.device') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.referer_url') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.country') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.iso2') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.region') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.city') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.zipcode') }}
-                                            </th>
-                                            <th class="footable-sortable footable-first-visible table-cell">
-                                                {{ trans('link.statistics.links.fields.created_at') }}
-                                            </th>
+                                        <tr>
+                                            <th>{{ trans('link.statistics.links.fields.ip_address') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.operating_system') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.browser') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.device') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.referer_url') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.country') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.iso2') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.region') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.city') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.zipcode') }}</th>
+                                            <th>{{ trans('link.statistics.links.fields.created_at') }}</th>
                                         </tr>
                                     </thead>
                                 </table>
