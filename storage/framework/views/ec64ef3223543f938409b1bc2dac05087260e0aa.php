@@ -1,4 +1,4 @@
-<?php if (! $__env->hasRenderedOnce('2335de4c-dc9f-4c86-8bf2-dd7de7363243')): $__env->markAsRenderedOnce('2335de4c-dc9f-4c86-8bf2-dd7de7363243');
+<?php if (! $__env->hasRenderedOnce('5edc13b0-4f05-4169-91f0-5ebfdf02c88d')): $__env->markAsRenderedOnce('5edc13b0-4f05-4169-91f0-5ebfdf02c88d');
 $__env->startPush('scripts'); ?>
 <script type="text/javascript">
     // Ek hi dafa listener bind karo
@@ -46,7 +46,7 @@ $__env->startPush('scripts'); ?>
 </script>
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('a70d74b2-7b98-4a8a-9a0a-918cc6210e34')): $__env->markAsRenderedOnce('a70d74b2-7b98-4a8a-9a0a-918cc6210e34');
+<?php if (! $__env->hasRenderedOnce('72938f2f-4e0b-47a5-b334-9e511b506210')): $__env->markAsRenderedOnce('72938f2f-4e0b-47a5-b334-9e511b506210');
 $__env->startPush('styles'); ?>
 
 <style>
@@ -185,8 +185,8 @@ $__env->startPush('styles'); ?>
     }
 
     .tab-pane-modern {
-        padding: 2rem;
-        min-height: 400px;
+        padding: 1rem;
+        min-height: 130px;
     }
 
     /* Responsive Design */
@@ -297,17 +297,11 @@ $__env->startPush('styles'); ?>
                 <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                 <div class="tab-content">
-                    <div class="tab-pane fade active show" id="basic_intro" role="tabpanel"
+                    <div class="tab-pane tab-pane-modern fade active show" id="basic_intro" role="tabpanel"
                         aria-labelledby="basic_intro_tab">
-                        <div class="table-container">
                             <div class="table-responsive">
-                                <table class="table table-bordered table-social">
-                                    <thead>
-                                        <tr>
-                                            <th scope="col" style="width: 15%">Field</th>
-                                            <th scope="col">Value</th>
-                                        </tr>
-                                    </thead>
+                                <table class="table table-borderless table-social">
+
                                     <tbody>
                                         <tr>
                                             <th>
@@ -436,11 +430,11 @@ $__env->startPush('styles'); ?>
                                     </tbody>
                                 </table>
                             </div>
-                        </div>
+
                     </div>
-                    <div class="tab-pane fade p-3" id="detail" role="tabpanel" aria-labelledby="detail-tab">
-                        <div class="table-container">
-                            <div class="table-responsive">
+                    <div class="tab-pane tab-pane-modern fade p-3" id="detail" role="tabpanel" aria-labelledby="detail-tab">
+                            <div class="table-container">
+                                <div class="table-responsive">
                                 <table class="table table-borderless table-hover" id="datatableStatisticLink">
                                     <thead>
                                         <tr>
@@ -459,7 +453,7 @@ $__env->startPush('styles'); ?>
                                     </thead>
                                 </table>
                             </div>
-                        </div>
+                            </div>
                     </div>
                 </div>
             </div>

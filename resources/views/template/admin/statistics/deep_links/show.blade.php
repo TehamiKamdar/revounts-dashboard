@@ -186,8 +186,8 @@
     }
 
     .tab-pane-modern {
-        padding: 2rem;
-        min-height: 400px;
+        padding: 1rem;
+        min-height: 130px;
     }
 
     /* Responsive Design */
@@ -296,16 +296,10 @@
                 @include("partial.admin.alert")
 
                 <div class="tab-content">
-                    <div class="tab-pane fade active show" id="basic_intro" role="" aria-labelledby="basic_intro_tab">
-                        <div class="table-container">
+                    <div class="tab-pane tab-pane-modern fade active show" id="basic_intro" role="" aria-labelledby="basic_intro_tab">
                             <div class="table-responsive">
                             <table class="table table-borderless table-social">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" style="width: 15%">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+
                                 <tbody>
                                     <tr>
                                         <th>
@@ -382,9 +376,8 @@
                                 </tbody>
                             </table>
                         </div>
-                        </div>
                     </div>
-                    <div class="tab-pane fade p-3" id="detail" role="" aria-labelledby="detail-tab">
+                    <div class="tab-pane tab-pane-modern fade p-3" id="detail" role="" aria-labelledby="detail-tab">
                         <div class="table-container">
                             <table class="table table-borderless table-hover"
                                 id="datatableStatisticDeepLink">

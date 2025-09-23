@@ -1,4 +1,4 @@
-<?php if (! $__env->hasRenderedOnce('326f4197-86b2-4473-adf1-e369ce108d47')): $__env->markAsRenderedOnce('326f4197-86b2-4473-adf1-e369ce108d47');
+<?php if (! $__env->hasRenderedOnce('7bfd7c46-01ba-44e1-8a44-918ad8abc56b')): $__env->markAsRenderedOnce('7bfd7c46-01ba-44e1-8a44-918ad8abc56b');
 $__env->startPush('scripts'); ?>
     <script type="text/javascript">
         function showDetails()
@@ -47,7 +47,7 @@ $__env->startPush('scripts'); ?>
     </script>
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('97f3b2ac-e836-4359-b5e0-802995c17086')): $__env->markAsRenderedOnce('97f3b2ac-e836-4359-b5e0-802995c17086');
+<?php if (! $__env->hasRenderedOnce('d62462db-5dfd-453a-935f-c8b3990ca6de')): $__env->markAsRenderedOnce('d62462db-5dfd-453a-935f-c8b3990ca6de');
 $__env->startPush('styles'); ?>
 
 <style>
@@ -186,8 +186,8 @@ $__env->startPush('styles'); ?>
     }
 
     .tab-pane-modern {
-        padding: 2rem;
-        min-height: 400px;
+        padding: 1rem;
+        min-height: 130px;
     }
 
     /* Responsive Design */
@@ -278,8 +278,7 @@ $__env->startPush('styles'); ?>
             <!-- Card Header with Tabs -->
             <div class="card-header-modern">
                 <h2 class="card-title-modern">
-                    <i
-                        class="ri-user-3-line"></i><?php echo e(isset($deeplink->publisher->first_name) && isset($deeplink->publisher->last_name) ? $deeplink->publisher->first_name . " " . $deeplink->publisher->last_name : "-"); ?>
+                    <i class="ri-user-3-line"></i><?php echo e(isset($deeplink->publisher->first_name) && isset($deeplink->publisher->last_name) ? $deeplink->publisher->first_name . " " . $deeplink->publisher->last_name : "-"); ?>
 
                 </h2>
                 <div class="tab-nav-modern nav" role="tablist">
@@ -298,16 +297,10 @@ $__env->startPush('styles'); ?>
                 <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                 <div class="tab-content">
-                    <div class="tab-pane fade active show" id="basic_intro" role="" aria-labelledby="basic_intro_tab">
-                        <div class="table-container">
+                    <div class="tab-pane tab-pane-modern fade active show" id="basic_intro" role="" aria-labelledby="basic_intro_tab">
                             <div class="table-responsive">
                             <table class="table table-borderless table-social">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" style="width: 15%">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+
                                 <tbody>
                                     <tr>
                                         <th>
@@ -400,9 +393,8 @@ $__env->startPush('styles'); ?>
                                 </tbody>
                             </table>
                         </div>
-                        </div>
                     </div>
-                    <div class="tab-pane fade p-3" id="detail" role="" aria-labelledby="detail-tab">
+                    <div class="tab-pane tab-pane-modern fade p-3" id="detail" role="" aria-labelledby="detail-tab">
                         <div class="table-container">
                             <table class="table table-borderless table-hover"
                                 id="datatableStatisticDeepLink">
