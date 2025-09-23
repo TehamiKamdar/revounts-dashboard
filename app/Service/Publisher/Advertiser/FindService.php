@@ -32,7 +32,7 @@ class FindService extends BaseController
     {
         try {
             $limit = Vars::DEFAULT_PUBLISHER_ADVERTISER_PAGINATION;
-            $view = Vars::PUBLISHER_ADVERTISER_BOX_VIEW;
+            $view = Vars::PUBLISHER_ADVERTISER_LIST_VIEW;
             if (session()->has('publisher_advertiser_limit')) {
                 $limit = session()->get('publisher_advertiser_limit');
             }

@@ -116,7 +116,7 @@ unset($__errorArgs, $__bag); ?>" id="gender" name="gender">
         </div>
         <div class="col-md-4">
             <div class="form-group form-group-calender">
-                <label for="datepickerdob" class="fs-14 text-dark">Date of Birth<span class="text-danger">*</span></label>
+                <i class="ri-calendar-line me-1"></i><label for="datepickerdob" class="fs-14 text-dark">Date of Birth<span class="text-danger">*</span></label>
                 <div class="position-relative">
                     <input type="text" class="form-control <?php $__errorArgs = ['dob'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
@@ -126,7 +126,6 @@ $message = $__bag->first($__errorArgs[0]); ?> border-danger <?php unset($message
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>" id="datepickerdob" name="dob" placeholder="<?php echo e(now()->format("F d, Y")); ?>" value="<?php echo e($publisher->dob); ?>">
-                    <a href="#"><span data-feather="calendar"></span></a>
                 </div>
             </div>
         </div>

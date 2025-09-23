@@ -52,7 +52,7 @@
 
         .select2-container--default .select2-selection--single,
         .select2-container--default .select2-selection--multiple {
-            padding: unset !important;
+            padding: 8px !important;
         }
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -99,12 +99,16 @@
 <body>
 
     @include("partial.publisher.header")
-  <div class="dashboard-container">
-    <main class="dashboard-main">
-        @yield("content")
-    </main>
-</div>
-@include("partial.publisher.footer")
+    <div class="dashboard-container">
+        <button onclick="normalMsg({success: true, message: 'Test notification!'});" class="btn btn-primary">
+            Show Test Notification
+        </button>
+
+        <main class="dashboard-main">
+            @yield("content")
+        </main>
+    </div>
+    @include("partial.publisher.footer")
 
     <div id="overlayer">
         <span class="loader-overlay">
@@ -116,6 +120,7 @@
             </div>
         </span>
     </div>
+    <div class="notification-wrapper position-fixed top-0 end-0 p-3" style="z-index: 1080"></div>
 
     <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-3.5.1.min.js") }}"></script>
     <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-ui.js") }}"></script>
@@ -139,19 +144,21 @@
                 icon = 'x-circle';
 
             toast = `
-                    <div class="atbd-notification-box notification-${type} notification-${toastCount}">
-                        <div class="atbd-notification-box__content media">
-                            <div class="atbd-notification-box__icon">
-                                <span data-feather="${icon}"></span>
+                    <div class="position-fixed top-0 end-0 p-3" style="z-index: 1080">
+                        <div id="customToast" class="toast align-items-center border-0" role="alert" aria-live="assertive" aria-atomic="true">
+                            <div class="d-flex">
+                            <!-- Icon -->
+                            <div class="bg-primary text-white d-flex align-items-center justify-content-center px-3">
+                                <i class="ri-information-line"></i>
                             </div>
-                            <div class="atbd-notification-box__text media-body">
-                                <h6>Notification</h6>
-                                ${content}
+                            <!-- Content -->
+                            <div class="toast-body">
+                                <strong>Notification:</strong> <span id="toastMessage">${content}</span>
+                            </div>
+                            <!-- Close -->
+                            <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
                             </div>
                         </div>
-                        <a href="#" class="atbd-notification-box__close" data-toast="close">
-                            <span data-feather="x"></span>
-                        </a>
                     </div>
                     `;
 

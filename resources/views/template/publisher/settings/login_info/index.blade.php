@@ -14,21 +14,21 @@
             </div>
         </div>
         <div class="tab-content mt-4">
-            <div class="tab-pane fade @if(request()->is('publisher/account/login-info')) active show @endif" id="username" role="" aria-labelledby="username-tab">
+            <div class="tab-pane fade @if(request()->is('publisher/account/login-info'))active show @endif" id="username" role="" aria-labelledby="username-tab">
 
                 @if(request()->is('publisher/account/login-info'))
                     @include("template.publisher.settings.login_info.username", compact('user'))
                 @endif
 
             </div>
-            <div class="tab-pane fade @if(request()->is('publisher/account/login-info/change-email')) active show @endif" id="user_email" role="" aria-labelledby="user_email-tab">
+            <div class="tab-pane fade @if(request()->is('publisher/account/login-info/change-email'))active show @endif" id="user_email" role="" aria-labelledby="user_email-tab">
 
                 @if(request()->is('publisher/account/login-info/change-email'))
                     @include("template.publisher.settings.login_info.change_email", compact('user'))
                 @endif
 
             </div>
-            <div class="tab-pane fade @if(request()->is('publisher/account/login-info/change-password')) active show @endif" id="login_password" role="" aria-labelledby="login_password-tab">
+            <div class="tab-pane fade @if(request()->is('publisher/account/login-info/change-password'))active show @endif" id="login_password" role="" aria-labelledby="login_password-tab">
 
                 @if(request()->is('publisher/account/login-info/change-password'))
                     @include("template.publisher.settings.login_info.change_password", compact('user'))

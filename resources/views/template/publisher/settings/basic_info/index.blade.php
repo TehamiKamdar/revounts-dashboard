@@ -67,10 +67,9 @@
         </div>
         <div class="col-md-4">
             <div class="form-group form-group-calender">
-                <label for="datepickerdob" class="fs-14 text-dark">Date of Birth<span class="text-danger">*</span></label>
+                <i class="ri-calendar-line me-1"></i><label for="datepickerdob" class="fs-14 text-dark">Date of Birth<span class="text-danger">*</span></label>
                 <div class="position-relative">
                     <input type="text" class="form-control @error('dob') border-danger @enderror" id="datepickerdob" name="dob" placeholder="{{ now()->format("F d, Y") }}" value="{{ $publisher->dob }}">
-                    <a href="#"><span data-feather="calendar"></span></a>
                 </div>
             </div>
         </div>
