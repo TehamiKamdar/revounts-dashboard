@@ -138,8 +138,8 @@
     }
 
     .tab-pane-modern {
-        padding: 2rem;
-        min-height: 400px;
+        padding: 1rem;
+        min-height: 130px;
     }
 
     /* Responsive Design */
@@ -260,16 +260,11 @@
             @include("partial.admin.alert")
 
             <div class="tab-content">
-                <div class="tab-pane fade active show" id="overview" role="tabpanel" aria-labelledby="overview_tab">
-                    <div class="table-container">
+                <div class="tab-pane tab-pane-modern fade show active" id="overview" role="tabpanel" aria-labelledby="overview_tab">
+
                         <div class="table-responsive">
-                            <table class="table table-bordered table-social">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="width-15">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+                            <table class="table table-borderless table-social">
+
                                 <tbody>
                                     <tr>
                                         <th>
@@ -531,12 +526,12 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+
                 </div>
-                <div class="tab-pane fade" id="commission_rates" role="tabpanel" aria-labelledby="commission_rates-tab">
-                    <div class="table-container">
+                <div class="tab-pane tab-pane-modern fade" id="commission_rates" role="tabpanel" aria-labelledby="commission_rates-tab">
+
                         <div class="table-responsive">
-                            <table class="table table-bordered table-social min-height-zero">
+                            <table class="table table-borderless table-social">
                                 <thead>
                                     <tr>
                                         <th scope="col">Date</th>
@@ -569,18 +564,13 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+
                 </div>
-                <div class="tab-pane fade" id="terms" role="tabpanel" aria-labelledby="terms-tab">
-                    <div class="table-container">
+                <div class="tab-pane tab-pane-modern fade" id="terms" role="tabpanel" aria-labelledby="terms-tab">
+
                         <div class="table-responsive">
-                            <table class="table table-bordered table-social min-height-zero">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="width-15">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+                            <table class="table table-borderless table-social ">
+
                                 <tbody>
                                     <tr>
                                         <th>
@@ -593,7 +583,7 @@
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+
                 </div>
             </div>
         </div>

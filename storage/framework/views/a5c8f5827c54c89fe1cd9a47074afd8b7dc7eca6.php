@@ -1,4 +1,4 @@
-<?php if (! $__env->hasRenderedOnce('83404454-9c56-441d-85d2-5f3d2fc98c20')): $__env->markAsRenderedOnce('83404454-9c56-441d-85d2-5f3d2fc98c20');
+<?php if (! $__env->hasRenderedOnce('63cd4a3d-415e-47b8-9dcb-9e89aae6b664')): $__env->markAsRenderedOnce('63cd4a3d-415e-47b8-9dcb-9e89aae6b664');
 $__env->startPush('styles'); ?>
 
 <style>
@@ -137,8 +137,8 @@ $__env->startPush('styles'); ?>
     }
 
     .tab-pane-modern {
-        padding: 2rem;
-        min-height: 400px;
+        padding: 1rem;
+        min-height: 130px;
     }
 
     /* Responsive Design */
@@ -260,16 +260,11 @@ $__env->startPush('styles'); ?>
             <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
             <div class="tab-content">
-                <div class="tab-pane fade active show" id="overview" role="tabpanel" aria-labelledby="overview_tab">
-                    <div class="table-container">
+                <div class="tab-pane tab-pane-modern fade show active" id="overview" role="tabpanel" aria-labelledby="overview_tab">
+
                         <div class="table-responsive">
-                            <table class="table table-bordered table-social">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="width-15">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+                            <table class="table table-borderless table-social">
+
                                 <tbody>
                                     <tr>
                                         <th>
@@ -585,12 +580,12 @@ $__env->startPush('styles'); ?>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+
                 </div>
-                <div class="tab-pane fade" id="commission_rates" role="tabpanel" aria-labelledby="commission_rates-tab">
-                    <div class="table-container">
+                <div class="tab-pane tab-pane-modern fade" id="commission_rates" role="tabpanel" aria-labelledby="commission_rates-tab">
+
                         <div class="table-responsive">
-                            <table class="table table-bordered table-social min-height-zero">
+                            <table class="table table-borderless table-social">
                                 <thead>
                                     <tr>
                                         <th scope="col">Date</th>
@@ -628,18 +623,13 @@ $__env->startPush('styles'); ?>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+
                 </div>
-                <div class="tab-pane fade" id="terms" role="tabpanel" aria-labelledby="terms-tab">
-                    <div class="table-container">
+                <div class="tab-pane tab-pane-modern fade" id="terms" role="tabpanel" aria-labelledby="terms-tab">
+
                         <div class="table-responsive">
-                            <table class="table table-bordered table-social min-height-zero">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="width-15">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+                            <table class="table table-borderless table-social ">
+
                                 <tbody>
                                     <tr>
                                         <th>
@@ -653,7 +643,7 @@ $__env->startPush('styles'); ?>
                                 </tbody>
                             </table>
                         </div>
-                    </div>
+
                 </div>
             </div>
         </div>
