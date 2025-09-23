@@ -1,4 +1,4 @@
-<?php if (! $__env->hasRenderedOnce('07e26c71-bf3f-4cb5-8ef2-5f8e038ee07e')): $__env->markAsRenderedOnce('07e26c71-bf3f-4cb5-8ef2-5f8e038ee07e');
+<?php if (! $__env->hasRenderedOnce('444948da-3044-4594-8b86-ce21d822d603')): $__env->markAsRenderedOnce('444948da-3044-4594-8b86-ce21d822d603');
 $__env->startPush('styles'); ?>
 
 <style>
@@ -137,8 +137,8 @@ $__env->startPush('styles'); ?>
     }
 
     .tab-pane-modern {
-        padding: 2rem;
-        min-height: 400px;
+        padding: 1rem;
+        min-height: 130px;
     }
 
     /* Responsive Design */
@@ -248,15 +248,9 @@ $__env->startPush('styles'); ?>
                 <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
                 <div class="tab-content">
-                    <div class="tab-pane fade active show" id="overview" role="" aria-labelledby="overview_tab">
+                    <div class="tab-pane tab-pane-modern fade active show" id="overview" role="" aria-labelledby="overview_tab">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-social">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="width-25">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+                            <table class="table table-borderless table-social">
                                 <tbody>
                                     <tr>
                                         <th>
@@ -523,15 +517,9 @@ $__env->startPush('styles'); ?>
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="commission_rates" role="" aria-labelledby="commission_rates-tab">
+                    <div class="tab-pane tab-pane-modern fade" id="commission_rates" role="" aria-labelledby="commission_rates-tab">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-social">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="width-25">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+                            <table class="table table-borderless table-social">
                                 <tbody>
                                     <tr>
                                         <th>
@@ -687,15 +675,9 @@ $__env->startPush('styles'); ?>
                             </table>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="terms" role="" aria-labelledby="terms-tab">
+                    <div class="tab-pane tab-pane-modern fade" id="terms" role="" aria-labelledby="terms-tab">
                         <div class="table-responsive">
-                            <table class="table table-bordered table-social min-height-zero">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" class="width-25">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+                            <table class="table table-borderless table-social">
                                 <tbody>
                                     <tr>
                                         <th>
