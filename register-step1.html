@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Publisher Registration</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            /* Colors */
+            --primary-light-color: #eddfff;
+            --primary-color: #7b36b5;
+            --primary-dark-color: #3c1a55;
+            --secondary-color: #1f0031;
+            --dark-color: #1c1c1c;
+            --light-color: #dadada;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
+            /* Font Families */
+            --primary-font-family: "DM Sans", sans-serif;
+            --secondary-font-family: "Arial", sans-serif;
+            /* Buttons */
+            --btn-primary-background-color: #7b36b5;
+            --btn-primary-border-color: #7b36b5;
+            --btn-primary-color: #eddfff;
+            --btn-primary-outline-color: #7b36b5;
+            --btn-primary-outline-border: #7b36b5;
+            --btn-primary-outline-background: transparent;
+        }
+
+        body {
+    font-family: var(--primary-font-family);
+    background-color: var(--primary-light-color);
+    margin: 0;   /* fixed 50px margin hata diya */
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    display: flex;
+    background-color: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    width: 100%;        /* full width le */
+    max-width: 1200px;  /* lekin max limit bhi set */
+    margin: 20px;       /* thoda responsive gap */
+    overflow: hidden;
+}
+
+
+        .sidebar {
+            background-color: var(--primary-color);
+            color: #fff;
+            padding: 40px;
+            width: 30%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .sidebar h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .sidebar p {
+            margin-bottom: 30px;
+            color: var(--primary-light-color);
+        }
+
+       
+
+        .main-content {
+            padding: 40px;
+            width: 60%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .progress-bar {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .progress-step {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--light-color);
+            color: #fff;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .progress-step.active {
+            background-color: var(--primary-color);
+        }
+
+        .progress-step.completed {
+            background-color: var(--success-color);
+            color: #fff;
+        }
+        
+        .progress-step.completed::before {
+            content: "✔";
+            font-size: 1.5rem;
+        }
+
+        .progress-step.completed span {
+            display: none;
+        }
+        
+        .form-section {
+            display: none;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-section.active {
+            display: flex;
+        }
+
+        .form-title {
+            font-size: 2rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group.row {
+            flex-direction: row;
+            gap: 20px;
+        }
+
+        .form-group.row > div {
+            flex: 1;
+        }
+
+        label {
+            font-weight: bold;
+            color: var(--dark-color);
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        textarea,
+        select {
+            padding: 12px;
+            border: 1px solid var(--light-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            width: 100%;
+            box-sizing: border-box;
+            background-color: #f9f9f9;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 2px var(--primary-light-color);
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .checkbox-group a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        
+        .form-buttons.right-align {
+            justify-content: flex-end;
+        }
+
+        .btn {
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .btn-primary {
+            background-color: var(--btn-primary-background-color);
+            border: 1px solid var(--btn-primary-border-color);
+            color: var(--btn-primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark-color);
+            border-color: var(--primary-dark-color);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            border: 1px solid var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--primary-light-color);
+        }
+
+        /* Verification Page Specifics */
+        .verification-content {
+            text-align: center;
+            padding: 50px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .verification-content .check-icon {
+            font-size: 4rem;
+            color: var(--success-color);
+        }
+
+        .verification-content h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            color: var(--secondary-color);
+        }
+
+        .verification-text h2 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .verification-text p {
+            color: var(--dark-color);
+            line-height: 1.5;
+        }
+        
+        .phone-input {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .phone-input .country-code {
+            padding: 12px;
+            border: 1px solid var(--light-color);
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            width: 80px;
+        }
+        /* Make form responsive */
+
+
+/* Improve select dropdown spacing */
+select {
+    appearance: none; /* removes default arrow styling */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 18px;
+    padding-right: 40px; /* spacing for arrow */
+}
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        width: 100%;
+        margin: 0;           /* no extra side margins */
+        border-radius: 0;    /* no rounded cut at edges */
+    }
+
+    .sidebar {
+        width: 95%;
+        padding: 20px;
+        border-radius: 0;
+        text-align: center;
+    }
+
+    .main-content {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .form-group.row {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .form-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn {
+        width: 100%;
+    }
+}
+@media (max-width: 480px) {
+    .progress-bar {
+        justify-content: space-between;  /* evenly distribute */
+    }
+    .progress-step {
+        width: 30px;
+        height: 30px;
+        font-size: 1rem;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="sidebar">
+            <div id="sidebar-step-1" class="sidebar-content active">
+                <h2>Join as a Publisher</h2>
+                <p>Start registering your publisher account with LinksCircle and partner with advertisers.</p>
+
+            </div>
+            <div id="sidebar-step-2" class="sidebar-content" style="display: none;">
+                <h2>Fill in your company information</h2>
+                <p>Show your authenticity by filling in your legal information. We do not share data with anyone.</p>
+              
+            </div>
+            <div id="sidebar-step-3" class="sidebar-content" style="display: none;">
+                <h2>Fill in your website information</h2>
+                <p>Enter your promotional space details. Advertisers & we can view this information.</p>
+              
+            </div>
+            <div id="sidebar-step-4" class="sidebar-content" style="display: none;">
+                <h2>Verify your email</h2>
+                <p>We have emailed your inbox, check and verify to complete your registration.</p>
+            </div>
+        </div>
+
+        <div class="main-content">
+            <div class="progress-bar">
+                <div class="progress-step active" id="step-1"><span>1</span></div>
+                <div class="progress-step" id="step-2"><span>2</span></div>
+                <div class="progress-step" id="step-3"><span>3</span></div>
+                <div class="progress-step" id="step-4"><span>4</span></div>
+            </div>
+
+            <form id="form-step-1" class="form-section active">
+                <h2 class="form-title">1. Create Account</h2>
+                <div class="form-group row">
+                    <div>
+                        <label for="firstName">First Name*</label>
+                        <input type="text" id="firstName" placeholder="First Name" required>
+                    </div>
+                    <div>
+                        <label for="lastName">Last Name*</label>
+                        <input type="text" id="lastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username*</label>
+                    <input type="text" id="username" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address*</label>
+                    <input type="email" id="email" placeholder="username@gmail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password*</label>
+                    <input type="password" id="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirmPassword">Confirm Password*</label>
+                    <input type="password" id="confirmPassword" required>
+                </div>
+                <div class="checkbox-group">
+                    <input type="checkbox" id="terms" required>
+                    <label for="terms">I Agree With The <a href="#">Terms And Conditions.</a></label>
+                </div>
+                <div class="form-buttons right-align">
+                    <button type="button" class="btn btn-primary" onclick="nextStep(2)">Save & Next →</button>
+                </div>
+            </form>
+
+            <form id="form-step-2" class="form-section">
+                <h2 class="form-title">2. Company Information</h2>
+                <div class="form-group row">
+                    <div>
+                        <label for="companyName">Company Legal Name*</label>
+                        <input type="text" id="companyName" placeholder="Enter company name (Leg">
+                    </div>
+                    <div>
+                        <label for="entityType">Entity Type*</label>
+                        <select id="entityType">
+                            <option>Please Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div>
+                        <label for="contactName">Contact Name*</label>
+                        <input type="text" id="contactName" placeholder="Contact Name">
+                    </div>
+                    <div>
+                        <label for="phone">Phone Number*</label>
+                        <div class="phone-input">
+                            <span class="country-code">+1</span>
+                            <input type="text" id="phone" placeholder="(201) 555-0123">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div>
+                        <label for="country">Country / Region*</label>
+                        <select id="country">
+                            <option>Please Select</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="state">State*</label>
+                        <select id="state">
+                            <option>First Select Country / R</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div>
+                        <label for="city">City</label>
+                        <select id="city">
+                            <option>First Select State</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="postalCode">Postal Code*</label>
+                        <input type="text" id="postalCode">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address*</label>
+                    <input type="text" id="address" placeholder="Apartment, suite, unit etc.">
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep(1)">← Previous</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(3)">Save & Next →</button>
+                </div>
+            </form>
+
+            <form id="form-step-3" class="form-section">
+                <h2 class="form-title">3. Website Information / Promotional Space</h2>
+                <div class="form-group">
+                    <label for="websiteUrl">Website URL*</label>
+                    <input type="text" id="websiteUrl" placeholder="https://www.domain.com">
+                </div>
+                <div class="form-group">
+                    <label for="briefIntro">Brief Introduction*</label>
+                    <textarea id="briefIntro" rows="3" placeholder="Please write a brief introduction to help us and the brand get to know you quickly."></textarea>
+                </div>
+                <div class="form-group row">
+                    <div>
+                        <label for="category">Category (Max. 4)*</label>
+                        <select id="category">
+                            <option>Please Select</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="partnerType">Partner Type (Max. 3)*</label>
+                        <select id="partnerType">
+                            <option>Please Select</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div>
+                        <label for="websiteCountry">Website Country / Region*</label>
+                        <select id="websiteCountry">
+                            <option>Please Select</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="monthlyTraffic">Monthly Traffic*</label>
+                        <input type="text" id="monthlyTraffic">
+                    </div>
+                    <div>
+                        <label for="pageViews">Monthly Page Views*</label>
+                        <input type="text" id="pageViews">
+                    </div>
+                </div>
+                <div class="form-buttons">
+                    <button type="button" class="btn btn-secondary" onclick="prevStep(2)">← Previous</button>
+                    <button type="button" class="btn btn-primary" onclick="nextStep(4)">Save & Next →</button>
+                </div>
+            </form>
+
+            <div id="form-step-4" class="form-section">
+                <h2 class="form-title">Email Verification</h2>
+                <div class="verification-content">
+                    <div class="check-icon">✔</div>
+                    <h3>Account Created</h3>
+                </div>
+                <div class="verification-text">
+                    <h2>You're Only One Step Away!</h2>
+                    <p>An email has been sent to your inbox, please check and verify to complete your registration.</p>
+                    <p>If you did not receive any email, please check your spam/junk folder or click on the resend button below.</p>
+                </div>
+                <div class="form-buttons right-align">
+                    <button type="button" class="btn btn-primary">Resend Verification Email</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        let currentStep = 1;
+
+        function updateUI() {
+            // Hide all sections
+            document.querySelectorAll('.form-section').forEach(section => {
+                section.style.display = 'none';
+            });
+            document.querySelectorAll('.sidebar-content').forEach(sidebar => {
+                sidebar.style.display = 'none';
+            });
+
+            // Show current section
+            document.getElementById(`form-step-${currentStep}`).style.display = 'flex';
+            document.getElementById(`sidebar-step-${currentStep}`).style.display = 'block';
+
+            // Update progress bar
+            document.querySelectorAll('.progress-step').forEach(step => {
+                const stepNumber = parseInt(step.id.split('-')[1]);
+                if (stepNumber < currentStep) {
+                    step.classList.add('completed');
+                    step.classList.remove('active');
+                } else if (stepNumber === currentStep) {
+                    step.classList.remove('completed');
+                    step.classList.add('active');
+                } else {
+                    step.classList.remove('completed', 'active');
+                }
+            });
+        }
+
+        function nextStep(step) {
+            currentStep = step;
+            updateUI();
+        }
+
+        function prevStep(step) {
+            currentStep = step;
+            updateUI();
+        }
+        
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', () => {
+            updateUI();
+        });
+    </script>
+</body>
+</html>
