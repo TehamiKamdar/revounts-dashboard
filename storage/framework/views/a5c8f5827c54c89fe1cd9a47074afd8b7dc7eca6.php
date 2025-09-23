@@ -1,4 +1,4 @@
-<?php if (! $__env->hasRenderedOnce('943b2be6-2591-47b3-9b7d-4670062a28ee')): $__env->markAsRenderedOnce('943b2be6-2591-47b3-9b7d-4670062a28ee');
+<?php if (! $__env->hasRenderedOnce('83404454-9c56-441d-85d2-5f3d2fc98c20')): $__env->markAsRenderedOnce('83404454-9c56-441d-85d2-5f3d2fc98c20');
 $__env->startPush('styles'); ?>
 
 <style>
@@ -224,12 +224,12 @@ $__env->startPush('styles'); ?>
     ?>
 
     <div class="container-fluid">
-                <h1 class="title"><?php echo e(trans('global.show')); ?> <?php echo e(trans('advertiser.api-advertiser.title_singular')); ?></h1>
-                <a href="<?php echo e(route("admin.advertiser-management.api-advertisers.index")); ?>"
-                    class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
-                    style="width: 40px; height: 40px; cursor: pointer;">
-                    <i class="ri-arrow-left-line text-white"></i>
-                </a>
+        <h1 class="title"><?php echo e(trans('global.show')); ?> <?php echo e(trans('advertiser.api-advertiser.title_singular')); ?></h1>
+        <a href="<?php echo e(route("admin.advertiser-management.api-advertisers.index")); ?>"
+            class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
+            style="width: 40px; height: 40px; cursor: pointer;">
+            <i class="ri-arrow-left-line text-white"></i>
+        </a>
         <!-- Main Content Card -->
         <div class="content-card">
             <!-- Card Header with Tabs -->
@@ -245,11 +245,12 @@ $__env->startPush('styles'); ?>
                         <i class="ri-information-line"></i> Overview
                     </a>
                     <a class="tab-btn-modern" style="cursor:pointer;" id="commission_rates-tab" data-bs-toggle="tab"
-                        data-bs-target="#commission_rates" role="tab" area-controls="commission_rates" aria-selected="false">
+                        data-bs-target="#commission_rates" role="tab" area-controls="commission_rates"
+                        aria-selected="false">
                         <i class="ri-file-text-line"></i> Commission Rates
                     </a>
-                    <a class="tab-btn-modern" style="cursor:pointer;" id="terms-tab" data-bs-toggle="tab" data-bs-target="#terms"
-                        role="tab" area-controls="terms" aria-selected="false">
+                    <a class="tab-btn-modern" style="cursor:pointer;" id="terms-tab" data-bs-toggle="tab"
+                        data-bs-target="#terms" role="tab" area-controls="terms" aria-selected="false">
                         <i class="ri-folder-2-line"></i> Terms
                     </a>
                 </div>

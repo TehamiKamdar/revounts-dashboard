@@ -1,18 +1,18 @@
-@extends('layouts.admin.panel_table')
+<?php if (! $__env->hasRenderedOnce('ed1e5e4f-f61c-4c6e-8dd9-d4617463c6a2')): $__env->markAsRenderedOnce('ed1e5e4f-f61c-4c6e-8dd9-d4617463c6a2');
+$__env->startPush('styles'); ?>
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('styles')
-@endpushonce
-
-@pushonce('scripts')
+<?php if (! $__env->hasRenderedOnce('a686b9da-4471-48b0-99cf-7f037dc30944')): $__env->markAsRenderedOnce('a686b9da-4471-48b0-99cf-7f037dc30944');
+$__env->startPush('scripts'); ?>
     <script type="text/javascript">
         $(function() {
 
             let dtButtons = $.extend(true, [], $.fn.dataTable.defaults.buttons)
 
-            let deleteButtonTrans = '{{ trans('global.datatables.delete') }}'
+            let deleteButtonTrans = '<?php echo e(trans('global.datatables.delete')); ?>'
             let deleteButton = {
                 text: deleteButtonTrans,
-                url: "{{ route('admin.user-management.users.massDestroy') }}",
+                url: "<?php echo e(route('admin.user-management.users.massDestroy')); ?>",
                 className: 'btn-danger btn-xs ml-3',
                 action: function(e, dt, node, config) {
                     let ids = $.map(dt.rows({
@@ -21,10 +21,10 @@
                         return $(entry).attr("id");
                     });
                     if (ids.length === 0) {
-                        alert('{{ trans('global.datatables.zero_selected') }}')
+                        alert('<?php echo e(trans('global.datatables.zero_selected')); ?>')
                         return
                     }
-                    if (confirm('{{ trans('global.areYouSure') }}')) {
+                    if (confirm('<?php echo e(trans('global.areYouSure')); ?>')) {
                         $.ajax({
                                 headers: {
                                     'x-csrf-token': $('meta[name="csrf-token"]').attr('content')
@@ -55,7 +55,7 @@
                 autoWidth: true,
                 deferRender: true,
                 sScrollXInner: "99.5%",
-                ajax: "{{ route('admin.user-management.users.index') }}",
+                ajax: "<?php echo e(route('admin.user-management.users.index')); ?>",
                 columns: [{
                         data: 'created_at',
                         name: 'created_at'
@@ -99,42 +99,50 @@
 
         });
     </script>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="container-fluid">
-        <h1 class="title">{{ trans('cruds.user.title') }} {{ trans('global.list') }}</h1>
+        <h1 class="title"><?php echo e(trans('cruds.user.title')); ?> <?php echo e(trans('global.list')); ?></h1>
         <div class="d-flex justify-content-end my-3">
-            <a href="{{ route('admin.user-management.users.create') }}" class="btn btn-sm btn-primary btn-add">
-                <i class="ri-add-line"></i> {{ trans('global.add') }} {{ trans('cruds.user.title_singular') }}
+            <a href="<?php echo e(route('admin.user-management.users.create')); ?>" class="btn btn-sm btn-primary btn-add">
+                <i class="ri-add-line"></i> <?php echo e(trans('global.add')); ?> <?php echo e(trans('cruds.user.title_singular')); ?>
+
             </a>
         </div>
-        @include('partial.admin.alert')
+        <?php echo $__env->make('partial.admin.alert', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
         <div class="table-container">
             <div class="table-responsive">
                 <table class="table table-borderless table-hover datatable" id="datatableUser">
             <thead>
                 <tr>
                     <th>
-                        {{ trans('cruds.user.fields.created_at') }}
+                        <?php echo e(trans('cruds.user.fields.created_at')); ?>
+
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.first_name') }}
+                        <?php echo e(trans('cruds.user.fields.first_name')); ?>
+
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.last_name') }}
+                        <?php echo e(trans('cruds.user.fields.last_name')); ?>
+
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.user_name') }}
+                        <?php echo e(trans('cruds.user.fields.user_name')); ?>
+
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.email') }}
+                        <?php echo e(trans('cruds.user.fields.email')); ?>
+
                     </th>
                     <th>
-                        {{ trans('cruds.user.fields.status') }}
+                        <?php echo e(trans('cruds.user.fields.status')); ?>
+
                     </th>
                     <th>
-                        {{ trans('global.action') }}
+                        <?php echo e(trans('global.action')); ?>
+
                     </th>
                 </tr>
             </thead>
@@ -142,4 +150,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.admin.panel_table', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/users/index.blade.php ENDPATH**/ ?>

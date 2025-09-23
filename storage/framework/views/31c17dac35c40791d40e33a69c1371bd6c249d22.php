@@ -1,6 +1,5 @@
-@extends("layouts.admin.panel_app")
-
-@pushonce('styles')
+<?php if (! $__env->hasRenderedOnce('9b2ccac9-2f55-4a90-b80b-c7238b8500b5')): $__env->markAsRenderedOnce('9b2ccac9-2f55-4a90-b80b-c7238b8500b5');
+$__env->startPush('styles'); ?>
 
 <style>
     /* Main Layout Structure */
@@ -214,14 +213,16 @@
     }
 </style>
 
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
     <div class="container-fluid">
-        <h1 class="title">{{ trans('global.show') }}
-            {{ trans('cruds.user.title_singular') }}
+        <h1 class="title"><?php echo e(trans('global.show')); ?>
+
+            <?php echo e(trans('cruds.user.title_singular')); ?>
+
         </h1>
-        <a href="{{ route("admin.user-management.users.index") }}"
+        <a href="<?php echo e(route("admin.user-management.users.index")); ?>"
             class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
             style="width: 40px; height: 40px; cursor: pointer;">
             <i class="ri-arrow-left-line text-white"></i> </a>
@@ -231,7 +232,8 @@
             <!-- Card Header with Tabs -->
             <div class="card-header-modern">
                 <h2 class="card-title-modern">
-                    <i class="ri-user-3-line"></i>{{ $user->first_name }} {{ $user->last_name }}
+                    <i class="ri-user-3-line"></i><?php echo e($user->first_name); ?> <?php echo e($user->last_name); ?>
+
                 </h2>
 
                 <div class="tab-nav-modern nav" role="tablist">
@@ -250,63 +252,78 @@
                                 <tbody>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.publisher.fields.id') }}
+                                            <?php echo e(trans('cruds.publisher.fields.id')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $user->id }}
+                                            <?php echo e($user->id); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.publisher.fields.first_name') }}
+                                            <?php echo e(trans('cruds.publisher.fields.first_name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $user->first_name }}
+                                            <?php echo e($user->first_name); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.publisher.fields.last_name') }}
+                                            <?php echo e(trans('cruds.publisher.fields.last_name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $user->last_name }}
+                                            <?php echo e($user->last_name); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.publisher.fields.user_name') }}
+                                            <?php echo e(trans('cruds.publisher.fields.user_name')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $user->user_name }}
+                                            <?php echo e($user->user_name); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.publisher.fields.email') }}
+                                            <?php echo e(trans('cruds.publisher.fields.email')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $user->email }}
+                                            <?php echo e($user->email); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.publisher.fields.email_verified_at') }}
+                                            <?php echo e(trans('cruds.publisher.fields.email_verified_at')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $user->email_verified_at ?? "N/A" }}
+                                            <?php echo e($user->email_verified_at ?? "N/A"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.publisher.fields.remember_token') }}
+                                            <?php echo e(trans('cruds.publisher.fields.remember_token')); ?>
+
                                         </th>
                                         <td>
-                                            {{ $user->remember_token ? "YES" : "NO" }}
+                                            <?php echo e($user->remember_token ? "YES" : "NO"); ?>
+
                                         </td>
                                     </tr>
                                     <tr>
                                         <th>
-                                            {{ trans('cruds.publisher.fields.status') }}
+                                            <?php echo e(trans('cruds.publisher.fields.status')); ?>
+
                                         </th>
                                         <td>
                                             <?php
@@ -314,21 +331,22 @@
     $class = $status == "active" ? "badge-success" : (($status == "pending") ? "badge-warning" : "badge-danger");
                                                                     ?>
                                             <div class="float-left">
-                                                {!! "<span class='badge {$class}'>" . ucwords($status) . "</span>" !!}
+                                                <?php echo "<span class='badge {$class}'>" . ucwords($status) . "</span>"; ?>
+
                                             </div>
                                             <div class="float-right">
-                                                @if($user->status != "active")
-                                                    <a href="{{ route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "active"]) }}"
+                                                <?php if($user->status != "active"): ?>
+                                                    <a href="<?php echo e(route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "active"])); ?>"
                                                         class="mr-2 btn btn-xs btn-success text-white float-left">Active</a>
-                                                @endif
-                                                @if($user->status != "hold")
-                                                    <a href="{{ route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "hold"]) }}"
+                                                <?php endif; ?>
+                                                <?php if($user->status != "hold"): ?>
+                                                    <a href="<?php echo e(route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "hold"])); ?>"
                                                         class="mr-2 btn btn-xs btn-info text-white float-left">Hold</a>
-                                                @endif
-                                                @if($user->status != "rejected")
-                                                    <a href="{{ route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "rejected"]) }}"
+                                                <?php endif; ?>
+                                                <?php if($user->status != "rejected"): ?>
+                                                    <a href="<?php echo e(route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "rejected"])); ?>"
                                                         class="btn btn-xs btn-danger text-white float-left">Rejected</a>
-                                                @endif
+                                                <?php endif; ?>
                                             </div>
                                             <div class="clearfix"></div>
                                         </td>
@@ -341,4 +359,5 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make("layouts.admin.panel_app", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/users/show.blade.php ENDPATH**/ ?>
