@@ -449,6 +449,14 @@ td {
     color: var(--primary-light-color);
 }
 
+.btn-primary-outline:focus, 
+.btn-primary-outline:target, 
+.btn-primary-outline:active {
+    border-color: var(--primary-light-color);
+    color: var(--primary-light-color);
+    background-color: var(--primary-color);
+}
+
 .card-body h3 {
     position: relative;
 }

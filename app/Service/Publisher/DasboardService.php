@@ -66,7 +66,9 @@ class DasboardService
             Session::put("notify-warning", $setting->value);
         }
 
-        return view('template.publisher.dashboard.index', compact('advertisers', 'accountSummary', 'topSales', 'topClicks', 'earningOverview', 'performanceOverview'));
+        return redirect(route('publisher.own-advertisers'));
+
+        // return view('template.publisher.dashboard.index', compact('advertisers', 'accountSummary', 'topSales', 'topClicks', 'earningOverview', 'performanceOverview'));
 
     }
 

@@ -150,8 +150,8 @@
                                 <input class="search-input" type="text" id="SearchByName" placeholder="Search by Name..." value="{{ request()->search_by_name }}">
                             </div>
                                 <div class="dropdown action-btn">
-                                    <button class="btn btn-sm btn-primary-outline dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="la la-download"></i> Export
+                                    <button class="btn btn-sm btn-primary-outline dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ri-file-download-line"></i> Export
                                     </button>
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                         <span class="dropdown-item">Export With</span>

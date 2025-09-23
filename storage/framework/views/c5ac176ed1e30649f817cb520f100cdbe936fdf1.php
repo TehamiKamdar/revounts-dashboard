@@ -1,21 +1,21 @@
-@extends("layouts.publisher.panel_app")
-
-@pushonce('styles')
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/daterangepicker.css") }}">
+<?php if (! $__env->hasRenderedOnce('c72d6add-12be-45e7-be0c-aad64af47155')): $__env->markAsRenderedOnce('c72d6add-12be-45e7-be0c-aad64af47155');
+$__env->startPush('styles'); ?>
+    <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/daterangepicker.css")); ?>">
     <style>
         .loaded-spin {
             margin: 40%;
             position: absolute;
         }
     </style>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('scripts')
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/moment/moment.min.js") }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/daterangepicker.js") }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/moment.js") }}"></script>
+<?php if (! $__env->hasRenderedOnce('8b94f55b-01ba-4b9d-a1e2-28bdc6ef56d7')): $__env->markAsRenderedOnce('8b94f55b-01ba-4b9d-a1e2-28bdc6ef56d7');
+$__env->startPush('scripts'); ?>
+    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/moment/moment.min.js")); ?>"></script>
+    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/daterangepicker.js")); ?>"></script>
+    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/moment.js")); ?>"></script>
 
-    @php
+    <?php
         $date = \Carbon\Carbon::now()->format("Y-m-01 00:00:00");
         $diff = now()->diffInDays(\Carbon\Carbon::parse($date));
 
@@ -28,9 +28,9 @@
         if($endDate)
             $endDate = \Carbon\Carbon::parse($endDate)->format("M d, Y");
 
-    @endphp
+    ?>
 
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 <script>
     function showLoader()
     {
@@ -67,7 +67,7 @@
 
     function sendAjaxRequest(dataObj) {
         $.ajax({
-            url: '{{ route("publisher.reports.performance-by-clicks.list") }}',
+            url: '<?php echo e(route("publisher.reports.performance-by-clicks.list")); ?>',
             type: 'GET',
             data: dataObj,
             before: function () {
@@ -221,7 +221,7 @@
             history.pushState({}, null, url.href);
 
             $.ajax({
-                url: '{{ route("publisher.set-limit") }}',
+                url: '<?php echo e(route("publisher.set-limit")); ?>',
                 type: 'GET',
                 data: {"limit": $("#limit").val(), "type": "click_performance"},
                 success: function (response) {
@@ -238,8 +238,8 @@
 
     document.addEventListener("DOMContentLoaded", function () {
 
-        let startDate = "{{ $startDate }}";
-        let endDate = "{{ $endDate }}";
+        let startDate = "<?php echo e($startDate); ?>";
+        let endDate = "<?php echo e($endDate); ?>";
 
         let start;
         let end;
@@ -280,8 +280,8 @@
 
             showLoader();
 
-            let exportXLSXURL = "{{ route("publisher.reports.transactions.export", ['type' => 'xlsx']) }}";
-            let exportCSVURL = "{{ route("publisher.reports.transactions.export", ['type' => 'csv']) }}";
+            let exportXLSXURL = "<?php echo e(route("publisher.reports.transactions.export", ['type' => 'xlsx'])); ?>";
+            let exportCSVURL = "<?php echo e(route("publisher.reports.transactions.export", ['type' => 'csv'])); ?>";
 
             $(this).val(picker.startDate.format('MMM D, YYYY') + ' - ' + picker.endDate.format('MMM D, YYYY'));
 
@@ -364,7 +364,7 @@
     });
 </script>
 
-@section("content")
+<?php $__env->startSection("content"); ?>
 
     <div class="contents">
 
@@ -375,14 +375,14 @@
                         <div class="breadcrumb-main">
                             <h1 class="title">Clicks Performance</h1>
                             <div class="d-flex justify-content-end flex-wrap mb-25 mt-n10">
-                                <p class="subtitle" id="totalResults">Total Results: <strong>{{ $total }}</strong></p>
+                                <p class="subtitle" id="totalResults">Total Results: <strong><?php echo e($total); ?></strong></p>
                             </div><!-- End: .project-top-wrapper -->
                             <div class="date-filter-container my-4 justify-content-end">
                                 <div class="date-input-wrapper">
                                     <i class="ri-calendar-2-line date-icon"></i>
                                     <input type="text" class="date-input-glass form-control"
                                         name="date-ranger"
-                                        placeholder="{{ now()->format('M 01, Y') }} - {{ now()->format('M t, Y') }}"/>
+                                        placeholder="<?php echo e(now()->format('M 01, Y')); ?> - <?php echo e(now()->format('M t, Y')); ?>"/>
                                 </div>
                             </div>
                         </div>
@@ -391,7 +391,7 @@
             </div>
             <div class="row">
                 <div class="col-lg-12" id="performanceOverview">
-                    @include("template.publisher.widgets.section_performance_click_overview", compact('performanceOverview'))
+                    <?php echo $__env->make("template.publisher.widgets.section_performance_click_overview", compact('performanceOverview'), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                 </div>
             </div>
         </div>
@@ -401,13 +401,13 @@
                     <div class="">
 
 
-                        @include("partial.admin.alert")
+                        <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                         <div class="table-container">
                             <div class="d-flex justify-content-between">
 
                             <div class="search-box">
                                 <i class="ri-search-line search-icon"></i>
-                                <input class="search-input" type="text" id="SearchByName" placeholder="Search by Name..." value="{{ request()->search_by_name }}">
+                                <input class="search-input" type="text" id="SearchByName" placeholder="Search by Name..." value="<?php echo e(request()->search_by_name); ?>">
                             </div>
                                 <div class="dropdown action-btn">
                                     <button class="btn btn-sm btn-primary-outline dropdown-toggle" type="button"
@@ -418,17 +418,17 @@
                                     <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
                                         <span class="dropdown-item">Export With</span>
                                         <div class="dropdown-divider"></div>
-                                        <a href="{{ route("publisher.reports.performance-by-clicks.export", ['type' => 'xlsx', 'start_date' => request()->start_date ?? now()->format("Y-m-01 00:00:00"), 'end_date' => request()->end_date ?? now()->format("Y-m-t 23:59:59")]) }}"
+                                        <a href="<?php echo e(route("publisher.reports.performance-by-clicks.export", ['type' => 'xlsx', 'start_date' => request()->start_date ?? now()->format("Y-m-01 00:00:00"), 'end_date' => request()->end_date ?? now()->format("Y-m-t 23:59:59")])); ?>"
                                            id="exportXLSX" class="dropdown-item">
                                             <i class="la la-file-excel"></i> Excel (XLSX)</a>
-                                        <a href="{{ route("publisher.reports.performance-by-clicks.export", ['type' => 'csv', 'start_date' => request()->start_date ?? now()->format("Y-m-01 00:00:00"), 'end_date' => request()->end_date ?? now()->format("Y-m-t 23:59:59")]) }}"
+                                        <a href="<?php echo e(route("publisher.reports.performance-by-clicks.export", ['type' => 'csv', 'start_date' => request()->start_date ?? now()->format("Y-m-01 00:00:00"), 'end_date' => request()->end_date ?? now()->format("Y-m-t 23:59:59")])); ?>"
                                            id="exportCSV" class="dropdown-item">
                                             <i class="la la-file-csv"></i> CSV</a>
                                     </div>
                                 </div>
                             </div>
                             <div id="ap-overview">
-                                @include("template.publisher.reports.performance.click.list_view", compact('performanceOverviewList2'))
+                                <?php echo $__env->make("template.publisher.reports.performance.click.list_view", compact('performanceOverviewList2'), \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
                             </div>
                         </div>
 
@@ -439,4 +439,6 @@
 
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make("layouts.publisher.panel_app", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Tehami\Desktop\revounts-dashboard\resources\views/template/publisher/reports/performance/click/list.blade.php ENDPATH**/ ?>
