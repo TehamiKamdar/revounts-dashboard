@@ -1,34 +1,34 @@
-<?php if (! $__env->hasRenderedOnce('897d322a-c944-4d3f-bf1d-5789f6bcfb43')): $__env->markAsRenderedOnce('897d322a-c944-4d3f-bf1d-5789f6bcfb43');
+<?php if (! $__env->hasRenderedOnce('8a51c41f-c37e-4a50-b27a-568631eeb727')): $__env->markAsRenderedOnce('8a51c41f-c37e-4a50-b27a-568631eeb727');
 $__env->startPush('editor'); ?>
-    <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-bs4.min.js"></script>
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('fcf48100-14cd-470f-b45b-ff909cedfba6')): $__env->markAsRenderedOnce('fcf48100-14cd-470f-b45b-ff909cedfba6');
+<?php if (! $__env->hasRenderedOnce('b19ea27e-ff8c-4fca-9194-290031f74203')): $__env->markAsRenderedOnce('b19ea27e-ff8c-4fca-9194-290031f74203');
 $__env->startPush('scripts'); ?>
-    <!-- include summernote css/js -->
-    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery.validate.min.js")); ?>"></script>
-    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/select2.full.min.js")); ?>"></script>
-    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("libs/tagsinput/tagsinput.js")); ?>"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            <?php if(\App\Helper\Advertiser\Base::getFormFieldReadOnly($api_advertiser->source, "program_policies")): ?>
-                $('#short_description, #description').summernote({
-                    height: 300
-                });
-            <?php elseif(\App\Helper\Advertiser\Base::getFormFieldReadOnly($api_advertiser->source, "short_description")): ?>
-                $('#program_policies, #description').summernote({
-                    height: 300
-                });
-            <?php elseif(\App\Helper\Advertiser\Base::getFormFieldReadOnly($api_advertiser->source, "description")): ?>
-                $('#program_policies, #short_description').summernote({
-                    height: 300
-                });
-            <?php else: ?>
-                $('#program_policies, #description, #short_description').summernote({
-                    height: 300
-                });
-            <?php endif; ?>
+<!-- include summernote css/js -->
+<script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery.validate.min.js")); ?>"></script>
+<script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/select2.full.min.js")); ?>"></script>
+<script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("libs/tagsinput/tagsinput.js")); ?>"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        <?php if(\App\Helper\Advertiser\Base::getFormFieldReadOnly($api_advertiser->source, "program_policies")): ?>
+            $('#short_description, #description').summernote({
+                height: 300
+            });
+        <?php elseif(\App\Helper\Advertiser\Base::getFormFieldReadOnly($api_advertiser->source, "short_description")): ?>
+            $('#program_policies, #description').summernote({
+                height: 300
+            });
+        <?php elseif(\App\Helper\Advertiser\Base::getFormFieldReadOnly($api_advertiser->source, "description")): ?>
+            $('#program_policies, #short_description').summernote({
+                height: 300
+            });
+        <?php else: ?>
+            $('#program_policies, #description, #short_description').summernote({
+                height: 300
+            });
+        <?php endif; ?>
 
             // $("#advertiserForm").validate({
             //     rules: {
@@ -103,15 +103,15 @@ $__env->startPush('scripts'); ?>
             //     }
             // });
         });
-    </script>
-    <script type="text/javascript">
-        function removeCommission(key) {
-            let id = $(`#commission-id-${key}`).val();
-            $("#commissionContent").append(`<input type="hidden" name="removeCommission[]" value="${id}" />`);
-            $(`#commission-${key}`).remove();
-        }
-        function addMoreCommission(key) {
-            $(`#commissionContent`).append(`
+</script>
+<script type="text/javascript">
+    function removeCommission(key) {
+        let id = $(`#commission-id-${key}`).val();
+        $("#commissionContent").append(`<input type="hidden" name="removeCommission[]" value="${id}" />`);
+        $(`#commission-${key}`).remove();
+    }
+    function addMoreCommission(key) {
+        $(`#commissionContent`).append(`
                 <tr id="commission-${key}">
                     <input type="hidden" name="commissions[${key}][commission_id]" value="">
                     <td class="input-group-sm">
@@ -137,16 +137,16 @@ $__env->startPush('scripts'); ?>
                 </tr>
             `);
 
-            $(`#commissionBtn`).removeAttr("onclick");
-            $(`#commissionBtn`).attr("onclick", `addMoreCommission(${key+1})`);
-        }
-        function removeValidation(key) {
-            let id = $(`#validation-domains-id-${key}`).val();
-            $("#validationDomainContent").append(`<input type="hidden" name="removeValidation[]" value="${id}" />`);
-            $(`#validation-domains-${key}`).remove();
-        }
-        function addMoreValidation(key) {
-            $(`#validationDomainContent`).append(`
+        $(`#commissionBtn`).removeAttr("onclick");
+        $(`#commissionBtn`).attr("onclick", `addMoreCommission(${key + 1})`);
+    }
+    function removeValidation(key) {
+        let id = $(`#validation-domains-id-${key}`).val();
+        $("#validationDomainContent").append(`<input type="hidden" name="removeValidation[]" value="${id}" />`);
+        $(`#validation-domains-${key}`).remove();
+    }
+    function addMoreValidation(key) {
+        $(`#validationDomainContent`).append(`
                 <tr id="validation-domains-${key}">
                     <td class="input-group-sm">
                         <input type="text" name="validations[${key}][domain]" class="form-control" value="">
@@ -159,136 +159,128 @@ $__env->startPush('scripts'); ?>
                 </tr>
             `);
 
-            $(`#validationBtn`).removeAttr("onclick");
-            $(`#validationBtn`).attr("onclick", `addMoreValidation(${key+1})`);
-        }
-        document.addEventListener("DOMContentLoaded", function () {
+        $(`#validationBtn`).removeAttr("onclick");
+        $(`#validationBtn`).attr("onclick", `addMoreValidation(${key + 1})`);
+    }
+    document.addEventListener("DOMContentLoaded", function () {
 
-            $("#categories").select2({
-                placeholder: "Please Select",
-                dropdownCssClass: "tag",
-                allowClear: true,
-                maximumSelectionLength: 4
-            });
-
-            $("#promotional_methods").select2({
-                placeholder: "Please Select",
-                dropdownCssClass: "tag",
-                allowClear: true,
-                maximumSelectionLength: 4
-            });
-
-            $("#program_restrictions").select2({
-                placeholder: "Please Select",
-                dropdownCssClass: "tag",
-                allowClear: true,
-                maximumSelectionLength: 4
-            });
-
-            $("#supported_regions").select2({
-                placeholder: "Please Select",
-                dropdownCssClass: "tag",
-                allowClear: true,
-                maximumSelectionLength: 4
-            });
-
+        $("#categories").select2({
+            placeholder: "Please Select",
+            dropdownCssClass: "tag",
+            allowClear: true,
+            maximumSelectionLength: 4
         });
-    </script>
+
+        $("#promotional_methods").select2({
+            placeholder: "Please Select",
+            dropdownCssClass: "tag",
+            allowClear: true,
+            maximumSelectionLength: 4
+        });
+
+        $("#program_restrictions").select2({
+            placeholder: "Please Select",
+            dropdownCssClass: "tag",
+            allowClear: true,
+            maximumSelectionLength: 4
+        });
+
+        $("#supported_regions").select2({
+            placeholder: "Please Select",
+            dropdownCssClass: "tag",
+            allowClear: true,
+            maximumSelectionLength: 4
+        });
+
+    });
+</script>
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('557773b2-fe31-432a-9155-7316e4462ac8')): $__env->markAsRenderedOnce('557773b2-fe31-432a-9155-7316e4462ac8');
+<?php if (! $__env->hasRenderedOnce('9b6ade72-d11f-41c3-b3e3-3c800514efa9')): $__env->markAsRenderedOnce('9b6ade72-d11f-41c3-b3e3-3c800514efa9');
 $__env->startPush('styles'); ?>
 
-    <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("libs/tagsinput/tagsinput.css")); ?>" />
-    <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/select2.min.css")); ?>" />
+<link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("libs/tagsinput/tagsinput.css")); ?>" />
+<link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/select2.min.css")); ?>" />
 
-    <style>
-        .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            margin-bottom: 5px;
-        }
-        .table-social tbody tr td:not(:first-child) {
-            text-align: left !important;
-        }
-        .card-header {
-            padding: 0.75rem 1rem !important;
-        }
-        .card .card-header {
-            text-transform: none !important;
-            min-height: 40px !important;
-        }
-        .changelog__according .card .card-header {
-            min-height: 40px !important;
-            height: 40px !important;
-        }
-        .changelog__accordingCollapsed {
-            height: 40px !important;
-        }
-        .v-num {
-            font-size: 14px !important;
-        }
-        .btn-xs {
-            line-height: 1.7 !important;
-            font-size: 10px !important;
-        }
-        .table, .changelog__according .card:not(:last-child) {
-            margin-bottom: 0 !important;
-        }
-        .social-dash-wrap .card.card-overview {
-            margin-bottom: 5%;
-        }
-        .social-dash-wrap .card-body {
-            padding: 0 !important;
-        }
-        .changelog__according {
-            margin-top: 0 !important;
-        }
-    </style>
+<style>
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        margin-bottom: 5px;
+    }
+
+    .table-social tbody tr td:not(:first-child) {
+        text-align: left !important;
+    }
+
+    .card-header {
+        padding: 0.75rem 1rem !important;
+    }
+
+    .card .card-header {
+        text-transform: none !important;
+        min-height: 40px !important;
+    }
+
+    .changelog__according .card .card-header {
+        min-height: 40px !important;
+        height: 40px !important;
+    }
+
+    .changelog__accordingCollapsed {
+        height: 40px !important;
+    }
+
+    .v-num {
+        font-size: 14px !important;
+    }
+
+    .btn-xs {
+        line-height: 1.7 !important;
+        font-size: 10px !important;
+    }
+
+    .table,
+    .changelog__according .card:not(:last-child) {
+        margin-bottom: 0 !important;
+    }
+
+    .social-dash-wrap .card.card-overview {
+        margin-bottom: 5%;
+    }
+
+    .social-dash-wrap .card-body {
+        padding: 0 !important;
+    }
+
+    .changelog__according {
+        margin-top: 0 !important;
+    }
+</style>
 <?php $__env->stopPush(); endif; ?>
 
 <?php $__env->startSection("content"); ?>
 
-    <div class="contents">
 
-        <div class="container-fluid">
-            <div class="social-dash-wrap">
-                <div class="row">
-                    <div class="col-lg-12">
+    <div class="container-fluid">
+        <h1 class="title"><?php echo e(trans('global.edit')); ?> <?php echo e(trans('advertiser.api-advertiser.title_singular')); ?></h1>
+        <a href="<?php echo e(route("admin.advertiser-management.api-advertisers.index")); ?>"
+            class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
+            style="width: 40px; height: 40px; cursor: pointer;">
+            <i class="ri-arrow-left-line text-white"></i>
+        </a>
+        <div class="card">
+            <div class="card-body">
 
-                        <div class="breadcrumb-main">
-                            <h4 class="text-capitalize breadcrumb-title"><?php echo e(trans('global.edit')); ?> <?php echo e(trans('advertiser.api-advertiser.title_singular')); ?></h4>
-                            <div class="breadcrumb-action justify-content-center flex-wrap">
-                                <div class="action-btn">
-                                    <a href="<?php echo e(route("admin.advertiser-management.api-advertisers.index")); ?>" class="breadcrumb-remove border-0 color-danger content-center bg-white fs-12 fw-500 ml-10 radius-md">
-                                        <i class="la la-undo mr-2"></i> <?php echo e(trans('global.back_to_list')); ?></a>
-                                </div>
-                            </div>
-                        </div>
+                <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-                    </div>
-                </div>
-                <div class="row mb-5">
-                    <div class="col-md-12">
-                        <div class="card">
-                            <div class="card-body">
+                <form action="<?php echo e(route("admin.advertiser-management.api-advertisers.update", ["api_advertiser" => $api_advertiser->id])); ?>" method="POST" enctype="multipart/form-data" id="advertiserForm" class="p-5">
+                    <?php echo csrf_field(); ?>
+                    <?php echo method_field('PATCH'); ?>
+                    <?php echo $__env->make("template.admin.advertisers.form", ['data' => $api_advertiser, 'countries' => $countries], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                </form>
 
-                                <?php echo $__env->make("partial.admin.alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-
-                                <form action="<?php echo e(route("admin.advertiser-management.api-advertisers.update", ["api_advertiser" => $api_advertiser->id])); ?>" method="POST"
-                                      enctype="multipart/form-data" id="advertiserForm" class="p-5">
-                                    <?php echo csrf_field(); ?>
-                                    <?php echo method_field('PATCH'); ?>
-                                    <?php echo $__env->make("template.admin.advertisers.form", ['data' => $api_advertiser, 'countries' => $countries], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
-                                </form>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-
     </div>
 
 <?php $__env->stopSection(); ?>
-
 <?php echo $__env->make("layouts.admin.panel_app", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/admin/advertisers/api/edit.blade.php ENDPATH**/ ?>

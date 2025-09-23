@@ -11,7 +11,7 @@
     </p>
 </div>
 <div class="form-group {{ $errors->has('permissions') ? 'has-error' : '' }}">
-    <label for="permissions">{{ trans('cruds.role.fields.permissions') }}*
+    <label for="permissions" class="mb-3">{{ trans('cruds.role.fields.permissions') }}*
         <span class="btn btn-info btn-xs select-all">{{ trans('global.select_all') }}</span>
         <span class="btn btn-info btn-xs deselect-all">{{ trans('global.deselect_all') }}</span>
     </label>

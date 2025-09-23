@@ -292,16 +292,14 @@
 
 <div class="row">
     <div class="col-lg-12">
-        <table class="table table-bordered table-hover">
-            <thead>
-                <tr>
-                    <td colspan="6">
-                        <label class="p-0 m-0 font-weight-bold text-black">Commission Table</label>
-                        <a href="javascript:void(0)" onclick="addMoreCommission({{ $api_advertiser->commissions->count() }})" id="commissionBtn" class="btn btn-xs btn-success float-right">
+        <label class="p-0 m-0 font-weight-bold text-black">Commission Table</label>
+        <a href="javascript:void(0)" onclick="addMoreCommission({{ $api_advertiser->commissions->count() }})" id="commissionBtn" class="btn btn-xs btn-success float-right">
                             Add More
                         </a>
-                    </td>
-                </tr>
+        <div class="table-container">
+            <div class="table-containe">
+                <table class="table table-borderless table-hover">
+            <thead>
                 <tr>
                     <th>Date</th>
                     <th>Condition</th>
@@ -351,21 +349,21 @@
                 @endif
             </tbody>
         </table>
+            </div>
+        </div>
     </div>
 </div>
 
 <div class="row mt-4">
     <div class="col-lg-12">
-        <table class="table table-bordered table-hover">
+        <label class="p-0 m-0 font-weight-bold text-black">Validation Domains Table</label>
+        <a href="javascript:void(0)" onclick="addMoreValidation({{ count($api_advertiser->valid_domains ?? []) }})" id="validationBtn" class="btn btn-xs btn-success float-right">
+            Add More
+        </a>
+        <div class="table-container">
+            <div class="table-responsive">
+                <table class="table table-borderless table-hover">
             <thead>
-                <tr>
-                    <td colspan="2">
-                        <label class="p-0 m-0 font-weight-bold text-black">Validation Domains Table</label>
-                        <a href="javascript:void(0)" onclick="addMoreValidation({{ count($api_advertiser->valid_domains ?? []) }})" id="validationBtn" class="btn btn-xs btn-success float-right">
-                            Add More
-                        </a>
-                    </td>
-                </tr>
                 <tr>
                     <th>Name</th>
                     <th>Action</th>
@@ -399,6 +397,8 @@
                 @endif
             </tbody>
         </table>
+            </div>
+        </div>
     </div>
 </div>
 

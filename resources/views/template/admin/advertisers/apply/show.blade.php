@@ -103,8 +103,7 @@
                     </div>
 
                     <div class="card-tab btn-group nav nav-tabs">
-                        <a class="btn btn-xs btn-white active border-light" id="overview_tab" data-toggle="tab"
-                            href="#overview" role="tab" area-controls="intro" aria-selected="true">
+                        <a class="btn btn-xs btn-white active border-light" id="overview_tab" data-toggle="tab" href="#overview" role="tab" area-controls="intro" aria-selected="true">
                             <i class="ri-information-line"></i> Info
                         </a>
                     </div>
@@ -112,7 +111,6 @@
 
                 <div class="approval-body">
                     @include("partial.admin.alert")
-
                     <div class="table-container">
                         <div class="table-responsive">
                             <table class="table table-social">

@@ -34,11 +34,12 @@
                     <div class="col-lg-12">
 
                         <div class="breadcrumb-main">
-                            <h4 class="text-capitalize breadcrumb-title">{{ trans('global.edit') }} {{ trans('cruds.role.title_singular') }}</h4>
+                            <h1 class="title">{{ trans('global.edit') }} {{ trans('cruds.role.title_singular') }}</h1>
                             <div class="breadcrumb-action justify-content-center flex-wrap">
                                 <div class="action-btn">
-                                    <a href="{{ route("admin.user-management.roles.index") }}" class="btn btn-sm btn-gray btn-add">
-                                        <i class="la la-undo"></i> {{ trans('global.back_to_list') }}</a>
+                                    <a href="{{ route('admin.user-management.roles.index') }}" class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3" style="width: 40px; height: 40px; cursor: pointer;">
+                                        <i class="ri-arrow-left-line text-white"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>

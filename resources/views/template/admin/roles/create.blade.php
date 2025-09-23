@@ -35,11 +35,9 @@
 
                         <div class="breadcrumb-main">
                             <h1 class="title">{{ trans('global.add') }} {{ trans('cruds.permission.title_singular') }}</h1>
-                            <a href="{{ route('admin.user-management.roles.index') }}"
-                            class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
-                            style="width: 40px; height: 40px; cursor: pointer;">
+                            <a href="{{ route('admin.user-management.roles.index') }}" class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3" style="width: 40px; height: 40px; cursor: pointer;">
                             <i class="ri-arrow-left-line text-white"></i>
-                        </a>
+                            </a>
                         </div>
 
                     </div>

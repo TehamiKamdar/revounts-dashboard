@@ -200,6 +200,23 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                         <span class="nav-text">Users Management</span>
                         <i class="chevron ri-arrow-down-s-line"></i>
                     </a>
+                    <ul class="submenu">
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('admin_permissions_users_access')): ?>
+                            <li class="l_sidebar">
+                                <a href="<?php echo e(route("admin.user-management.permissions.index")); ?>" data-layout="light" class="nav-link <?php echo e(request()->is("$urlType/user-management/permissions") || request()->is("$urlType/user-management/permissions/*") ? "active" : null); ?>"><span><?php echo e(trans('cruds.permission.title')); ?></span></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('admin_roles_users_access')): ?>
+                            <li class="l_sidebar">
+                                <a href="<?php echo e(route("admin.user-management.roles.index")); ?>" data-layout="light" class="nav-link <?php echo e(request()->is("$urlType/user-management/roles") || request()->is("$urlType/user-management/roles/*") ? "active" : null); ?>"><span><?php echo e(trans('cruds.role.title')); ?></span></a>
+                            </li>
+                        <?php endif; ?>
+                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('admin_users_access')): ?>
+                            <li class="l_sidebar">
+                                <a href="<?php echo e(route("admin.user-management.users.index")); ?>" data-layout="light" class="nav-link <?php echo e(request()->is("$urlType/user-management/users") || request()->is("$urlType/user-management/users/*") ? "active" : null); ?>"><span><?php echo e(trans('cruds.user.title')); ?></span></a>
+                            </li>
+                        <?php endif; ?>
+                    </ul>
                 </div>
 
                 <div class="nav-item has-dropdown">
