@@ -1,23 +1,21 @@
-@extends("layouts.panel_register")
-
-@section("content")
+<?php $__env->startSection("content"); ?>
 
     <div class=" checkout wizard8 global-shadow border px-sm-50 px-20 mx-auto my-30 bg-white radius-xl w-80" id="signUpForm">
         <div class="notification-wrapper top-right"></div>
 
-        @if(($isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour) || (!$isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour))
-            @include("auth.publisher_register.step_one", $stepOne)
+        <?php if(($isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour) || (!$isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour)): ?>
+            <?php echo $__env->make("auth.publisher_register.step_one", $stepOne, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-        @elseif(!$isStepOne && $isStepTwo && !$isStepThree && !$isStepFour)
-            @include("auth.publisher_register.step_two", $stepTwo)
+        <?php elseif(!$isStepOne && $isStepTwo && !$isStepThree && !$isStepFour): ?>
+            <?php echo $__env->make("auth.publisher_register.step_two", $stepTwo, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-        @elseif(!$isStepOne && !$isStepTwo && $isStepThree && !$isStepFour)
-            @include("auth.publisher_register.step_three")
+        <?php elseif(!$isStepOne && !$isStepTwo && $isStepThree && !$isStepFour): ?>
+            <?php echo $__env->make("auth.publisher_register.step_three", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-        @elseif(!$isStepOne && !$isStepTwo && !$isStepThree && $isStepFour)
-            @include("auth.publisher_register.step_four")
+        <?php elseif(!$isStepOne && !$isStepTwo && !$isStepThree && $isStepFour): ?>
+            <?php echo $__env->make("auth.publisher_register.step_four", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
-        @endif
+        <?php endif; ?>
 
     </div><!-- End: .global-shadow-->
 
@@ -30,9 +28,9 @@
         </div>
     </div>
 
-@endsection
+<?php $__env->stopSection(); ?>
 
-@push("top_scripts")
+<?php $__env->startPush("top_scripts"); ?>
 
     <script>
         let toastCount = 0;
@@ -90,9 +88,9 @@
 
         function stepFormShow(page)
         {
-            let account = "{{ $account }}";
+            let account = "<?php echo e($account); ?>";
             $.ajax({
-                url: '{{ route("publisher-step-form") }}',
+                url: '<?php echo e(route("publisher-step-form")); ?>',
                 type: 'GET',
                 data: {page, account},
                 success: function (data) {
@@ -175,7 +173,7 @@
 
                     let data = $("#stepOne").serialize();
                     $.ajax({
-                        url: '{{ route("publisher-step-one") }}',
+                        url: '<?php echo e(route("publisher-step-one")); ?>',
                         type: 'POST',
                         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                         data: data,
@@ -207,7 +205,7 @@
                 let iti = window.intlTelInput(input, {
                     hiddenInput: "phone_number",
                     separateDialCode: true,
-                    utilsScript: "{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/phone/utils.js") }}",
+                    utilsScript: "<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/phone/utils.js")); ?>",
                 });
 
                 input.addEventListener("countrychange", function() {
@@ -217,9 +215,9 @@
 
                 });
 
-                @if(isset($stepTwo['dialCode']) && isset($stepTwo['phone_number']))
-                    iti.setNumber("+{{ $stepTwo['dialCode'] }} {{ $stepTwo['phone_number'] }}");
-                @endif
+                <?php if(isset($stepTwo['dialCode']) && isset($stepTwo['phone_number'])): ?>
+                    iti.setNumber("+<?php echo e($stepTwo['dialCode']); ?> <?php echo e($stepTwo['phone_number']); ?>");
+                <?php endif; ?>
 
             }
 
@@ -230,7 +228,7 @@
                 // iti.setCountry($("#country option:selected").text());
 
                 $.ajax({
-                    url: '{{ route("get-states") }}',
+                    url: '<?php echo e(route("get-states")); ?>',
                     type: 'POST',
                     headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                     data: {"country_id": country},
@@ -251,7 +249,7 @@
             });
             $('#state').change(function() {
                 $.ajax({
-                    url: '{{ route("get-cities") }}',
+                    url: '<?php echo e(route("get-cities")); ?>',
                     type: 'POST',
                     headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                     data: {"state_id": $(this).val(), "country_id": $('#country').val()},
@@ -314,7 +312,7 @@
                     $("#showLoader").show();
                     let data = $("#stepTwo").serialize();
                     $.ajax({
-                        url: '{{ route("publisher-step-two") }}',
+                        url: '<?php echo e(route("publisher-step-two")); ?>',
                         type: 'POST',
                         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                         data: data,
@@ -398,7 +396,7 @@
                     $("#showLoader").show();
                     let data = $("#stepThree").serialize();
                     $.ajax({
-                        url: '{{ route("publisher-step-three") }}',
+                        url: '<?php echo e(route("publisher-step-three")); ?>',
                         type: 'POST',
                         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                         data: data,
@@ -407,7 +405,7 @@
                             {
                                 stepFormShow(4);
                                 $.ajax({
-                                    url: '{{ route('verification.send') }}',
+                                    url: '<?php echo e(route('verification.send')); ?>',
                                     type: 'POST',
                                     headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                                     success: function (data) {
@@ -437,7 +435,7 @@
                 $("#showLoader").show();
 
                 $.ajax({
-                    url: '{{ route('verification.send') }}',
+                    url: '<?php echo e(route('verification.send')); ?>',
                     type: 'POST',
                     headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                     success: function (data) {
@@ -459,12 +457,13 @@
         });
     </script>
 
-@endpush
+<?php $__env->stopPush(); ?>
 
-@pushonce('styles')
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/phone/intlTelInput.css") }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/phone/demo.css") }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/select2.min.css") }}"/>
+<?php if (! $__env->hasRenderedOnce('fa289731-fb91-4cb8-af68-ddbffc487b0b')): $__env->markAsRenderedOnce('fa289731-fb91-4cb8-af68-ddbffc487b0b');
+$__env->startPush('styles'); ?>
+    <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/phone/intlTelInput.css")); ?>">
+    <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/phone/demo.css")); ?>">
+    <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/select2.min.css")); ?>"/>
     <style>
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -490,11 +489,14 @@
             .wizard8.w-80 {width: 90%!important;}
         }
     </style>
-@endpushonce
+<?php $__env->stopPush(); endif; ?>
 
-@pushonce('scripts')
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/phone/intlTelInput.js") }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/select2.full.min.js") }}"></script>
-@endpushonce
+<?php if (! $__env->hasRenderedOnce('1557e9da-e96a-4aec-bb6c-0c41b4bd9d1f')): $__env->markAsRenderedOnce('1557e9da-e96a-4aec-bb6c-0c41b4bd9d1f');
+$__env->startPush('scripts'); ?>
+    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/phone/intlTelInput.js")); ?>"></script>
+    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/select2.full.min.js")); ?>"></script>
+<?php $__env->stopPush(); endif; ?>
 
 
+
+<?php echo $__env->make("layouts.panel_register", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\Tehami\Desktop\revounts-dashboard\resources\views/auth/publisher_register.blade.php ENDPATH**/ ?>
