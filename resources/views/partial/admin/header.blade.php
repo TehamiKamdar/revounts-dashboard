@@ -242,6 +242,12 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                                 </a>
                             </li>
                         @endcan
+                        <li>
+                            <a href="{{ route("admin.settings.default-commission") }}" data-layout="light"
+                                class="nav-link {{ request()->is("$urlType/settings/default-commission") || request()->is("$urlType/settings/default-commission/*") ? "active" : null }}">
+                                <span>{{ trans('cruds.notification.default-commission') }}</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>
@@ -254,7 +260,7 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
         </div>
     </div>
 </header>
-{{-- 
+{{--
 <li class="nav-author">
                     <div class="dropdown-custom">
                         <a href="javascript:;" class="nav-item-toggle"><img src="{{ \App\Helper\Static\Methods::staticAsset("img/author-nav.jpg") }}" alt="" class="rounded-circle"></a>

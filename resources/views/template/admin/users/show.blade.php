@@ -227,7 +227,7 @@
             <i class="ri-arrow-left-line text-white"></i> </a>
 
         <!-- Main Content Card -->
-        <div class="content-card">
+        <div class="content-card card">
             <!-- Card Header with Tabs -->
             <div class="card-header-modern">
                 <h2 class="card-title-modern">
@@ -241,102 +241,100 @@
                     </a>
                 </div>
             </div>
-            <div class="card-body p-0">
-                <div class="table-container">
-                    <div class="table-responsive">
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-social">
-                                
-                                <tbody>
-                                    <tr>
-                                        <th>
-                                            {{ trans('cruds.publisher.fields.id') }}
-                                        </th>
-                                        <td>
-                                            {{ $user->id }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{ trans('cruds.publisher.fields.first_name') }}
-                                        </th>
-                                        <td>
-                                            {{ $user->first_name }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{ trans('cruds.publisher.fields.last_name') }}
-                                        </th>
-                                        <td>
-                                            {{ $user->last_name }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{ trans('cruds.publisher.fields.user_name') }}
-                                        </th>
-                                        <td>
-                                            {{ $user->user_name }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{ trans('cruds.publisher.fields.email') }}
-                                        </th>
-                                        <td>
-                                            {{ $user->email }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{ trans('cruds.publisher.fields.email_verified_at') }}
-                                        </th>
-                                        <td>
-                                            {{ $user->email_verified_at ?? "N/A" }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{ trans('cruds.publisher.fields.remember_token') }}
-                                        </th>
-                                        <td>
-                                            {{ $user->remember_token ? "YES" : "NO" }}
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            {{ trans('cruds.publisher.fields.status') }}
-                                        </th>
-                                        <td>
-                                            <?php
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-social">
+
+                        <tbody>
+                            <tr>
+                                <th>
+                                    {{ trans('cruds.publisher.fields.id') }}
+                                </th>
+                                <td>
+                                    {{ $user->id }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {{ trans('cruds.publisher.fields.first_name') }}
+                                </th>
+                                <td>
+                                    {{ $user->first_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {{ trans('cruds.publisher.fields.last_name') }}
+                                </th>
+                                <td>
+                                    {{ $user->last_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {{ trans('cruds.publisher.fields.user_name') }}
+                                </th>
+                                <td>
+                                    {{ $user->user_name }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {{ trans('cruds.publisher.fields.email') }}
+                                </th>
+                                <td>
+                                    {{ $user->email }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {{ trans('cruds.publisher.fields.email_verified_at') }}
+                                </th>
+                                <td>
+                                    {{ $user->email_verified_at ?? "N/A" }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {{ trans('cruds.publisher.fields.remember_token') }}
+                                </th>
+                                <td>
+                                    {{ $user->remember_token ? "YES" : "NO" }}
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    {{ trans('cruds.publisher.fields.status') }}
+                                </th>
+                                <td>
+                                    <div class="d-flex justify-content-between">
+
+                                    <?php
     $status = $user->status;
     $class = $status == "active" ? "badge-success" : (($status == "pending") ? "badge-warning" : "badge-danger");
-                                                                    ?>
-                                            <div class="float-left">
-                                                {!! "<span class='badge {$class}'>" . ucwords($status) . "</span>" !!}
-                                            </div>
-                                            <div class="float-right">
-                                                @if($user->status != "active")
-                                                    <a href="{{ route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "active"]) }}"
-                                                        class="mr-2 btn btn-xs btn-success text-white float-left">Active</a>
-                                                @endif
-                                                @if($user->status != "hold")
-                                                    <a href="{{ route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "hold"]) }}"
-                                                        class="mr-2 btn btn-xs btn-info text-white float-left">Hold</a>
-                                                @endif
-                                                @if($user->status != "rejected")
-                                                    <a href="{{ route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "rejected"]) }}"
-                                                        class="btn btn-xs btn-danger text-white float-left">Rejected</a>
-                                                @endif
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                                                        ?>
+                                    <div class="float-left">
+                                        {!! "<span class='badge {$class}'>" . ucwords($status) . "</span>" !!}
+                                    </div>
+                                    <div class="float-right">
+                                        @if($user->status != "active")
+                                            <a href="{{ route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "active"]) }}"
+                                                class="mr-2 btn btn-xs btn-success text-white float-left">Active</a>
+                                        @endif
+                                        @if($user->status != "hold")
+                                            <a href="{{ route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "hold"]) }}"
+                                                class="mr-2 btn btn-xs btn-info text-white float-left">Hold</a>
+                                        @endif
+                                        @if($user->status != "rejected")
+                                            <a href="{{ route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "rejected"]) }}"
+                                                class="btn btn-xs btn-danger text-white float-left">Rejected</a>
+                                        @endif
+                                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

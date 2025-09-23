@@ -242,6 +242,12 @@ $urlType = \App\Enums\AccountType::ADMIN->value;
                                 </a>
                             </li>
                         <?php endif; ?>
+                        <li>
+                            <a href="<?php echo e(route("admin.settings.default-commission")); ?>" data-layout="light"
+                                class="nav-link <?php echo e(request()->is("$urlType/settings/default-commission") || request()->is("$urlType/settings/default-commission/*") ? "active" : null); ?>">
+                                <span><?php echo e(trans('cruds.notification.default-commission')); ?></span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </nav>

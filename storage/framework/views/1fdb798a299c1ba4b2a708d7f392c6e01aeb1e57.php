@@ -1,4 +1,4 @@
-<?php if (! $__env->hasRenderedOnce('444948da-3044-4594-8b86-ce21d822d603')): $__env->markAsRenderedOnce('444948da-3044-4594-8b86-ce21d822d603');
+<?php if (! $__env->hasRenderedOnce('161c770c-3962-4a23-8dc4-8f1bab38c817')): $__env->markAsRenderedOnce('161c770c-3962-4a23-8dc4-8f1bab38c817');
 $__env->startPush('styles'); ?>
 
 <style>
@@ -226,8 +226,8 @@ $__env->startPush('styles'); ?>
         <!-- Main Content Card -->
         <div class="content-card">
             <!-- Card Header with Tabs -->
-            <div class="card-header-modern">
-                <h2>Transaction ID: <?php echo e($transaction->transaction_id); ?></h2>
+            <div class="card-header card-header-modern">
+                <h2 class="card-title-modern">Transaction ID: <?php echo e($transaction->transaction_id); ?></h2>
 
                 <div class="tab-nav-modern nav" role="tablist">
                     <a class="tab-btn-modern active" style="cursor:pointer;" id="overview_tab" data-bs-toggle="tab"

@@ -7,43 +7,45 @@
             style="width: 40px; height: 40px; cursor: pointer;">
             <i class="ri-arrow-left-line text-white"></i>
         </a>
-        <div class="mb-2">
-            <div class="table-container">
-                <div class="table-responsive">
-                    <table class="table table-borderless table-social">
-                        <tbody>
-                            <tr>
-                                <th>
-                                    <?php echo e(trans('cruds.role.fields.id')); ?>
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-2">
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-social">
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        <?php echo e(trans('cruds.role.fields.id')); ?>
 
-                                </th>
-                                <td>
-                                    <?php echo e($role->id); ?>
+                                    </th>
+                                    <td>
+                                        <?php echo e($role->id); ?>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <?php echo e(trans('cruds.role.fields.title')); ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <?php echo e(trans('cruds.role.fields.title')); ?>
 
-                                </th>
-                                <td>
-                                    <?php echo e($role->title); ?>
+                                    </th>
+                                    <td>
+                                        <?php echo e($role->title); ?>
 
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    <?php echo e(trans('cruds.role.fields.permissions')); ?>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        <?php echo e(trans('cruds.role.fields.permissions')); ?>
 
-                                </th>
-                                <td>
-                                    <?php echo '<span class="badge badge-info">' . implode('</span> <span class="badge badge-info">', $role->permissions->pluck('title')->toArray()) . '</span>'; ?>
+                                    </th>
+                                    <td>
+                                        <?php echo '<span class="badge badge-info">' . implode('</span> <span class="badge badge-info">', $role->permissions->pluck('title')->toArray()) . '</span>'; ?>
 
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

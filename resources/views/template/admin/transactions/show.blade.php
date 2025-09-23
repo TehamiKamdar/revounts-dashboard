@@ -227,8 +227,8 @@
         <!-- Main Content Card -->
         <div class="content-card">
             <!-- Card Header with Tabs -->
-            <div class="card-header-modern">
-                <h2>Transaction ID: {{ $transaction->transaction_id }}</h2>
+            <div class="card-header card-header-modern">
+                <h2 class="card-title-modern">Transaction ID: {{ $transaction->transaction_id }}</h2>
 
                 <div class="tab-nav-modern nav" role="tablist">
                     <a class="tab-btn-modern active" style="cursor:pointer;" id="overview_tab" data-bs-toggle="tab"

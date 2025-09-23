@@ -3,52 +3,214 @@
 @pushonce('styles')
 
 <style>
-    .table-social tbody tr td:not(:first-child) {
-        text-align: left !important;
+    /* Main Layout Structure */
+    .page-container {
+        min-height: 100vh;
+        background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        padding: 20px 0;
     }
 
-    .card-header {
-        padding: 0.75rem 1rem !important;
+    .page-wrapper {
+        max-width: 1400px;
+        margin: 0 auto;
     }
 
-    .card .card-header {
-        text-transform: none !important;
-        min-height: 40px !important;
+    /* Breadcrumb Section */
+    .breadcrumb-modern {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        padding: 1.5rem 2rem;
+        margin-bottom: 24px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
 
-    .changelog__according .card .card-header {
-        min-height: 40px !important;
-        height: 40px !important;
+    .breadcrumb-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
-    .changelog__accordingCollapsed {
-        height: 40px !important;
+    .breadcrumb-title {
+        color: var(--primary-dark-color);
+        font-weight: 600;
+        font-size: 1.75rem;
+        margin: 0;
     }
 
-    .v-num {
-        font-size: 14px !important;
+    .breadcrumb-actions {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
     }
 
-    .btn-xs {
-        line-height: 1.7 !important;
-        font-size: 10px !important;
+    .action-btn-modern {
+        background: rgba(255, 255, 255, 0.8);
+        border: 1px solid rgba(123, 54, 181, 0.2);
+        border-radius: 10px;
+        padding: 0.75rem 1.25rem;
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 0.9rem;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
     }
 
-    .table,
-    .changelog__according .card:not(:last-child) {
-        margin-bottom: 0 !important;
+    .action-btn-modern:hover {
+        background: var(--primary-color);
+        color: white;
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(123, 54, 181, 0.2);
     }
 
-    .social-dash-wrap .card.card-overview {
-        margin-bottom: 5%;
+    /* Main Content Card */
+    .content-card {
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        margin-bottom: 24px;
     }
 
-    .social-dash-wrap .card-body {
-        padding: 0 !important;
+    /* Card Header */
+    .card-header-modern {
+        background: linear-gradient(135deg, rgba(123, 54, 181, 0.1) 0%, rgba(123, 54, 181, 0.05) 100%);
+        padding: 1.5rem 2rem;
+        border-bottom: 1px solid rgba(123, 54, 181, 0.1);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 1rem;
     }
 
-    .changelog__according {
-        margin-top: 0 !important;
+    .card-title-modern {
+        color: var(--primary-dark-color);
+        font-weight: 600;
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    /* Tab Navigation */
+    .tab-nav-modern {
+        background: rgba(255, 255, 255, 0.8);
+        border-radius: 12px;
+        padding: 0.5rem;
+        border: 1px solid rgba(123, 54, 181, 0.2);
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.25rem;
+    }
+
+    .tab-btn-modern {
+        padding: 0.75rem 1.25rem;
+        border: none;
+        background: transparent;
+        color: var(--dark-color);
+        font-weight: 500;
+        font-size: 0.85rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        text-decoration: none;
+    }
+
+    .tab-btn-modern:hover,
+    .tab-btn-modern.active {
+        background: var(--primary-color);
+        color: white;
+        box-shadow: 0 4px 12px rgba(123, 54, 181, 0.2);
+    }
+
+    /* Tab Content */
+    .tab-content-modern {
+        padding: 0;
+    }
+
+    .tab-pane-modern {
+        padding: 1rem;
+        min-height: 130px;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 1200px) {
+        .page-wrapper {
+            padding: 0 20px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .breadcrumb-main {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .breadcrumb-actions {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .card-header-modern {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .tab-nav-modern {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        .tab-btn-modern {
+            white-space: nowrap;
+            font-size: 0.8rem;
+            padding: 0.6rem 1rem;
+        }
+
+        .tab-pane-modern {
+            padding: 1.5rem;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .breadcrumb-modern {
+            padding: 1rem;
+        }
+
+        .card-header-modern {
+            padding: 1rem;
+        }
+
+        .tab-pane-modern {
+            padding: 1rem;
+        }
+    }
+
+    /* Animation */
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .content-card {
+        animation: fadeIn 0.5s ease-out;
     }
 </style>
 
@@ -58,51 +220,40 @@
 
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-lg-12">
+        <h1 class="title">{{ trans('global.show') }}
+            {{ trans('cruds.advertiser_configuration.title_singular') }}
+        </h1>
+        <!-- Back button -->
+        <a href="{{ route("admin.settings.advertiser-configs.index") }}"
+            class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none my-3"
+            style="width: 40px; height: 40px; cursor: pointer;">
+            <i class="ri-arrow-left-line text-white"></i>
+        </a>
+        <!-- Main Content Card -->
+        <div class="content-card">
+            <!-- Card Header with Tabs -->
+            <div class="card-header card-header-modern">
 
-                <div class="breadcrumb-main">
-                    <h1 class="title">{{ trans('global.show') }}
-                        {{ trans('cruds.advertiser_configuration.title_singular') }}</h1>
+                <!-- Publisher name -->
+                <h2 class="card-title-modern">{{ $advertiserConfig->name }}</h2>
+
+
+                <div class="tab-nav-modern nav" role="tablist">
+                    <a class="tab-btn-modern active" style="cursor:pointer;" id="overview_tab" data-toggle="tab"
+                        href="#overview" role="tab" area-controls="intro" aria-selected="true">
+                        <i class="ri-information-line"></i> Info
+                    </a>
                 </div>
-
             </div>
-        </div>
-        <div class="row">
-            <div class="approval-glass-card card">
-                <div class="approval-header">
-                    <div class="d-flex align-items-center gap-3">
-                        <!-- Back button -->
-                        <a href="{{ route("admin.settings.advertiser-configs.index") }}"
-                            class="bg-secondary rounded-circle d-flex align-items-center justify-content-center text-decoration-none"
-                            style="width: 40px; height: 40px; cursor: pointer;">
-                            <i class="ri-arrow-left-line text-white"></i>
-                        </a>
 
-                        <!-- Publisher name -->
-                        <h4 class="mb-0">{{ $advertiserConfig->name }}</h4>
-                    </div>
+            <div class="card-body p-0">
+                @include("partial.admin.alert")
+                <div class="tab-content">
+                    <div class="tab-pane tab-pane-modern fade active show" id="overview" role=""
+                        aria-labelledby="overview_tab">
 
-                    <div class="card-tab btn-group nav nav-tabs">
-                        <a class="btn btn-xs btn-white active border-light" id="overview_tab" data-toggle="tab"
-                            href="#overview" role="tab" area-controls="intro" aria-selected="true">
-                            <i class="ri-information-line"></i> Info
-                        </a>
-                    </div>
-                </div>
-
-                <div class="approval-body">
-                    @include("partial.admin.alert")
-
-                    <div class="table-container">
                         <div class="table-responsive">
-                            <table class="table table-social">
-                                <thead>
-                                    <tr>
-                                        <th scope="col" style="width: 15%">Field</th>
-                                        <th scope="col">Value</th>
-                                    </tr>
-                                </thead>
+                            <table class="table table-borderless table-social">
                                 <tbody>
                                     <tr>
                                         <th>
@@ -144,73 +295,4 @@
             </div>
         </div>
     </div>
-    {{-- <div class="table-responsive">
-        <table class="table table-bordered table-social">
-            <thead>
-                <tr>
-                    <th scope="col" style="width: 15%">Field</th>
-                    <th scope="col">Value</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th>
-                        {{ trans('cruds.advertiser_configuration.fields.id') }}
-                    </th>
-                    <td>
-                        {{ $advertiserConfig->id }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{ trans('cruds.advertiser_configuration.fields.name') }}
-                    </th>
-                    <td>
-                        {{ $advertiserConfig->name }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{ trans('cruds.advertiser_configuration.fields.key') }}
-                    </th>
-                    <td>
-                        {{ $advertiserConfig->key }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        {{ trans('cruds.advertiser_configuration.fields.value') }}
-                    </th>
-                    <td>
-                        {{ $advertiserConfig->value }}
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        &nbsp;
-                    </th>
-                    <td>
-                        &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        &nbsp;
-                    </th>
-                    <td>
-                        &nbsp;
-                    </td>
-                </tr>
-                <tr>
-                    <th>
-                        &nbsp;
-                    </th>
-                    <td>
-                        &nbsp;
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div> --}}
-
 @endsection

@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\AdvertiserManagement\ShowOnController;
 use App\Http\Controllers\Admin\CreativeManagement\CouponController;
 use App\Http\Controllers\Admin\PublisherManagement\ApplyAdvertiserController;
 use App\Http\Controllers\Admin\PublisherManagement\PublisherController;
+use App\Http\Controllers\Admin\Setting\DefaultCommissionController;
 use App\Http\Controllers\Admin\Statistics\DeeplinkController;
 use App\Http\Controllers\Admin\Statistics\LinkController;
 use App\Http\Controllers\Admin\Transaction\TransactionController;
@@ -81,7 +82,7 @@ Route::get('/csv-download-transactions', [UsersController::class, 'getcsvdownloa
         Route::resource('advertiser-configs', AdvertiserConfigController::class);
         Route::get('notification', [NotificationController::class, 'index'])->name('notification.index');
         Route::post('notification', [NotificationController::class, 'store'])->name('notification.store');
-
+        Route::get('default-commission', [DefaultCommissionController::class , 'index'])->name('default-commission');
     });
 
     Route::group(['prefix' => 'publisher-management', 'as' => 'publisher-management.'], function () {
@@ -120,7 +121,7 @@ Route::get('/csv-download-transactions', [UsersController::class, 'getcsvdownloa
     });
 
     Route::group(['prefix' => 'statistics', 'as' => 'statistics.'], function () {
- 
+
         Route::resource('links', LinkController::class);
         Route::resource('deeplinks', DeeplinkController::class);
 
@@ -148,7 +149,7 @@ Route::get('/csv-download-transactions', [UsersController::class, 'getcsvdownloa
     Route::post('/transaction-data-export', [TransactionController::class, 'actionTransactionDataExport'])->name('transactions.data.export');
 
     Route::group(['prefix' => 'payment-management', 'as' => 'payment-management.'], function () {
-       
+
         Route::post('/status-update/release-payment', [PaymentController::class, 'statusUpdateReleasePayment'])->name('statusUpdateReleasePayment');
         Route::post('/status-update', [PaymentController::class, 'statusUpdate'])->name('statusUpdate');
         Route::get('/{section}/{transaction}/{status}', [PaymentController::class, 'statusUpdateByID'])->name('statusUpdateByID');

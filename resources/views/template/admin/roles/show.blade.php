@@ -9,37 +9,39 @@
             style="width: 40px; height: 40px; cursor: pointer;">
             <i class="ri-arrow-left-line text-white"></i>
         </a>
-        <div class="mb-2">
-            <div class="table-container">
-                <div class="table-responsive">
-                    <table class="table table-borderless table-social">
-                        <tbody>
-                            <tr>
-                                <th>
-                                    {{ trans('cruds.role.fields.id') }}
-                                </th>
-                                <td>
-                                    {{ $role->id }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    {{ trans('cruds.role.fields.title') }}
-                                </th>
-                                <td>
-                                    {{ $role->title }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <th>
-                                    {{ trans('cruds.role.fields.permissions') }}
-                                </th>
-                                <td>
-                                    {!! '<span class="badge badge-info">' . implode('</span> <span class="badge badge-info">', $role->permissions->pluck('title')->toArray()) . '</span>' !!}
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+        <div class="card">
+            <div class="card-body">
+                <div class="mb-2">
+                    <div class="table-responsive">
+                        <table class="table table-borderless table-social">
+                            <tbody>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.role.fields.id') }}
+                                    </th>
+                                    <td>
+                                        {{ $role->id }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.role.fields.title') }}
+                                    </th>
+                                    <td>
+                                        {{ $role->title }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>
+                                        {{ trans('cruds.role.fields.permissions') }}
+                                    </th>
+                                    <td>
+                                        {!! '<span class="badge badge-info">' . implode('</span> <span class="badge badge-info">', $role->permissions->pluck('title')->toArray()) . '</span>' !!}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>

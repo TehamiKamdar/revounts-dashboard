@@ -16,7 +16,6 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="mb-2">
-                            <div class="table-container">
                                 <div class="table-responsive">
                                     <table class="table table-borderless table-social">
                                         <tbody>
@@ -39,7 +38,6 @@
                                         </tbody>
                                     </table>
                                 </div>
-                            </div>
                         </div>
                     </div>
                 </div>

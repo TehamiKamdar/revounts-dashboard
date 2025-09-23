@@ -1,4 +1,4 @@
-<?php if (! $__env->hasRenderedOnce('9b2ccac9-2f55-4a90-b80b-c7238b8500b5')): $__env->markAsRenderedOnce('9b2ccac9-2f55-4a90-b80b-c7238b8500b5');
+<?php if (! $__env->hasRenderedOnce('f39d7c33-a17c-44cc-a0b6-c1812d37a293')): $__env->markAsRenderedOnce('f39d7c33-a17c-44cc-a0b6-c1812d37a293');
 $__env->startPush('styles'); ?>
 
 <style>
@@ -228,7 +228,7 @@ $__env->startPush('styles'); ?>
             <i class="ri-arrow-left-line text-white"></i> </a>
 
         <!-- Main Content Card -->
-        <div class="content-card">
+        <div class="content-card card">
             <!-- Card Header with Tabs -->
             <div class="card-header-modern">
                 <h2 class="card-title-modern">
@@ -243,118 +243,116 @@ $__env->startPush('styles'); ?>
                     </a>
                 </div>
             </div>
-            <div class="card-body p-0">
-                <div class="table-container">
-                    <div class="table-responsive">
-                        <div class="table-responsive">
-                            <table class="table table-borderless table-social">
-                                
-                                <tbody>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.fields.id')); ?>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-borderless table-social">
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($user->id); ?>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <?php echo e(trans('cruds.publisher.fields.id')); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.fields.first_name')); ?>
+                                </th>
+                                <td>
+                                    <?php echo e($user->id); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($user->first_name); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php echo e(trans('cruds.publisher.fields.first_name')); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.fields.last_name')); ?>
+                                </th>
+                                <td>
+                                    <?php echo e($user->first_name); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($user->last_name); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php echo e(trans('cruds.publisher.fields.last_name')); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.fields.user_name')); ?>
+                                </th>
+                                <td>
+                                    <?php echo e($user->last_name); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($user->user_name); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php echo e(trans('cruds.publisher.fields.user_name')); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.fields.email')); ?>
+                                </th>
+                                <td>
+                                    <?php echo e($user->user_name); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($user->email); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php echo e(trans('cruds.publisher.fields.email')); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.fields.email_verified_at')); ?>
+                                </th>
+                                <td>
+                                    <?php echo e($user->email); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($user->email_verified_at ?? "N/A"); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php echo e(trans('cruds.publisher.fields.email_verified_at')); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.fields.remember_token')); ?>
+                                </th>
+                                <td>
+                                    <?php echo e($user->email_verified_at ?? "N/A"); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php echo e($user->remember_token ? "YES" : "NO"); ?>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php echo e(trans('cruds.publisher.fields.remember_token')); ?>
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th>
-                                            <?php echo e(trans('cruds.publisher.fields.status')); ?>
+                                </th>
+                                <td>
+                                    <?php echo e($user->remember_token ? "YES" : "NO"); ?>
 
-                                        </th>
-                                        <td>
-                                            <?php
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <?php echo e(trans('cruds.publisher.fields.status')); ?>
+
+                                </th>
+                                <td>
+                                    <div class="d-flex justify-content-between">
+
+                                    <?php
     $status = $user->status;
     $class = $status == "active" ? "badge-success" : (($status == "pending") ? "badge-warning" : "badge-danger");
-                                                                    ?>
-                                            <div class="float-left">
-                                                <?php echo "<span class='badge {$class}'>" . ucwords($status) . "</span>"; ?>
+                                                                        ?>
+                                    <div class="float-left">
+                                        <?php echo "<span class='badge {$class}'>" . ucwords($status) . "</span>"; ?>
 
-                                            </div>
-                                            <div class="float-right">
-                                                <?php if($user->status != "active"): ?>
-                                                    <a href="<?php echo e(route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "active"])); ?>"
-                                                        class="mr-2 btn btn-xs btn-success text-white float-left">Active</a>
-                                                <?php endif; ?>
-                                                <?php if($user->status != "hold"): ?>
-                                                    <a href="<?php echo e(route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "hold"])); ?>"
-                                                        class="mr-2 btn btn-xs btn-info text-white float-left">Hold</a>
-                                                <?php endif; ?>
-                                                <?php if($user->status != "rejected"): ?>
-                                                    <a href="<?php echo e(route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "rejected"])); ?>"
-                                                        class="btn btn-xs btn-danger text-white float-left">Rejected</a>
-                                                <?php endif; ?>
-                                            </div>
-                                            <div class="clearfix"></div>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+                                    </div>
+                                    <div class="float-right">
+                                        <?php if($user->status != "active"): ?>
+                                            <a href="<?php echo e(route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "active"])); ?>"
+                                                class="mr-2 btn btn-xs btn-success text-white float-left">Active</a>
+                                        <?php endif; ?>
+                                        <?php if($user->status != "hold"): ?>
+                                            <a href="<?php echo e(route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "hold"])); ?>"
+                                                class="mr-2 btn btn-xs btn-info text-white float-left">Hold</a>
+                                        <?php endif; ?>
+                                        <?php if($user->status != "rejected"): ?>
+                                            <a href="<?php echo e(route("admin.user-management.users.statusUpdate", ["user" => $user->id, "status" => "rejected"])); ?>"
+                                                class="btn btn-xs btn-danger text-white float-left">Rejected</a>
+                                        <?php endif; ?>
+                                    </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>

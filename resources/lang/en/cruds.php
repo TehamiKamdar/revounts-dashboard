@@ -682,6 +682,7 @@ return [
     'notification'     => [
         'title'          => 'Notification',
         'title_singular' => 'Notification',
+        'default-commission' => 'Default Commission',
         'fields'         => [
             'id'                       => 'ID',
             'id_helper'                => '',
