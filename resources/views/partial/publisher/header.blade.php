@@ -361,7 +361,7 @@
 
         <div class="header-actions">
             <div class="user-profile">
-                <div class="avatar">JD</div>
+                <div class="avatar"><i class="ri-user-2-fill"></i></div>
                 <div class="profile-dropdown">
                     <!-- User Info -->
                     <div class="user-info">
