@@ -1,4 +1,4 @@
-@extends("layouts.panel_register")
+@extends("layouts.panel_guest")
 
 @section("content")
 
@@ -427,6 +427,23 @@
                     });
                 }
             });
+
+            {{--$("#stepThree").submit(function() {--}}
+
+            {{--    $("#signUpForm").addClass("disableDiv");--}}
+            {{--    $("#showLoader").show();--}}
+
+            {{--    $.ajax({--}}
+            {{--        url: '{{ route('verification.send') }}',--}}
+            {{--        type: 'POST',--}}
+            {{--        headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},--}}
+            {{--        success: function (data) {--}}
+            {{--            $("#signUpForm").removeClass("disableDiv");--}}
+            {{--            $("#showLoader").hide();--}}
+            {{--        }--}}
+            {{--    });--}}
+
+            {{--});--}}
         }
 
         function loadStepFourForm()

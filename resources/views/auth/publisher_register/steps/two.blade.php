@@ -1,6 +1,6 @@
 <div class="checkout-progress justify-content-center px-0">
     <div class="step completed" id="1">
-        <span class="las la-check"></span>
+        <span class="ri-check-line"></span>
     </div>
     <div class="step current" id="2">
         <span>2</span>

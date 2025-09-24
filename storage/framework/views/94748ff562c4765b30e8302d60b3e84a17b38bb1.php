@@ -369,16 +369,16 @@
         </div>
         <div class="main-content">
 
-            @yield('content')
+            <?php echo $__env->yieldContent('content'); ?>
         </div>
     </div>
 </body>
 
 </html>
-<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-3.5.1.min.js") }}"></script>
-<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery.validate.min.js") }}"></script>
+<script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-3.5.1.min.js")); ?>"></script>
+<script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery.validate.min.js")); ?>"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
-@yield('top_scripts')
+<?php echo $__env->yieldContent('top_scripts'); ?>
 <script>
 
     let currentStep = 1;
@@ -425,4 +425,4 @@
     document.addEventListener('DOMContentLoaded', () => {
         updateUI();
     });
-</script>
+</script><?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/layouts/panel_register.blade.php ENDPATH**/ ?>

@@ -102,10 +102,6 @@
 
     <?php echo $__env->make("partial.publisher.header", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="dashboard-container">
-        <button onclick="normalMsg({success: true, message: 'Test notification!'});" class="btn btn-primary">
-            Show Test Notification
-        </button>
-
         <main class="dashboard-main">
             <?php echo $__env->yieldContent("content"); ?>
         </main>

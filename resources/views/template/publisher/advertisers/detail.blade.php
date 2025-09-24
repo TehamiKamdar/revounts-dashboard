@@ -1,83 +1,301 @@
 @extends("layouts.publisher.panel_app")
 
 @pushonce('styles')
+<style>
 
-    <style>
-        .friends-widget .card-body .labelLine, .friends-widget .card-body .trackerHeading {max-width: 100%!important;}.friends-widget .card-body .trackerMinimize {display:none!important;}
-    </style>
+    .card {
+        border: none;
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+        margin-bottom: 1.5rem;
+    }
+
+    .card-header {
+        background-color: white;
+        border-bottom: 1px solid var(--light-color);
+        padding: 1.25rem 1.5rem;
+    }
+
+    .card-body {
+        padding: 1.5rem;
+    }
+
+    .account-profile {
+        text-align: center;
+    }
+
+    .ap-img__main {
+        max-height: 120px;
+        object-fit: contain;
+        border-radius: 0.5rem;
+    }
+
+    .ap-nameAddress__title {
+        font-weight: 700;
+        color: var(--primary-dark-color);
+        margin-bottom: 0.5rem;
+    }
+
+    .ap-nameAddress__subTitle {
+        color: var(--dark-color);
+        font-size: 0.875rem;
+    }
+
+    .ap-button .btn {
+        margin: 0.25rem;
+        font-size: 0.875rem;
+    }
+
+    .btn-primary {
+        background-color: var(--btn-primary-background-color);
+        border-color: var(--btn-primary-border-color);
+        color: var(--btn-primary-color);
+    }
+
+    .btn-outline-primary {
+        color: var(--btn-primary-outline-color);
+        border-color: var(--btn-primary-outline-border);
+        background-color: var(--btn-primary-outline-background);
+    }
+
+    .btn-outline-primary:hover {
+        background-color: var(--btn-primary-background-color);
+        color: var(--btn-primary-color);
+    }
+
+    .profile-overview {
+        text-align: center;
+    }
+
+    .po-details {
+        flex: 1;
+        min-width: 80px;
+    }
+
+    .po-details__title {
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 0.25rem;
+    }
+
+    .po-details__sTitle {
+        font-size: 0.75rem;
+        color: var(--dark-color);
+    }
+
+    .profile-header-title {
+        font-weight: 600;
+        color: var(--primary-dark-color);
+        font-size: 1.1rem;
+    }
+
+    .user-content-info__item {
+        display: flex;
+        align-items: center;
+        margin-bottom: 0.75rem;
+    }
+
+    .user-content-info__item i {
+        margin-right: 0.5rem;
+        color: var(--primary-color);
+        width: 20px;
+    }
+
+    .user-skils-parent {
+        list-style: none;
+        padding-left: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .user-skils-parent__item a {
+        display: inline-block;
+        background-color: var(--primary-light-color);
+        color: var(--primary-dark-color);
+        padding: 0.25rem 0.75rem;
+        border-radius: 1rem;
+        font-size: 0.875rem;
+        text-decoration: none;
+    }
+
+    .ap-tab-header {
+        position: relative;
+        margin-bottom: 2rem;
+    }
+
+    .ap-tab-header__img {
+        height: 200px;
+        overflow: hidden;
+        border-radius: 0.5rem;
+    }
+
+    .ap-tab-header__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .ap-tab-wrapper {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    .ap-tab-main {
+        padding: 1rem 1.5rem;
+    }
+
+    .ap-tab-main .nav-link {
+        color: white;
+        padding: 0.5rem 1rem;
+        margin-right: 0.5rem;
+        border-radius: 0.25rem;
+        font-weight: 500;
+    }
+
+    .ap-tab-main .nav-link.active,
+    .ap-tab-main .nav-link:hover {
+        background-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .overview-content h2 {
+        font-size: 1.25rem;
+        color: var(--primary-dark-color);
+        margin-bottom: 1rem;
+        font-weight: 600;
+    }
+
+    .badge-round {
+        border-radius: 1rem;
+    }
+
+    .table th {
+        background-color: var(--table-default-background);
+        font-weight: 600;
+        color: var(--dark-color);
+    }
+
+    .ap-product .table-responsive {
+        border-radius: 0.5rem;
+        overflow: hidden;
+    }
+
+    .friends-widget h2 {
+        font-size: 1.25rem;
+        color: var(--primary-dark-color);
+        margin-bottom: 0;
+        font-weight: 600;
+    }
+
+    #trackingURL,
+    #trackingShortURL {
+        word-break: break-all;
+        color: var(--primary-color);
+        font-weight: 500;
+    }
+
+    .btn-outline-dashed {
+        border: 1px dashed var(--primary-color);
+        color: var(--primary-color);
+    }
+
+    .btn-outline-dashed:hover {
+        background-color: var(--primary-light-color);
+    }
+
+    @media (max-width: 768px) {
+        .profile-sider {
+            position: static;
+        }
+
+        .ap-tab-header__img {
+            height: 150px;
+        }
+
+        .ap-tab-main {
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding-bottom: 0.5rem;
+        }
+
+        .ap-tab-main .nav-link {
+            white-space: nowrap;
+        }
+    }
+</style>
 
 @endpushonce
 
 @pushonce('scripts')
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/drawer.js") }}"></script>
-    <script>
-        function clickToCopy(id, msg)
-        {
-            copyToClipboard(document.getElementById(id))
-            normalMsg({"message": msg, "success": true});
-        }
-        function prepareVoucherFormContent(id)
-        {
-            $.ajax({
-                url: `/publisher/creatives/coupons/${id}`,
-                type: 'GET',
-                success: function (response) {
-                    $("#voucherModalContent").html(response)
-                },
-                error: function (response) {
+<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/drawer.js") }}"></script>
+<script>
+    function clickToCopy(id, msg) {
+        copyToClipboard(document.getElementById(id))
+        normalMsg({ "message": msg, "success": true });
+    }
+    function prepareVoucherFormContent(id) {
+        $.ajax({
+            url: `/publisher/creatives/coupons/${id}`,
+            type: 'GET',
+            success: function (response) {
+                $("#voucherModalContent").html(response)
+            },
+            error: function (response) {
 
-                }
-            });
-        }
-        function changeLimit()
-        {
-            $.ajax({
-                url: '{{ route("publisher.set-limit") }}',
-                type: 'GET',
-                data: {"limit": $("#limit").val(), "type": "coupon"},
-                success: function (response) {
-                    if(response) {
-                        window.location.reload();
-                    }
-                },
-                error: function (response) {
-
-                }
-            });
-        }
-        function fetch_data(page = 1)
-        {
-            $.ajax({
-                url: '{{ route("publisher.creatives.coupons.list") }}',
-                type: 'GET',
-                data: {"search_by_name": "{{ $advertiser->advertiser_id }}", page},
-                beforeSend: function () {
-                },
-                success: function (response) {
-                    $("#ap-overview").html(response.html);
-                    $("#limit").change(function () {
-                        changeLimit();
-                    });
-                },
-                error: function (response) {
-
-                }
-            });
-        }
-        document.addEventListener("DOMContentLoaded", function () {
-            $(document).on('click', '.atbd-pagination__item a', function(event){
-                event.preventDefault();
-                let page = $(this).attr('href').split('page=')[1];
-                fetch_data(page);
-            });
-            $("#coupons-tab").one( "click", function () {
-                fetch_data();
-            });
-            $("#applyAdvertiser").submit(function () {
-                $("#applyAdvertiserBttn").prop('disabled', true);
-            });
+            }
         });
-    </script>
+    }
+    function changeLimit() {
+        $.ajax({
+            url: '{{ route("publisher.set-limit") }}',
+            type: 'GET',
+            data: { "limit": $("#limit").val(), "type": "coupon" },
+            success: function (response) {
+                if (response) {
+                    window.location.reload();
+                }
+            },
+            error: function (response) {
+
+            }
+        });
+    }
+    function fetch_data(page = 1) {
+        $.ajax({
+            url: '{{ route("publisher.creatives.coupons.list") }}',
+            type: 'GET',
+            data: { "search_by_name": "{{ $advertiser->advertiser_id }}", page },
+            beforeSend: function () {
+            },
+            success: function (response) {
+                $("#ap-overview").html(response.html);
+                $("#limit").change(function () {
+                    changeLimit();
+                });
+            },
+            error: function (response) {
+
+            }
+        });
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        $(document).on('click', '.atbd-pagination__item a', function (event) {
+            event.preventDefault();
+            let page = $(this).attr('href').split('page=')[1];
+            fetch_data(page);
+        });
+        $("#coupons-tab").one("click", function () {
+            fetch_data();
+        });
+        $("#applyAdvertiser").submit(function () {
+            $("#applyAdvertiserBttn").prop('disabled', true);
+        });
+    });
+</script>
 @endpushonce
 
 @section("content")
@@ -85,37 +303,34 @@
     <div class="contents">
 
         <div class="container-fluid">
-            <div class="profile-content mb-50">
+            <div class="profile-content mb-5">
                 <div class="row">
                     <div class="col-lg-12">
-
-                        <div class="breadcrumb-main">
+                        <div class="breadcrumb-main mb-4">
                             <h4 class="text-capitalize breadcrumb-title"></h4>
-
                         </div>
-
                     </div>
-                    <div class="cos-lg-3 col-md-4  ">
+
+                    <div class="col-lg-3 col-md-4">
                         <aside class="profile-sider">
-                            <!-- Profile Acoount -->
-                            <div class="card mb-25">
-                                <div class="card-body text-center pt-sm-30 pb-sm-0  px-25 pb-0">
-
+                            <!-- Profile Account -->
+                            <div class="card mb-4">
+                                <div class="card-body text-center pt-4 pb-0 px-3">
                                     <div class="account-profile">
-                                    <div class="ap-img w-100 d-flex justify-content-center">
+                                        <div class="ap-img w-100 d-flex justify-content-center mb-3">
                                             <!-- Profile picture image-->
-                                          @if (!empty($advertiser->fetch_logo_url) && $advertiser->is_fetchable_logo)
-    <img loading="lazy" class="ap-img__main w-auto h-40 mb-3 d-flex" 
-         src="{{ $advertiser->fetch_logo_url }}" alt="{{ $advertiser->name }}">
-@elseif (!empty($advertiser->logo))
-    <img src="{{ \App\Helper\Static\Methods::staticAsset("$advertiser->logo") }}" 
-         alt="{{ $advertiser->name }}" class="mw-50px mw-lg-75px">
-@else
-    <img loading="lazy" class="ap-img__main w-auto h-40 mb-3 d-flex" 
-         src="{{ \App\Helper\Static\Methods::isImageShowable($advertiser->logo) }}" 
-         alt="{{ $advertiser->name }}">
-@endif
-
+                                            @if (!empty($advertiser->fetch_logo_url) && $advertiser->is_fetchable_logo)
+                                                <img loading="lazy" class="ap-img__main" src="{{ $advertiser->fetch_logo_url }}"
+                                                    alt="{{ $advertiser->name }}">
+                                            @elseif (!empty($advertiser->logo))
+                                                <img class="ap-img__main"
+                                                    src="{{ \App\Helper\Static\Methods::staticAsset("$advertiser->logo") }}"
+                                                    alt="{{ $advertiser->name }}">
+                                            @else
+                                                <img loading="lazy" class="ap-img__main"
+                                                    src="{{ \App\Helper\Static\Methods::isImageShowable($advertiser->logo) }}"
+                                                    alt="{{ $advertiser->name }}">
+                                            @endif
                                         </div>
                                         <div class="ap-nameAddress pb-3 pt-1">
                                             <h5 class="ap-nameAddress__title">{{ $advertiser->name }}</h5>
@@ -123,7 +338,7 @@
                                             <p class="ap-nameAddress__subTitle fs-14 m-0">
                                                 @php
                                                     $regions = $advertiser->primary_regions ?? [];
-                                                    if(count($regions) > 1) {
+                                                    if (count($regions) > 1) {
                                                         $regions = "Multi";
                                                     } elseif (count($regions) == 1 && $regions[0] == "00") {
                                                         $regions = "All";
@@ -133,51 +348,52 @@
                                                         $regions = "-";
                                                     }
                                                 @endphp
-                                                <span data-feather="map-pin"></span>{{ $regions }}
+                                                <i class="ri-map-pin-line"></i> {{ $regions }}
                                             </p>
                                         </div>
                                         <div class="ap-button button-group d-flex justify-content-center flex-wrap">
-                                            <button type="button" class="border text-capitalize px-25 color-gray transparent shadow2 radius-md drawer-trigger" data-drawer="account">
-                                                <span data-feather="mail"></span>message</button>
+                                            <button type="button"
+                                                class="btn btn-outline-primary btn-sm text-capitalize px-3 drawer-trigger"
+                                                data-drawer="account">
+                                                <i class="ri-mail-line"></i> Message
+                                            </button>
 
                                             @if(isset($advertiser->advertiser_applies->status) && $advertiser->advertiser_applies->status == \App\Models\AdvertiserApply::STATUS_PENDING)
-
-                                                <button type="button" class="btn btn-warning  btn-default btn-squared text-capitalize px-25 shadow2 radius-md" disabled>
-                                                    <i class="las la-clock color-white"></i> Pending
+                                                <button type="button" class="btn btn-warning btn-sm text-capitalize px-3"
+                                                    disabled>
+                                                    <i class="ri-time-line"></i> Pending
                                                 </button>
-
                                             @elseif(isset($advertiser->advertiser_applies->status) && $advertiser->advertiser_applies->status == \App\Models\AdvertiserApply::STATUS_ACTIVE)
-
-                                                <button type="button" class="btn btn-success btn-default btn-squared text-capitalize px-25 shadow2 radius-md" disabled>
-                                                    <i class="las la-check color-white"></i> Joined
+                                                <button type="button" class="btn btn-success btn-sm text-capitalize px-3"
+                                                    disabled>
+                                                    <i class="ri-check-line"></i> Joined
                                                 </button>
-
                                             @elseif(isset($advertiser->advertiser_applies->status) && $advertiser->advertiser_applies->status == \App\Models\AdvertiserApply::STATUS_REJECTED)
-
-                                                <button type="button" class="btn btn-danger btn-default btn-squared text-capitalize px-25 shadow2 radius-md" disabled>
-                                                    <i class="las la-times color-white"></i> Rejected
+                                                <button type="button" class="btn btn-danger btn-sm text-capitalize px-3"
+                                                    disabled>
+                                                    <i class="ri-close-line"></i> Rejected
                                                 </button>
-
                                             @elseif(isset($advertiser->advertiser_applies->status) && $advertiser->advertiser_applies->status == \App\Models\AdvertiserApply::STATUS_HOLD)
-
-                                                <button type="button" class="btn btn-secondary btn-default btn-squared text-capitalize px-25 shadow2 radius-md" disabled>
-                                                    <i class="las la-stop-circle color-white"></i> Hold
+                                                <button type="button" class="btn btn-secondary btn-sm text-capitalize px-3"
+                                                    disabled>
+                                                    <i class="ri-stop-circle-line"></i> Hold
                                                 </button>
-
                                             @else
-
-                                                <button type="button" class="btn btn-default btn-squared btn-outline-success text-capitalize px-25 shadow2 follow radius-md" data-toggle="modal" data-target="#modal-basic">
-                                                    <span class="las la-user-plus follow-icon"></span> Apply
+                                                <button type="button"
+                                                    class="btn btn-outline-success btn-sm text-capitalize px-3 follow"
+                                                    data-toggle="modal" data-target="#modal-basic">
+                                                    <i class="ri-user-add-line follow-icon"></i> Apply
                                                 </button>
-
                                             @endif
                                         </div>
                                     </div>
 
-                                    <div class="card-footer mt-20 pt-20 pb-20 px-0">
+                                    <div class="card-footer mt-4 pt-3 pb-3 px-0">
                                         <div class="profile-overview d-flex justify-content-between flex-wrap">
                                             <div class="po-details">
-                                                <h6 class="po-details__title pb-1">{{ $advertiser->commission }}{{ $advertiser->commission_type == "percentage" ? "%" : $advertiser->commission_type }}</h6>
+                                                <h6 class="po-details__title pb-1">
+                                                    {{ $advertiser->commission }}{{ $advertiser->commission_type == "percentage" ? "%" : $advertiser->commission_type }}
+                                                </h6>
                                                 <span class="po-details__sTitle">Commission</span>
                                             </div>
                                             <div class="po-details">
@@ -185,28 +401,31 @@
                                                 <span class="po-details__sTitle">Regions</span>
                                             </div>
                                             <div class="po-details">
-                                                <h6 class="po-details__title pb-1">{{ $advertiser->average_payment_time ?? "-" }} <span class="fs-12">days</span></h6>
+                                                <h6 class="po-details__title pb-1">
+                                                    {{ $advertiser->average_payment_time ?? "-" }} <span
+                                                        class="fs-12">days</span>
+                                                </h6>
                                                 <span class="po-details__sTitle">APC</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <!-- Profile Acoount End -->
+                            <!-- Profile Account End -->
 
                             @if(isset($advertiser->advertiser_applies->status) && $advertiser->advertiser_applies->status == \App\Models\AdvertiserApply::STATUS_ACTIVE)
                                 @include("template.publisher.widgets.deeplink", compact('advertiser'))
                             @endif
 
                             <!-- Profile User Bio -->
-                            <div class="card mb-25">
+                            <div class="card mb-4">
                                 <div class="user-bio border-bottom">
-                                    <div class="card-header border-bottom-0 pt-sm-30 pb-sm-0  px-md-25 px-3">
+                                    <div class="card-header border-bottom-0 pt-3 pb-0 px-3">
                                         <div class="profile-header-title">
                                             About
                                         </div>
                                     </div>
-                                    <div class="card-body pt-md-1 pt-0">
+                                    <div class="card-body pt-2 pb-3">
                                         <div class="user-bio__content">
                                             @if($advertiser->short_description)
                                                 <p class="m-0">
@@ -235,30 +454,30 @@
                                     </div>
                                 </div>
                                 <div class="user-info border-bottom">
-                                    <div class="card-header border-bottom-0 pt-sm-25 pb-sm-0  px-md-25 px-3">
+                                    <div class="card-header border-bottom-0 pt-3 pb-0 px-3">
                                         <div class="profile-header-title">
                                             Contact info
                                         </div>
                                     </div>
-                                    <div class="card-body pt-md-1 pt-0">
+                                    <div class="card-body pt-2 pb-3">
                                         <div class="user-content-info">
                                             <p class="user-content-info__item">
-                                                <span data-feather="mail"></span>{{ $advertiser->user->email ?? "-" }}
+                                                <i class="ri-mail-line"></i>{{ $advertiser->user->email ?? "-" }}
                                             </p>
                                             <p class="user-content-info__item mb-0">
-                                                <span data-feather="globe"></span>
+                                                <i class="ri-global-line"></i>
                                                 {!! $url !!}
                                             </p>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="user-skils border-bottom">
-                                    <div class="card-header border-bottom-0 pt-sm-25 pb-sm-0  px-md-25 px-3">
+                                    <div class="card-header border-bottom-0 pt-3 pb-0 px-3">
                                         <div class="profile-header-title">
                                             Primary Regions
                                         </div>
                                     </div>
-                                    <div class="card-body pt-md-1 pt-0">
+                                    <div class="card-body pt-2 pb-3">
                                         <ul class="user-skils-parent">
                                             @if($advertiser->primary_regions)
                                                 @foreach($advertiser->primary_regions as $region)
@@ -271,12 +490,12 @@
                                     </div>
                                 </div>
                                 <div class="user-skils border-bottom">
-                                    <div class="card-header border-bottom-0 pt-sm-25 pb-sm-0  px-md-25 px-3">
+                                    <div class="card-header border-bottom-0 pt-3 pb-0 px-3">
                                         <div class="profile-header-title">
                                             Supported Regions
                                         </div>
                                     </div>
-                                    <div class="card-body pt-md-1 pt-0">
+                                    <div class="card-body pt-2 pb-3">
                                         <ul class="user-skils-parent">
                                             @if($advertiser->supported_regions)
                                                 @foreach($advertiser->supported_regions as $region)
@@ -292,13 +511,13 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="user-skils border-bottom">
-                                    <div class="card-header border-bottom-0 pt-sm-25 pb-sm-0  px-md-25 px-3">
+                                <div class="user-skils">
+                                    <div class="card-header border-bottom-0 pt-3 pb-0 px-3">
                                         <div class="profile-header-title">
                                             Categories
                                         </div>
                                     </div>
-                                    <div class="card-body pt-md-1 pt-0">
+                                    <div class="card-body pt-2 pb-3">
                                         <ul class="user-skils-parent">
                                             @if($advertiser->categories)
                                                 @foreach(\App\Helper\PublisherData::getMixNames($advertiser->categories) as $category)
@@ -314,243 +533,164 @@
                                         </ul>
                                     </div>
                                 </div>
-{{--                                <div class="db-social border-bottom">--}}
-{{--                                    <div class="card-header border-bottom-0 pt-sm-25 pb-sm-0  px-md-25 px-3">--}}
-{{--                                        <div class="profile-header-title">--}}
-{{--                                            Social Profiles--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="card-body pt-md-1 pt-0">--}}
-{{--                                        <ul class="db-social-parent mb-0">--}}
-{{--                                            <li class="db-social-parent__item">--}}
-{{--                                                <a class="color-facebook hover-facebook wh-44 fs-22" href="#">--}}
-{{--                                                    <i class="lab la-facebook-f"></i>--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="db-social-parent__item">--}}
-{{--                                                <a class="color-twitter hover-twitter wh-44 fs-22" href="#">--}}
-{{--                                                    <i class="lab la-twitter"></i>--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="db-social-parent__item">--}}
-{{--                                                <a class="color-ruby hover-ruby  wh-44 fs-22" href="#">--}}
-{{--                                                    <i class="las la-basketball-ball"></i>--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                            <li class="db-social-parent__item">--}}
-{{--                                                <a class="color-instagram hover-instagram wh-44 fs-22" href="#">--}}
-{{--                                                    <i class="lab la-instagram"></i>--}}
-{{--                                                </a>--}}
-{{--                                            </li>--}}
-{{--                                        </ul>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
                             </div>
-                            <!-- Profile User Bio End -->
-{{--                            <!-- Profile files Bio -->--}}
-{{--                            <div class="card mb-25">--}}
-{{--                                <div class="card-header py-20  px-sm-25 px-3 ">--}}
-{{--                                    <h6>files</h6>--}}
-{{--                                </div>--}}
-{{--                                <div class="card-body">--}}
-{{--                                    <div class="mb-20">--}}
-
-{{--                                        <div class="files-area d-flex justify-content-between align-items-center">--}}
-{{--                                            <div class="files-area__left d-flex align-items-center">--}}
-{{--                                                <div class="files-area__img">--}}
-{{--                                                    <img src="{{ $advertiser->logo }}" alt="img" class="wh-42">--}}
-{{--                                                </div>--}}
-{{--                                                <div class="files-area__title">--}}
-{{--                                                    <p class="mb-0 fs-14 fw-500 color-dark text-capitalize">Main-admin-design.zip</p>--}}
-{{--                                                    <span class="color-light fs-12 d-flex ">7.05 MB</span>--}}
-{{--                                                    <div class="d-flex text-capitalize">--}}
-{{--                                                        <a href="#" class="fs-12 fw-500 color-primary ">download</a>--}}
-{{--                                                        <a href="#" class="fs-12 fw-500 color-primary ml-10"></a>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-{{--                                    <div class="mb-0">--}}
-
-{{--                                        <div class="files-area d-flex justify-content-between align-items-center">--}}
-{{--                                            <div class="files-area__left d-flex align-items-center">--}}
-{{--                                                <div class="files-area__img">--}}
-{{--                                                    <img src="{{ $advertiser->logo }}" alt="img" class="wh-42">--}}
-{{--                                                </div>--}}
-{{--                                                <div class="files-area__title">--}}
-{{--                                                    <p class="mb-0 fs-14 fw-500 color-dark text-capitalize">Product-guidelines.pdf</p>--}}
-{{--                                                    <span class="color-light fs-12 d-flex ">5.07 KB</span>--}}
-{{--                                                    <div class="d-flex text-capitalize">--}}
-{{--                                                        <a href="#" class="fs-12 fw-500 color-primary ">view</a>--}}
-{{--                                                        <a href="#" class="fs-12 fw-500 color-primary ml-10">download</a>--}}
-{{--                                                    </div>--}}
-{{--                                                </div>--}}
-
-{{--                                            </div>--}}
-{{--                                        </div>--}}
-
-{{--                                    </div>--}}
-
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <!-- Profile files End -->--}}
                         </aside>
                     </div>
 
-                    <div class="col">
+                    <div class="col-lg-9 col-md-8">
                         <!-- Tab Menu -->
-                        <div class="ap-tab ap-tab-header">
+                        <div class="ap-tab ap-tab-header mb-4">
                             <div class="ap-tab-header__img">
-                                <img src="{{ \App\Helper\Static\Methods::staticAsset("img/placeholder-cover.png") }}" alt="ap-header" class="img-fluid w-100">
+                                <img src="{{ \App\Helper\Static\Methods::staticAsset("img/placeholder-cover.png") }}"
+                                    alt="ap-header" class="img-fluid w-100">
                             </div>
                             <div class="ap-tab-wrapper">
-                                <ul class="nav px-25 ap-tab-main" id="ap-tab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="overview-tab" data-toggle="pill" href="#overview" role="tab" aria-controls="overview" aria-selected="true">Overview</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="commission-rates-tab" data-toggle="pill" href="#commission-rates" role="tab" aria-controls="commission-rates" aria-selected="false">Commission Rates</a>
-                                    </li>
+                                <div class="header-nav p-3" id="ap-tab" role="tablist">
+                                    <div class="nav-item">
+                                        <a class="nav-link active" id="overview-tab" data-bs-toggle="pill" href="#overview"
+                                            role="tab" aria-controls="overview" aria-selected="true">Overview</a>
+                                    </div>
+                                    <div class="nav-item">
+                                        <a class="nav-link" id="commission-rates-tab" data-bs-toggle="pill"
+                                            href="#commission-rates" role="tab" aria-controls="commission-rates"
+                                            aria-selected="false">Commission Rates</a>
+                                    </div>
                                     @if(isset($advertiser->advertiser_applies->status) && $advertiser->advertiser_applies->status == \App\Models\AdvertiserApply::STATUS_ACTIVE)
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="links-tab" data-toggle="pill" href="#links" role="tab" aria-controls="links" aria-selected="false">Tracking links</a>
-                                        </li>
+                                        <div class="nav-item">
+                                            <a class="nav-link" id="links-tab" data-bs-toggle="pill" href="#links" role="tab"
+                                                aria-controls="links" aria-selected="false">Tracking links</a>
+                                        </div>
                                     @endif
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="terms-tab" data-toggle="pill" href="#terms" role="tab" aria-controls="terms" aria-selected="false">Terms</a>
-                                    </li>
+                                    <div class="nav-item">
+                                        <a class="nav-link" id="terms-tab" data-bs-toggle="pill" href="#terms" role="tab"
+                                            aria-controls="terms" aria-selected="false">Terms</a>
+                                    </div>
                                     @if(isset($advertiser->advertiser_applies->status) && $advertiser->advertiser_applies->status == \App\Models\AdvertiserApply::STATUS_ACTIVE)
-                                        <li class="nav-item">
-                                            <a class="nav-link" id="coupons-tab" data-toggle="pill" href="#coupons" role="tab" aria-controls="coupons" aria-selected="false">Creative</a>
-                                        </li>
+                                        <div class="nav-item">
+                                            <a class="nav-link" id="coupons-tab" data-bs-toggle="pill" href="#coupons"
+                                                role="tab" aria-controls="coupons" aria-selected="false">Creative</a>
+                                        </div>
                                     @endif
-                                </ul>
+                                </div>
                             </div>
                         </div>
                         <!-- Tab Menu End -->
-                        <div class="tab-content mt-25" id="ap-tabContent">
-                            <div class="tab-pane fade show active" id="overview" role="tabpanel" aria-labelledby="overview-tab">
+
+                        <div class="tab-content mt-4" id="ap-tabContent">
+                            <div class="tab-pane fade show active" id="overview" role="tabpanel"
+                                aria-labelledby="overview-tab">
                                 <div class="ap-content-wrapper">
                                     @include("partial.admin.alert")
                                     <div class="row">
-                                        <div class="col-lg-4 mb-25">
+                                        <div class="col-lg-4 mb-4">
                                             <!-- Card 1 -->
-                                            <div class="ap-po-details radius-xl bg-white d-flex justify-content-between">
-                                                <div>
-                                                    <div class="overview-content">
-                                                        <h2>Detailed Introduction</h2>
-                                                        <div>
-                                                            @if($advertiser->description)
-                                                                {!! $advertiser->description ?? "-" !!}
-                                                            @else
-                                                                {!! $advertiser->short_description !!}
-                                                            @endif
-                                                        </div>
+                                            <div class="ap-po-details rounded-3 bg-white p-3 h-100">
+                                                <div class="overview-content">
+                                                    <h2>Detailed Introduction</h2>
+                                                    <div>
+                                                        @if($advertiser->description)
+                                                            {!! $advertiser->description ?? "-" !!}
+                                                        @else
+                                                            {!! $advertiser->short_description !!}
+                                                        @endif
                                                     </div>
-
                                                 </div>
-
                                             </div>
                                             <!-- Card 1 End -->
                                         </div>
-                                        <div class="col-lg-4 mb-25">
+                                        <div class="col-lg-4 mb-4">
                                             <!-- Card 2 End  -->
-                                            <div class="ap-po-details radius-xl bg-white d-flex justify-content-between">
-                                                <div>
-                                                    <div class="overview-content">
-                                                        <h2>Preferred Promotional Methods</h2>
-                                                        <p>Promotional Traffic from these sources is allowed:</p>
-                                                        <ul class="user-skils-parent">
-                                                            @if($advertiser->promotional_methods)
-                                                                @foreach(\App\Helper\PublisherData::getMixNames($advertiser->promotional_methods) as $method)
-                                                                    <li class="badge badge-round badge-success badge-lg my-2 mr-2">
-                                                                        {{ $method }}
-                                                                    </li>
-                                                                @endforeach
-                                                            @else
-                                                                -
-                                                            @endif
-                                                        </ul>
-                                                    </div>
+                                            <div class="ap-po-details rounded-3 bg-white p-3 h-100">
+                                                <div class="overview-content">
+                                                    <h2>Preferred Promotional Methods</h2>
+                                                    <p>Promotional Traffic from these sources is allowed:</p>
+                                                    <ul class="user-skils-parent">
+                                                        @if($advertiser->promotional_methods)
+                                                            @foreach(\App\Helper\PublisherData::getMixNames($advertiser->promotional_methods) as $method)
+                                                                <li class="badge badge-round badge-success my-2">
+                                                                    {{ $method }}
+                                                                </li>
+                                                            @endforeach
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </ul>
                                                 </div>
                                             </div>
                                             <!-- Card 2 End  -->
                                         </div>
-                                        <div class="col-lg-4 mb-25">
+                                        <div class="col-lg-4 mb-4">
                                             <!-- Card 3 -->
-                                            <div class="ap-po-details radius-xl bg-white d-flex justify-content-between">
-                                                <div>
-                                                    <div class="overview-content">
-                                                        <h2>Restricted Methods</h2>
-                                                        <p>Promotional Traffic from these sources are strictly not allowed:</p>
-                                                        <ul class="user-skils-parent">
-                                                            @if($advertiser->program_restrictions)
-                                                                @foreach(\App\Helper\PublisherData::getMixNames($advertiser->program_restrictions) as $method)
-                                                                    <li class="badge badge-round badge-danger badge-lg my-2 mr-2">
-                                                                        {{ $method }}
-                                                                    </li>
-                                                                @endforeach
-                                                            @else
-                                                                -
-                                                            @endif
-                                                        </ul>
-                                                    </div>
+                                            <div class="ap-po-details rounded-3 bg-white p-3 h-100">
+                                                <div class="overview-content">
+                                                    <h2>Restricted Methods</h2>
+                                                    <p>Promotional Traffic from these sources are strictly not allowed:</p>
+                                                    <ul class="user-skils-parent">
+                                                        @if($advertiser->program_restrictions)
+                                                            @foreach(\App\Helper\PublisherData::getMixNames($advertiser->program_restrictions) as $method)
+                                                                <li class="badge badge-round badge-danger my-2">
+                                                                    {{ $method }}
+                                                                </li>
+                                                            @endforeach
+                                                        @else
+                                                            -
+                                                        @endif
+                                                    </ul>
                                                 </div>
                                             </div>
                                             <!-- Card 3 End -->
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
-                            <div class="tab-pane fade" id="commission-rates" role="tabpanel" aria-labelledby="commission-rates-tab">
+                            <div class="tab-pane fade" id="commission-rates" role="tabpanel"
+                                aria-labelledby="commission-rates-tab">
                                 <div class="ap-post-content">
                                     <div class="row">
                                         <div class="col-lg-12">
                                             <!-- Product Table -->
-                                            <div class="card mt-25 mb-40">
-                                                <div class="card-header text-capitalize px-md-25 px-3">
-                                                    <h2>Commission Terms</h2>
+                                            <div class="card mt-3 mb-4">
+                                                <div class="card-header text-capitalize px-3">
+                                                    <h1 class="title">Commission Terms</h1>
                                                 </div>
-                                                <div class="card-body p-0">
-                                                    <div class="ap-product">
+                                                <div class="card-body">
+                                                    <div class="table-container">
                                                         <div class="table-responsive">
-                                                            <table class="table">
-                                                                <thead>
+                                                        <table class="table table-hover">
+                                                            <thead>
                                                                 <tr>
                                                                     <th>Date</th>
                                                                     <th>Condition</th>
                                                                     <th class="text-center">Commission Rate</th>
                                                                     <th>Additional info</th>
                                                                 </tr>
-                                                                </thead>
-                                                                <tbody>
-                                                                    @if(count($advertiser->commissions))
-                                                                        @foreach($advertiser->commissions as $commission)
-                                                                            <tr>
-                                                                                @if(empty($commission->date))
-                                                                                    <td>{{ now()->format("Y-m-d") }}</td>
-                                                                                @else
-                                                                                    <td>{{ $commission->date }}</td>
-                                                                                @endif
-                                                                                <td>{{ $commission->condition ?? "-" }}</td>
-                                                                                <td class="text-center">{{ $commission->rate ?? "-" }}{{ $commission->type == "amount" ? $advertiser->currency_code : "%" }}</td>
-                                                                                <td>{{ $commission->info ?? "-" }}</td>
-                                                                            </tr>
-                                                                        @endforeach
-                                                                    @else
-                                                                        <tr class="border-0">
-                                                                            <td class="text-center" colspan="4">
-                                                                                <small>No Commission Rates Exist</small>
+                                                            </thead>
+                                                            <tbody>
+                                                                @if(count($advertiser->commissions))
+                                                                    @foreach($advertiser->commissions as $commission)
+                                                                        <tr>
+                                                                            @if(empty($commission->date))
+                                                                                <td>{{ now()->format("Y-m-d") }}</td>
+                                                                            @else
+                                                                                <td>{{ $commission->date }}</td>
+                                                                            @endif
+                                                                            <td>{{ $commission->condition ?? "-" }}</td>
+                                                                            <td class="text-center">
+                                                                                {{ $commission->rate ?? "-" }}{{ $commission->type == "amount" ? $advertiser->currency_code : "%" }}
                                                                             </td>
+                                                                            <td>{{ $commission->info ?? "-" }}</td>
                                                                         </tr>
-                                                                    @endif
-                                                                </tbody>
-                                                            </table>
-                                                        </div>
+                                                                    @endforeach
+                                                                @else
+                                                                    <tr class="border-0">
+                                                                        <td class="text-center" colspan="4">
+                                                                            <small>No Commission Rates Exist</small>
+                                                                        </td>
+                                                                    </tr>
+                                                                @endif
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -564,41 +704,54 @@
                                     <div class="ap-post-content">
                                         <div class="row">
                                             <div class="col-xxl-12">
-                                                <div class="card global-shadow mb-25">
+                                                <div class="card mb-4">
                                                     <div class="friends-widget">
-                                                        <div class="card-header px-md-25 px-3">
-                                                            <h2>Tracking Link</h2>
+                                                        <div class="pt-3 px-3">
+                                                            <h1 class="title">Tracking Link</h1>
                                                         </div>
-                                                        <div class="card-body ">
-                                                           
+                                                        <div class="card-body">
                                                             @if(isset($advertiser->advertiser_applies->is_tracking_generate) && isset($advertiser->advertiser_applies->tracking_url) && $advertiser->advertiser_applies->is_tracking_generate == 1)
-                                                                <a href="{{ $advertiser->advertiser_applies->tracking_url_long ?? $advertiser->advertiser_applies->tracking_url }}" target="_blank" id="trackingURL">{{ $advertiser->advertiser_applies->tracking_url_long ?? $advertiser->advertiser_applies->tracking_url }}</a>
-                                                                <br /><br />
-                                                                <a href="javascript:void(0)" onclick="clickToCopy('trackingURL', 'Tracking URL Successfully Copied.')" class="btn btn-xs btn-outline-dashed">Copy Tracking Link</a>
+                                                                <a href="{{ $advertiser->advertiser_applies->tracking_url_long ?? $advertiser->advertiser_applies->tracking_url }}"
+                                                                    target="_blank"
+                                                                    id="trackingURL">{{ $advertiser->advertiser_applies->tracking_url_long ?? $advertiser->advertiser_applies->tracking_url }}</a>
+                                                                <br><br>
+                                                                <a href="javascript:void(0)"
+                                                                    onclick="clickToCopy('trackingURL', 'Tracking URL Successfully Copied.')"
+                                                                    class="btn btn-primary-outline btn-sm">Copy Tracking Link</a>
                                                             @elseif(isset($advertiser->advertiser_applies->is_tracking_generate) && $advertiser->advertiser_applies->is_tracking_generate == 2)
-                                                                <a href="javascript:void(0)"><i>Generating tracking links.....</i></a>
-                                                                <br /><br />
-                                                                <a href="javascript:void(0)" class="btn btn-xs btn-outline-dashed">Copy Tracking Link</a>
+                                                                <a href="javascript:void(0)"><i>Generating tracking
+                                                                        links.....</i></a>
+                                                                <br><br>
+                                                                <a href="javascript:void(0)"
+                                                                    class="btn btn-primary-outline btn-sm">Copy Tracking Link</a>
                                                             @else
                                                                 -
                                                             @endif
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="card global-shadow mb-25">
+                                                <div class="card mb-4">
                                                     <div class="friends-widget">
-                                                        <div class="card-header px-md-25 px-3">
-                                                            <h2>Short Tracking Link</h2>
+                                                        <div class="pt-3 px-3">
+                                                            <h1 class="title">Short Tracking Link</h1>
                                                         </div>
-                                                        <div class="card-body ">
+                                                        <div class="card-body">
                                                             @if(isset($advertiser->advertiser_applies->is_tracking_generate) && isset($advertiser->advertiser_applies->tracking_url_short) && $advertiser->advertiser_applies->is_tracking_generate == 1)
-                                                                <a href="{{ $advertiser->advertiser_applies->tracking_url_short }}" id="trackingShortURL" target="_blank">{{ $advertiser->advertiser_applies->tracking_url_short }}</a>
-                                                                <br /><br />
-                                                                <a href="javascript:void(0)" onclick="clickToCopy('trackingShortURL', 'Tracking Short URL Successfully Copied.')" class="btn btn-xs btn-outline-dashed">Copy Short Tracking Link</a>
+                                                                <a href="{{ $advertiser->advertiser_applies->tracking_url_short }}"
+                                                                    id="trackingShortURL"
+                                                                    target="_blank">{{ $advertiser->advertiser_applies->tracking_url_short }}</a>
+                                                                <br><br>
+                                                                <a href="javascript:void(0)"
+                                                                    onclick="clickToCopy('trackingShortURL', 'Tracking Short URL Successfully Copied.')"
+                                                                    class="btn btn-primary-outline btn-sm">Copy Short Tracking
+                                                                    Link</a>
                                                             @elseif(isset($advertiser->advertiser_applies->is_tracking_generate) && $advertiser->advertiser_applies->is_tracking_generate == 2)
-                                                                <a href="javascript:void(0)"><i>Generating short tracking links.....</i></a>
-                                                                <br /><br />
-                                                                <a href="javascript:void(0)" class="btn btn-xs btn-outline-dashed">Copy Short Tracking Link</a>
+                                                                <a href="javascript:void(0)"><i>Generating short tracking
+                                                                        links.....</i></a>
+                                                                <br><br>
+                                                                <a href="javascript:void(0)"
+                                                                    class="btn btn-primary-outline btn-sm">Copy Short Tracking
+                                                                    Link</a>
                                                             @else
                                                                 -
                                                             @endif
@@ -615,26 +768,25 @@
                                     <div class="row">
                                         <div class="col-xxl-8">
                                             <!-- Friend post -->
-                                            <div class="card global-shadow mb-25">
+                                            <div class="card mb-4">
                                                 <div class="friends-widget">
-                                                    <div class="card-header px-md-25 px-3">
-                                                        <h2>Program Terms</h2>
+                                                    <div class="pt-3 px-3">
+                                                        <h1 class="title">Program Terms</h1>
                                                     </div>
-                                                    <div class="card-body ">
+                                                    <div class="card-body">
                                                         {!! $advertiser->program_policies ?? "-" !!}
                                                     </div>
                                                 </div>
                                             </div>
                                             <!-- Friend Post End -->
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
                             @if(isset($advertiser->advertiser_applies->status) && $advertiser->advertiser_applies->status == \App\Models\AdvertiserApply::STATUS_ACTIVE)
                                 <div class="tab-pane fade" id="coupons" role="tabpanel" aria-labelledby="coupons-tab">
                                     <div class="ap-post-content">
-                                        <div class="orderDatatable global-shadow border py-30 px-sm-30 px-20 bg-white radius-xl w-100 mb-30" id="ap-overview"></div>
+                                        <div class="table-container" id="ap-overview"></div>
                                     </div>
                                 </div>
                             @endif
@@ -657,8 +809,11 @@
                         </div>
                         <div class="modal-body">
                             <h6 class="ap-nameAddress__title text-black" id="advertiserName">{{ $advertiser->name }}</h6>
-                            <h6 class="ap-nameAddress__subTitle text-left justify-content-start fs-14 pt-1 m-0" id="advertiserID">Brand ID: {{ $advertiser->sid }}</h6>
-                            <p class="font-weight-bold mt-3 text-black">Optional: Tell us about your promotional methods and general marketing plan for this merchant to help speed up approval. (Websites you'll use, PPC terms, etc.)</p>
+                            <h6 class="ap-nameAddress__subTitle text-left justify-content-start fs-14 pt-1 m-0"
+                                id="advertiserID">Brand ID: {{ $advertiser->sid }}</h6>
+                            <p class="font-weight-bold mt-3 text-black">Optional: Tell us about your promotional methods and
+                                general marketing plan for this merchant to help speed up approval. (Websites you'll use,
+                                PPC terms, etc.)</p>
                             <textarea class="form-control" rows="4" cols="4" name="message"></textarea>
                         </div>
                         <div class="modal-footer">
@@ -687,19 +842,27 @@
                                 <div class="form-row">
                                     <div class="form-group col-lg-6">
                                         <label for="publisher_name">From</label>
-                                        <input type="text" name="publisher_name" id="publisher_name" class="form-control form-control-sm" placeholder="Publisher Name" value="{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}" readonly>
+                                        <input type="text" name="publisher_name" id="publisher_name"
+                                            class="form-control form-control-sm" placeholder="Publisher Name"
+                                            value="{{ auth()->user()->first_name }} {{ auth()->user()->last_name }}"
+                                            readonly>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="advertiser_name">To</label>
-                                        <input type="text" name="advertiser_name" id="advertiser_name" class="form-control form-control-sm" placeholder="Advertiser Name" readonly value="{{ $advertiser->name }}">
+                                        <input type="text" name="advertiser_name" id="advertiser_name"
+                                            class="form-control form-control-sm" placeholder="Advertiser Name" readonly
+                                            value="{{ $advertiser->name }}">
                                     </div>
                                     <div class="form-group col-lg-12">
                                         <label for="subject">Subject</label>
-                                        <input type="text" name="subject" id="subject" class="form-control form-control-sm" placeholder="Please Enter Subject For This Message" >
+                                        <input type="text" name="subject" id="subject" class="form-control form-control-sm"
+                                            placeholder="Please Enter Subject For This Message">
                                     </div>
                                     <div class="form-group col-12">
                                         <label for="question_or_comment">Your Question or Comments</label>
-                                        <textarea name="question_or_comment" id="question_or_comment" class="form-control form-control-sm" placeholder="Please Enter Your Question or Comments"></textarea>
+                                        <textarea name="question_or_comment" id="question_or_comment"
+                                            class="form-control form-control-sm"
+                                            placeholder="Please Enter Your Question or Comments"></textarea>
                                     </div>
                                     <button class="btn btn-primary btn-default btn-squared ">Send Message</button>
                                 </div>

@@ -413,57 +413,71 @@ select {
                 <div class="form-group row">
                     <div>
                         <label for="companyName">Company Legal Name*</label>
-                        <input type="text" id="companyName" placeholder="Enter company name (Leg">
+                        <input type="text" class="form-control" id="company_name" name="company_name" placeholder="Enter company name (Legal)" value="{{ $stepTwo['company_name'] ?? null }}>
                     </div>
                     <div>
                         <label for="entityType">Entity Type*</label>
-                        <select id="entityType">
-                            <option>Please Select</option>
-                        </select>
+                        <select class="js-example-basic-single js-states form-control" id="entity_type" name="entity_type">
+                                        <option value="" disabled selected>Please Select</option>
+                                        @foreach(\App\Models\Publisher::getLegalEntity() as $entity)
+                                            <option {{ isset($stepTwo['entity_type']) && $stepTwo['entity_type'] == $entity['value'] ? "selected" : null }} value="{{ $entity['value'] }}">
+                                                {{ $entity['name'] }}
+                                            </option>
+                                        @endforeach
+                                    </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div>
                         <label for="contactName">Contact Name*</label>
-                        <input type="text" id="contactName" placeholder="Contact Name">
+                        <input type="text" class="form-control" id="contact_name" name="contact_name" placeholder="" value="{{ $stepTwo['contact_name'] ?? null }}">
                     </div>
                     <div>
                         <label for="phone">Phone Number*</label>
                         <div class="phone-input">
                             <span class="country-code">+1</span>
-                            <input type="text" id="phone" placeholder="(201) 555-0123">
+                            <input  type="tel" class="form-control" id="phone_number" name="phone_number" placeholder="" value="{{ $stepTwo['phone_number'] ?? null }}">
                         </div>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div>
                         <label for="country">Country / Region*</label>
-                        <select id="country">
-                            <option>Please Select</option>
-                        </select>
+                        <select class="js-example-basic-single js-states form-control" id="country" name="country">
+                                        <option value="" disabled selected>Please Select</option>
+                                        @foreach($countries as $country)
+                                            <option {{ isset($stepTwo['country']) && $stepTwo['country'] == $country['id'] ? "selected" : null }}  value="{{ $country['id'] }}">{{ ucwords($country['name']) }}</option>
+                                        @endforeach
+                                    </select>
                     </div>
                     <div>
                         <label for="state">State*</label>
-                        <select id="state">
-                            <option>First Select Country / R</option>
-                        </select>
+                        <select class="js-example-basic-single js-states form-control" id="state" name="state">
+                                    <option value="" disabled selected>First Select Country / Region</option>
+                                    @foreach($states as $state)
+                                        <option {{ isset($stepTwo['state']) && $stepTwo['state'] == $state['id'] ? "selected" : null }}  value="{{ $state['id'] }}">{{ ucwords($state['name']) }}</option>
+                                    @endforeach
+                                </select>
                     </div>
                 </div>
                 <div class="form-group row">
                     <div>
                         <label for="city">City</label>
-                        <select id="city">
-                            <option>First Select State</option>
-                        </select>
+                        <select class="js-example-basic-single js-states form-control" id="city" name="city">
+                                    <option value="" disabled selected>First Select State</option>
+                                    @foreach($cities as $city)
+                                        <option {{ isset($stepTwo['city']) && $stepTwo['city'] == $city['id'] ? "selected" : null }}  value="{{ $city['id'] }}">{{ ucwords($city['name']) }}</option>
+                                    @endforeach
+                                </select>
                     </div>
                     <div>
                         <label for="postalCode">Postal Code*</label>
-                        <input type="text" id="postalCode">
+                        <input type="text" class="form-control" id="postal_code" name="postal_code" placeholder="" value="{{ $stepTwo['postal_code'] ?? null }}">
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="address">Address*</label>
-                    <input type="text" id="address" placeholder="Apartment, suite, unit etc.">
+                    <input type="text" class="form-control" id="address" name="address" placeholder="Apartment, suite, unit etc." value="{{ $stepTwo['address'] ?? null }}">
                 </div>
                 <div class="form-buttons">
                     <button type="button" class="btn btn-secondary" onclick="prevStep(1)">← Previous</button>

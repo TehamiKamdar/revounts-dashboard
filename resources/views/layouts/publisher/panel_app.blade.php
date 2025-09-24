@@ -100,10 +100,6 @@
 
     @include("partial.publisher.header")
     <div class="dashboard-container">
-        <button onclick="normalMsg({success: true, message: 'Test notification!'});" class="btn btn-primary">
-            Show Test Notification
-        </button>
-
         <main class="dashboard-main">
             @yield("content")
         </main>

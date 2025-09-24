@@ -75,7 +75,7 @@
 
                     <div class="button-group d-flex pt-3 mb-20 justify-content-between flex-wrap">
                         <a href="javascript:void(0)" onclick="stepFormShow(2)" class="btn btn-light btn-default btn-squared fw-400 text-capitalize m-1"><i class="las la-arrow-left mr-10"></i>Previous</a>
-                        <button type="submit" id="saveTwoStep" class="btn text-white btn-primary btn-default btn-squared text-capitalize m-1">Save &amp; Next<i class="ml-10 mr-0 las la-arrow-right"></i></button>
+                        <button type="submit" id="saveTwoStep" class="btn text-white btn-primary btn-default btn-squared text-capitalize m-1">Save &amp; Next<i class="ml-10 mr-0 ri-arrow-right-line"></i></button>
                     </div>
                 </form>
             </div>
