@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Publisher Registration</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" rel="stylesheet" />
     <style>
         :root {
             /* Colors */
@@ -33,26 +38,30 @@
         }
 
         body {
-    font-family: var(--primary-font-family);
-    background-color: var(--primary-light-color);
-    margin: 0;   /* fixed 50px margin hata diya */
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
+            font-family: var(--primary-font-family);
+            background-color: var(--primary-light-color);
+            margin: 0;
+            /* fixed 50px margin hata diya */
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
 
-.container {
-    display: flex;
-    background-color: #fff;
-    border-radius: 20px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    width: 100%;        /* full width le */
-    max-width: 1200px;  /* lekin max limit bhi set */
-    margin: 20px;       /* thoda responsive gap */
-    overflow: hidden;
-}
+        .container {
+            display: flex;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            /* full width le */
+            max-width: 1200px;
+            /* lekin max limit bhi set */
+            margin: 20px;
+            /* thoda responsive gap */
+            overflow: hidden;
+        }
 
 
         .sidebar {
@@ -149,7 +158,7 @@
             gap: 20px;
         }
 
-        .form-group.row > div {
+        .form-group.row>div {
             flex: 1;
         }
 
@@ -279,70 +288,141 @@
             background-color: #f9f9f9;
             width: 80px;
         }
+
         /* Make form responsive */
 
 
-/* Improve select dropdown spacing */
-select {
-    appearance: none; /* removes default arrow styling */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
-    background-repeat: no-repeat;
-    background-position: right 12px center;
-    background-size: 18px;
-    padding-right: 40px; /* spacing for arrow */
-}
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column;
-        width: 100%;
-        margin: 0;           /* no extra side margins */
-        border-radius: 0;    /* no rounded cut at edges */
-    }
+        /* Improve select dropdown spacing */
+        select {
+            appearance: none;
+            /* removes default arrow styling */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            background-image: url("data:image/svg+xml;utf8,<svg fill='black' height='24' width='24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 18px;
+            padding-right: 40px;
+            /* spacing for arrow */
+        }
 
-    .sidebar {
-        width: 95%;
-        padding: 20px;
-        border-radius: 0;
-        text-align: center;
-    }
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                width: 100%;
+                margin: 0;
+                /* no extra side margins */
+                border-radius: 0;
+                /* no rounded cut at edges */
+            }
 
-    .main-content {
-        width: 90%;
-        padding: 20px;
-    }
+            .sidebar {
+                width: 95%;
+                padding: 20px;
+                border-radius: 0;
+                text-align: center;
+            }
 
-    .form-group.row {
-        flex-direction: column;
-        gap: 15px;
-    }
+            .main-content {
+                width: 90%;
+                padding: 20px;
+            }
 
-    .form-buttons {
-        flex-direction: column;
-        gap: 15px;
-    }
+            .form-group.row {
+                flex-direction: column;
+                gap: 15px;
+            }
 
-    .btn {
-        width: 100%;
-    }
-}
-@media (max-width: 480px) {
-    .progress-bar {
-        justify-content: space-between;  /* evenly distribute */
-    }
-    .progress-step {
-        width: 30px;
-        height: 30px;
-        font-size: 1rem;
-    }
-}
+            .form-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
 
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .progress-bar {
+                justify-content: space-between;
+                /* evenly distribute */
+            }
+
+            .progress-step {
+                width: 30px;
+                height: 30px;
+                font-size: 1rem;
+            }
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
-        @yield('content')
+
+        <div class="sidebar">
+            <div id="sidebar-step-1" class="sidebar-content active">
+                <h2>Join as a Publisher</h2>
+                <p>Start registering your publisher account with LinksCircle and partner with advertisers.</p>
+            </div>
+        </div>
+        <div class="main-content">
+
+            @yield('content')
+        </div>
     </div>
 </body>
+
 </html>
+<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-3.5.1.min.js") }}"></script>
+<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery.validate.min.js") }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+@yield('top_scripts')
+<script>
+
+    let currentStep = 1;
+
+    function updateUI() {
+        // Hide all sections
+        document.querySelectorAll('.form-section').forEach(section => {
+            section.style.display = 'none';
+        });
+        document.querySelectorAll('.sidebar-content').forEach(sidebar => {
+            sidebar.style.display = 'none';
+        });
+
+        // Show current section
+        document.getElementById(`form-step-${currentStep}`).style.display = 'flex';
+        document.getElementById(`sidebar-step-${currentStep}`).style.display = 'block';
+
+        // Update progress bar
+        document.querySelectorAll('.progress-step').forEach(step => {
+            const stepNumber = parseInt(step.id.split('-')[1]);
+            if (stepNumber < currentStep) {
+                step.classList.add('completed');
+                step.classList.remove('active');
+            } else if (stepNumber === currentStep) {
+                step.classList.remove('completed');
+                step.classList.add('active');
+            } else {
+                step.classList.remove('completed', 'active');
+            }
+        });
+    }
+
+    function nextStep(step) {
+        currentStep = step;
+        updateUI();
+    }
+
+    function prevStep(step) {
+        currentStep = step;
+        updateUI();
+    }
+
+    // Initial setup
+    document.addEventListener('DOMContentLoaded', () => {
+        updateUI();
+    });
+</script>

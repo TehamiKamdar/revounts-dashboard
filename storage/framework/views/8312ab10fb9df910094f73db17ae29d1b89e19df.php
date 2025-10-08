@@ -8,8 +8,8 @@
                     <li><?php echo e($error); ?></li>
                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
             </ul>
-            <button type="button" class="close text-capitalize" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">close now</span>
+            <button type="button" class="btn-close text-capitalize" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"></span>
             </button>
         </div>
     </div>
@@ -19,8 +19,8 @@
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <div class="alert-content">
             <p><?php echo e(Session::get('success')); ?></p>
-            <button type="button" class="close text-capitalize" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">close now</span>
+            <button type="button" class="btn-close text-capitalize" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"></span>
             </button>
         </div>
     </div>
@@ -34,8 +34,8 @@
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <div class="alert-content">
             <p><?php echo e(Session::get('status')); ?></p>
-            <button type="button" class="close text-capitalize" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">close now</span>
+            <button type="button" class="btn-close text-capitalize" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"></span>
             </button>
         </div>
     </div>
@@ -49,8 +49,8 @@
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <div class="alert-content">
             <p><?php echo e(Session::get('high_priority_error')); ?></p>
-            <button type="button" class="close text-capitalize" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">close now</span>
+            <button type="button" class="btn-close text-capitalize" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"></span>
             </button>
         </div>
     </div>
@@ -64,8 +64,8 @@
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         <div class="alert-content">
             <p><?php echo Session::get('error'); ?></p>
-            <button type="button" class="close text-capitalize" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">close now</span>
+            <button type="button" class="btn-close text-capitalize" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true"></span>
             </button>
         </div>
     </div>

@@ -1,4 +1,85 @@
 <?php if(auth()->user()->profile_complete_per < 100): ?>
+<style>
+    .sales-target__progress-bar {
+    position: relative;
+    margin: 4px;
+    float: left;
+    text-align: center;
+}
+.sales-target__progress-bar .barOverflow {
+    position: relative;
+    overflow: hidden;
+    width: 222px;
+    height: 111px;
+    margin-bottom: -14px;
+}
+.sales-target__progress-bar .bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 222px;
+    height: 222px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border: 15px solid #eddfff;
+    border-bottom-color: #3c1a55;
+    border-right-color: #3c1a55;
+    transform: rotate(45deg);
+}
+.sales-target__progress-bar .left {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    left: 0;
+    bottom: -24px;
+    overflow: hidden;
+}
+.sales-target__progress-bar .right {
+    position: absolute;
+    background: white;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    right: 0;
+    bottom: -24px;
+    overflow: hidden;
+}
+.sales-target__progress-bar .back {
+    width: 15px;
+    height: 15px;
+    background: #eddfff;
+    position: absolute;
+}
+.sales-target__progress-bar .total-count {
+    position: absolute;
+    top: 92%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 30px;
+    font-weight: 700;
+}
+.sales-target__progress-bar .total-count .total-count__text {
+    font-size: 15px;
+    line-height: 22px;
+    text-transform: capitalize;
+    color: #868EAE;
+    font-weight: 400;
+}
+
+.top-circle {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    left: 0;
+    bottom: 87px;
+    overflow: hidden;
+    top: 88%;
+    left: 12%;
+    transform: translate(-50%, -50%);
+}
+</style>
     <div class="row">
         <div class="col-md-3">
             <div class="sales-target__progress-bar">
@@ -10,7 +91,6 @@
                     <div class="bar">
                         <div class="top-circle"></div>
                     </div>
-
                 </div>
                 <div class="total-count">
                     <span><?php echo e(auth()->user()->profile_complete_per); ?></span>%
@@ -34,15 +114,12 @@
                     </div>
                     <div class="user-group-progress-bar">
 
-                        <div class="progress-wrap d-flex align-items-center mb-0">
 
                             <div class="progress">
-                                <div class="progress-bar bg-primary" role="progressbar" style="width: <?php echo e(auth()->user()->profile_complete_per); ?>%;" aria-valuenow="<?php echo e(auth()->user()->profile_complete_per); ?>" aria-valuemin="0" aria-valuemax="100"></div>
+                                <div class="progress-bar bg-primary" role="progressbar" style="width: <?php echo e(auth()->user()->profile_complete_per); ?>%;" aria-valuenow="<?php echo e(auth()->user()->profile_complete_per); ?>" aria-valuemin="0" aria-valuemax="100"><?php echo e(auth()->user()->profile_complete_per); ?>%</div>
                             </div>
 
-                            <span class="progress-percentage"><?php echo e(auth()->user()->profile_complete_per); ?>%</span>
 
-                        </div>
 
                         <p class="color-light fs-12 mb-0"><?php echo e(count(auth()->user()->profile_complete_section ?? [])); ?> / 5 settings completed</p>
                     </div>

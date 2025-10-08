@@ -1,4 +1,4 @@
-<?php if (! $__env->hasRenderedOnce('90eaa909-3078-451b-aa5a-f1eb6e3c4718')): $__env->markAsRenderedOnce('90eaa909-3078-451b-aa5a-f1eb6e3c4718');
+<?php if (! $__env->hasRenderedOnce('f1b63383-4932-49d0-a6e8-d108ac92bfbe')): $__env->markAsRenderedOnce('f1b63383-4932-49d0-a6e8-d108ac92bfbe');
 $__env->startPush('styles'); ?>
 <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/daterangepicker.css")); ?>">
 <style>
@@ -9,7 +9,7 @@ $__env->startPush('styles'); ?>
 </style>
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('bfe1e5ea-9142-4cd5-9254-724da059fe85')): $__env->markAsRenderedOnce('bfe1e5ea-9142-4cd5-9254-724da059fe85');
+<?php if (! $__env->hasRenderedOnce('796adfdf-8962-4097-93a6-0f77636ce6ac')): $__env->markAsRenderedOnce('796adfdf-8962-4097-93a6-0f77636ce6ac');
 $__env->startPush('scripts'); ?>
 <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/moment/moment.min.js")); ?>"></script>
 <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/daterangepicker.js")); ?>"></script>
@@ -564,6 +564,7 @@ $__env->startPush('scripts'); ?>
                                 <p class="subtitle" id="totalResults">Total Results: <strong><?php echo e($total); ?></strong></p>
                             </div>
                             <?php echo $__env->make("partial.publisher.transaction_alert", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
+                            <hr>
 
                             <div class="date-filter-container my-4 justify-content-end">
                                 <div class="date-input-wrapper">

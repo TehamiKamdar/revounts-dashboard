@@ -72,12 +72,8 @@
 
 <?php if(count($performanceOverviewList) && $performanceOverviewList instanceof \Illuminate\Pagination\LengthAwarePaginator ): ?>
 
-    <div class="d-flex justify-content-sm-end justify-content-start mt-15 pt-25 border-top">
+        <?php echo e($performanceOverviewList->withQueryString()->links('vendor.pagination.custom')); ?>
 
-        <?php echo e($performanceOverviewList->withQueryString()->links()); ?>
-
-
-    </div>
-
+        
 <?php endif; ?>
 <?php /**PATH C:\Users\lenovo\Desktop\revdb\resources\views/template/publisher/reports/performance/transaction/list_view.blade.php ENDPATH**/ ?>

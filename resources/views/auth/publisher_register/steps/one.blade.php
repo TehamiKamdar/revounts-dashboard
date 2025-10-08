@@ -12,10 +12,13 @@
         <span>4</span>
     </div>
 </div>
-<div class="card-header border-bottom-0">
+<div class="page-header">
     <h1 class="pt-20">Join as a Publisher</h1>
     <p>Start registering your publisher account with LinksCircle and partner with advertisers.</p>
+    @section('image')
+
     <div class="div">
         <img class="svg w-100" src="{{ \App\Helper\Static\Methods::staticAsset("img/svg/progress1.svg") }}" alt="img">
     </div>
+    @endsection
 </div>

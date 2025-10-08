@@ -1,9 +1,8 @@
-@extends("layouts.panel_register")
+@extends("layouts.panel_guest")
 
 @section("content")
 
-    <div class=" checkout wizard8 global-shadow border px-sm-50 px-20 mx-auto my-30 bg-white radius-xl w-80" id="signUpForm">
-        <div class="notification-wrapper top-right"></div>
+
 
         @if(($isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour) || (!$isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour))
             @include("auth.publisher_register.step_one", $stepOne)
@@ -19,8 +18,6 @@
 
         @endif
 
-    </div><!-- End: .global-shadow-->
-
     <div class="loader-overlay display-hidden" id="showLoader">
         <div class="atbd-spin-dots spin-lg">
             <span class="spin-dot badge-dot dot-primary"></span>
@@ -32,7 +29,7 @@
 
 @endsection
 
-@push("top_scripts")
+@push("scripts")
 
     <script>
         let toastCount = 0;
@@ -116,12 +113,13 @@
 
         function loadStepOneForm()
         {
+            // ✅ 1. Page load pe bhi check karo
+            let isChecked = $('#agree').is(':checked');
+            $("#terms").val(isChecked ? 1 : "");
+
+            // ✅ 2. Change hone pe update karo
             $('#agree').change(function() {
-                let isChecked = $(this).is(':checked');
-                if(isChecked)
-                    $("#terms").val(1);
-                else
-                    $("#terms").val("");
+                $("#terms").val($(this).is(':checked') ? 1 : "");
             });
 
             $("#stepOne").validate({
@@ -180,6 +178,7 @@
                         headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
                         data: data,
                         success: function (response) {
+                            console.log(response)
                             if(response)
                             {
                                 stepFormShow(2)
@@ -427,6 +426,23 @@
                     });
                 }
             });
+
+            {{--$("#stepThree").submit(function() {--}}
+
+            {{--    $("#signUpForm").addClass("disableDiv");--}}
+            {{--    $("#showLoader").show();--}}
+
+            {{--    $.ajax({--}}
+            {{--        url: '{{ route('verification.send') }}',--}}
+            {{--        type: 'POST',--}}
+            {{--        headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},--}}
+            {{--        success: function (data) {--}}
+            {{--            $("#signUpForm").removeClass("disableDiv");--}}
+            {{--            $("#showLoader").hide();--}}
+            {{--        }--}}
+            {{--    });--}}
+
+            {{--});--}}
         }
 
         function loadStepFourForm()
