@@ -1,6 +1,6 @@
 <?php $__env->startSection("step_form_content"); ?>
 
-<div class="card mt-0">
+<div class="card">
     <div class="card-body bg-white radius-xl px-sm-30 pt-sm-25">
         <div class="payment-status__area py-sm-10 py-10 text-center">
             <div class="success-animation">

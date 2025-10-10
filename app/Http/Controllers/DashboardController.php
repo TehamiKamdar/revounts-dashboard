@@ -37,9 +37,9 @@ class DashboardController extends Controller
         if ($user->getRoleName() == Role::ADVERTISER_ROLE) {
             $type = Role::ADVERTISER_ROLE;
             SEOMeta::setTitle("$type Dashboard");
-
             return view('template.advertiser.dashboard');
         } elseif ($user->getRoleName() == Role::PUBLISHER_ROLE) {
+            // dd($user->getRoleName());
             return $this->publisherService->init($request);
         } else {
             abort_if(Gate::denies('admin_dashboard_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');

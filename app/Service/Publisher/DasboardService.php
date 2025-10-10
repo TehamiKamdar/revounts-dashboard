@@ -2,20 +2,21 @@
 
 namespace App\Service\Publisher;
 
-use App\Models\Advertiser;
 use App\Models\Role;
+use App\Models\User;
 use App\Models\Setting;
 use App\Models\Website;
+use App\Models\Advertiser;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Traits\Publisher\ClickGraph;
+use App\Traits\Publisher\SalesGraph;
+use Illuminate\Support\Facades\Cache;
+use Artesaos\SEOTools\Facades\SEOMeta;
+use Illuminate\Support\Facades\Session;
 use App\Traits\Publisher\CommissionGraph;
 use App\Traits\Publisher\PerformanceGraph;
-use App\Traits\Publisher\SalesGraph;
 use App\Traits\Publisher\TransactionGraph;
-use Artesaos\SEOTools\Facades\SEOMeta;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Session;
 
 class DasboardService
 {
@@ -65,10 +66,11 @@ class DasboardService
         {
             Session::put("notify-warning", $setting->value);
         }
-
-        return redirect(route('publisher.own-advertisers'));
-
-        // return view('template.publisher.dashboard.index', compact('advertisers', 'accountSummary', 'topSales', 'topClicks', 'earningOverview', 'performanceOverview'));
+        if (auth()->check() && auth()->user()->status != User::ACTIVE) {
+            return view('template.publisher.dashboard.index', compact('advertisers', 'accountSummary', 'topSales', 'topClicks', 'earningOverview', 'performanceOverview'));
+        }else{
+            return redirect()->route('publisher.own-advertisers');
+        }
 
     }
 
@@ -76,7 +78,7 @@ class DasboardService
     {
         $userID = $user->id;
         $websiteID = $user->active_website_id ?? null;
-       
+
 
             $advertisers = DB::table('advertiser_applies')
                                 ->join('advertisers', 'advertisers.id', '=', 'advertiser_applies.internal_advertiser_id')
@@ -104,7 +106,7 @@ class DasboardService
                 "count" => $count,
                 "advertisers" => $advertisers,
             ];
-       
+
     }
 
 }

@@ -69,7 +69,7 @@ class AuthenticatedSessionController extends Controller
 
         $type = $this->getType();
 
-        return redirect()->intended(route("dashboard", ['type' => $type]));
+        return redirect()->route('dashboard', ['type' => $type]);
     }
 
     /**

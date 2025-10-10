@@ -26,7 +26,8 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 $type = $this->getType();
-                return redirect(route("dashboard", ["type" => $type]));
+                
+                return redirect()->route('dashboard', ['type' => $type]);
             }
         }
 

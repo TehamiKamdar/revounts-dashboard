@@ -32,8 +32,8 @@ use App\Models\Transaction;
 |
 */
 
-Route::group(['middleware' => 'publisher.status', 'prefix' => 'publisher', 'as' => 'publisher.'], function () {
-   
+Route::group(['middleware'=>'publisher.status','prefix' => 'publisher', 'as' => 'publisher.'], function () {
+
 
     Route::get('/find-advertisers', [AdvertiserController::class, 'actionFindAdvertiser'])->name('find-advertisers');
     Route::get('/advertiser-types', [AdvertiserController::class, 'actionAdvertiserTypes'])->name('advertiser-types');

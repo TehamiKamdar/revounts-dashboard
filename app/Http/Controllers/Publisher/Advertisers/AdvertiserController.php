@@ -51,11 +51,11 @@ class AdvertiserController extends Controller
     /**
      * @param Request $request
      * @param OwnService $service
-     * @return View|Factory|RedirectResponse|Application|JsonResponse
+     * @return View|RedirectResponse|JsonResponse
      * @throws ContainerExceptionInterface
      * @throws NotFoundExceptionInterface
      */
-    public function actionOwnAdvertiser(Request $request, OwnService $service): View|Factory|RedirectResponse|Application|JsonResponse
+    public function actionOwnAdvertiser(Request $request, OwnService $service): View|RedirectResponse|JsonResponse
     {
         return $service->init($request);
     }
