@@ -1,8 +1,7 @@
 <?php $__env->startSection("content"); ?>
-
-
-
-        <?php if(($isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour) || (!$isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour)): ?>
+<div class="row justify-content-center">
+    <div class="col-12">
+            <?php if(($isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour) || (!$isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour)): ?>
             <?php echo $__env->make("auth.publisher_register.step_one", $stepOne, \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
 
         <?php elseif(!$isStepOne && $isStepTwo && !$isStepThree && !$isStepFour): ?>
@@ -25,6 +24,8 @@
         </div>
     </div>
 
+</div>
+</div>
 <?php $__env->stopSection(); ?>
 
 <?php $__env->startPush("scripts"); ?>
@@ -92,7 +93,26 @@
                 data: {page, account},
                 success: function (data) {
                     $("#signUpForm").html(data)
-
+                    // 🖼️ Sidebar image update
+                    let image = document.getElementById("stepImage");
+                    if (image) {
+                        switch (page) {
+                            case 1:
+                                image.src = "<?php echo e(asset('img/svg/progress1.svg')); ?>";
+                                break;
+                            case 2:
+                                image.src = "<?php echo e(asset('img/svg/progress3.svg')); ?>";
+                                break;
+                            case 3:
+                                image.src = "<?php echo e(asset('img/svg/progress4.svg')); ?>";
+                                break;
+                            case 4:
+                                image.src = "<?php echo e(asset('img/svg/progress5.svg')); ?>";
+                                break;
+                            default:
+                                image.src = "<?php echo e(asset('img/svg/progress1.svg')); ?>";
+                        }
+                    }
                     if(page === 1)
                         loadStepOneForm();
 
@@ -204,7 +224,7 @@
                 let iti = window.intlTelInput(input, {
                     hiddenInput: "phone_number",
                     separateDialCode: true,
-                    utilsScript: "<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/phone/utils.js")); ?>",
+                    utilsScript: "<?php echo e(asset("vendor_assets/js/phone/utils.js")); ?>",
                 });
 
                 input.addEventListener("countrychange", function() {
@@ -475,11 +495,11 @@
 
 <?php $__env->stopPush(); ?>
 
-<?php if (! $__env->hasRenderedOnce('a0cfe0d1-54c9-4581-8633-3eed1bb05af9')): $__env->markAsRenderedOnce('a0cfe0d1-54c9-4581-8633-3eed1bb05af9');
+<?php if (! $__env->hasRenderedOnce('d1e59ef2-00ce-4779-a972-29e56f540c0d')): $__env->markAsRenderedOnce('d1e59ef2-00ce-4779-a972-29e56f540c0d');
 $__env->startPush('styles'); ?>
-    <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/phone/intlTelInput.css")); ?>">
-    <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/phone/demo.css")); ?>">
-    <link rel="stylesheet" href="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/css/select2.min.css")); ?>"/>
+    <link rel="stylesheet" href="<?php echo e(asset("vendor_assets/css/phone/intlTelInput.css")); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset("vendor_assets/css/phone/demo.css")); ?>">
+    <link rel="stylesheet" href="<?php echo e(asset("vendor_assets/css/select2.min.css")); ?>"/>
     <style>
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -507,10 +527,10 @@ $__env->startPush('styles'); ?>
     </style>
 <?php $__env->stopPush(); endif; ?>
 
-<?php if (! $__env->hasRenderedOnce('3c0e8e08-bf2f-42cb-ab94-cff9e898eaf1')): $__env->markAsRenderedOnce('3c0e8e08-bf2f-42cb-ab94-cff9e898eaf1');
+<?php if (! $__env->hasRenderedOnce('67d9ec9b-be33-4625-b282-1b3ea6e54606')): $__env->markAsRenderedOnce('67d9ec9b-be33-4625-b282-1b3ea6e54606');
 $__env->startPush('scripts'); ?>
-    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/phone/intlTelInput.js")); ?>"></script>
-    <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/select2.full.min.js")); ?>"></script>
+    <script src="<?php echo e(asset("vendor_assets/js/phone/intlTelInput.js")); ?>"></script>
+    <script src="<?php echo e(asset("vendor_assets/js/select2.full.min.js")); ?>"></script>
 <?php $__env->stopPush(); endif; ?>
 
 

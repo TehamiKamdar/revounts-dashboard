@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="icon" type="image/png" href="{{ \App\Helper\Static\Methods::staticAsset('img/favicon.png') }}">
+    <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}">
 
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
@@ -15,11 +15,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/bootstrap/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/line-awesome.min.css') }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor_assets/css/bootstrap/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor_assets/css/fontawesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor_assets/css/line-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor_assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor_assets/css/phone/intlTelInput.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendor_assets/css/select2.min.css') }}">
     <style>
+
         :root {
             --primary-light-color: #eddfff;
             --primary-color: #7b36b5;
@@ -28,13 +31,16 @@
             --dark-color: #1c1c1c;
             --light-color: #f6f6fb;
             --font-family: "DM Sans", sans-serif;
+            --success-color: #28a745;
+            --error-color: #dc3545;
+            --warning-color: #ffc107;
+            --info-color: #17a2b8;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: var(--font-family);
         }
 
         body {
@@ -46,6 +52,13 @@
             padding: 20px;
             color: var(--dark-color);
         }
+
+        h1,h2,h3,h4,h5,h6,article,span,code,kbd,a,button,input,label,textarea{
+            font-family: var(--font-family) !important;
+        }
+         .checkout-progress div.step.current span:nth-of-type(1){
+            background-color: var(--primary-color);q
+         }
 
         .page-container {
             width: 100%;
@@ -99,9 +112,10 @@
             z-index: 2;
         }
 
-        .sidebar-content h2 {
-            font-size: 2.2rem;
+        .sidebar-content h1 {
+            font-size: 2.5rem;
             font-weight: 700;
+            color: var(--primary-light-color);
             margin-bottom: 15px;
         }
 
@@ -114,7 +128,7 @@
 
         .main-content {
             flex: 1.2;
-            padding: 50px 40px;
+            padding: 30px 30px;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -122,14 +136,27 @@
 
         .page-header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         .page-header h1 {
+            position: relative;
+            display: inline-block; /* Ensure the line fits within the h1 width */
             font-size: 2.2rem;
             font-weight: 700;
             color: var(--secondary-color);
             margin-bottom: 10px;
+            border-bottom: 2px solid #feefef;
+        }
+
+        .page-header h1::after {
+            content: ''; /* Add content for the pseudo-element */
+            position: absolute;
+            bottom: 0; /* Position at the bottom of the h1 */
+            left: 50%; /* Start from the center */
+            transform: translateX(-50%); /* Adjust so it's centered */
+            border-bottom: 2px solid #feefef;
         }
 
         .page-header p {
@@ -216,7 +243,7 @@
         }
 
         .btn-login {
-            width: 100%;
+            width: 55%;
             padding: 14px;
             background: var(--primary-color);
             color: white;
@@ -301,6 +328,175 @@
         .spin-dot:nth-child(1) { animation-delay: -0.32s; }
         .spin-dot:nth-child(2) { animation-delay: -0.16s; }
 
+        .notification-wrapper {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 9999;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        .atbd-notification-box {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            border-left: 4px solid;
+            animation: slideInRight 0.3s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .atbd-notification-box.notification-success {
+            border-left-color: var(--success-color);
+        }
+
+        .atbd-notification-box.notification-error {
+            border-left-color: var(--error-color);
+        }
+
+        .atbd-notification-box.notification-warning {
+            border-left-color: var(--warning-color);
+        }
+
+        .atbd-notification-box.notification-info {
+            border-left-color: var(--info-color);
+        }
+
+        .atbd-notification-box__content {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .atbd-notification-box__icon {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .notification-success .atbd-notification-box__icon {
+            background: var(--success-color);
+            color: white;
+        }
+
+        .notification-error .atbd-notification-box__icon {
+            background: var(--error-color);
+            color: white;
+        }
+
+        .notification-warning .atbd-notification-box__icon {
+            background: var(--warning-color);
+            color: white;
+        }
+
+        .notification-info .atbd-notification-box__icon {
+            background: var(--info-color);
+            color: white;
+        }
+
+        .atbd-notification-box__text h6 {
+            margin: 0 0 8px 0;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .atbd-notification-box__text {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        .atbd-notification-box__close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #999;
+            text-decoration: none;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .atbd-notification-box__close:hover {
+            background: #f8f9fa;
+            color: #666;
+        }
+
+        .notification-hide {
+            animation: slideOutRight 0.3s ease-in forwards;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideOutRight {
+            from {
+                transform: translateX(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+        }
+
+        /* Progress bar for auto-close */
+        .notification-progress {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            height: 3px;
+            background: currentColor;
+            opacity: 0.3;
+            animation: progressBar 5s linear forwards;
+        }
+
+        @keyframes progressBar {
+            from { width: 100%; }
+            to { width: 0%; }
+        }
+
+        /* Demo buttons */
+        .demo-buttons {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
         @keyframes spin-dot {
             0%, 80%, 100% {
                 transform: scale(0);
@@ -358,16 +554,23 @@
     <div class="page-container">
         <div class="page-sidebar">
             <div class="logo">
-                <img src="{{ \App\Helper\Static\Methods::staticAsset('img/logo.png') }}" alt="LinksCircle">
+                <img src="{{ asset('img/logo.png') }}" alt="LinksCircle">
             </div>
             <div class="sidebar-content mb-5">
-                <h2>Welcome Back!</h2>
+                <h1>Welcome{{ Route::is('login') ? ' Back' : '' }}!</h1>
                 <p>To keep connected with us, please login with your personal information.</p>
             </div>
-            @yield('image')
+            <div>
+                @if(request()->segment(1) === 'advertiser')
+                    <img class="img-fluid svg" src="{{ asset('img/svg/signupillustration.svg') }}" alt="img" />
+                @elseif(request()->segment(1) === 'publisher')
+                    <img class="svg w-100" id="stepImage" src="{{ asset('img/svg/progress1.svg') }}" alt="img">
+                @endif
+            </div>
         </div>
 
-        <div class="main-content">
+        <div class="main-content" id="signUpForm">
+            <div class="notification-wrapper top-right"></div>
             @yield('content')
         </div>
     </div>
@@ -383,16 +586,14 @@
         </span>
     </div>
 
-    <script src="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/js/jquery/jquery-3.5.1.min.js') }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/js/jquery/jquery-ui.js') }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/js/bootstrap/popper.js') }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/js/bootstrap/bootstrap.min.js') }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/js/feather.min.js') }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/js/jquery.validate.min.js') }}"></script>
-    @stack('scripts')
+    <script src="{{ asset('vendor_assets/js/jquery/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('vendor_assets/js/jquery/jquery-ui.js') }}"></script>
+    <script src="{{ asset('vendor_assets/js/bootstrap/popper.js') }}"></script>
+    <script src="{{ asset('vendor_assets/js/bootstrap/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('vendor_assets/js/feather.min.js') }}"></script>
+    <script src="{{ asset('vendor_assets/js/jquery.validate.min.js') }}"></script>
+    <script src="{{ asset('vendor_assets/js/select2.full.min.js') }}"></script>
     <script>
-
-
         // Preloader
         window.addEventListener('load', function () {
             $(".loader-overlay").delay(500).fadeOut("slow");
@@ -430,3 +631,4 @@
     @endif
 </body>
 </html>
+@stack('scripts')

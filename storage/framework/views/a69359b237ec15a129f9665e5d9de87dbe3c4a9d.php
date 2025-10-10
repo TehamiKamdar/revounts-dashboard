@@ -1,5 +1,5 @@
 <?php $__env->startSection("step_form_content"); ?>
-    <div class="card" style="padding-bottom: 20px;">
+    <div class="card">
         <div class="card-body ">
             <div class="edit-profile__body">
                 <form id="stepOne" class="stepOne" action="javascript:void(0)">
@@ -222,4 +222,5 @@
         });
     </script>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make("auth.publisher_register.base", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\Users\lenovo\Downloads\revdb\resources\views/auth/publisher_register/step_one.blade.php ENDPATH**/ ?>

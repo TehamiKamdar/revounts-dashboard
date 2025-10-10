@@ -1,4 +1,4 @@
-<div class="checkout-progress justify-content-center px-0">
+<div class="checkout-progress justify-content-around px-0">
     <div class="step completed" id="1">
         <span class="ri-check-line"></span>
     </div>
@@ -13,8 +13,5 @@
     </div>
 </div>
 <div class="page-header">
-    <h4>Fill in your website information</h4>
-    @section('image')
-    <img class="svg" src="{{ \App\Helper\Static\Methods::staticAsset("img/svg/progress4.svg") }}" alt="">
-    @endsection
+    <h1>Fill in your website information</h1>
 </div>

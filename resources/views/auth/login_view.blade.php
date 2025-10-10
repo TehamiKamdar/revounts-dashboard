@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -11,11 +12,15 @@
     {!! Twitter::generate() !!}
     {!! JsonLd::generate() !!}
 
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/bootstrap/bootstrap.css') }}">
+    <link rel="stylesheet"
+        href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/bootstrap/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/fontawesome.css') }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/line-awesome.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/line-awesome.min.css') }}">
     <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset('vendor_assets/css/style.css') }}">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,300;1,9..40,400;1,9..40,500;1,9..40,600;1,9..40,700&display=swap"
+        rel="stylesheet">
 
     <style>
         :root {
@@ -98,7 +103,7 @@
         .account-cards {
             display: flex;
             gap: 30px;
-            width: 50%;
+            width: 100%;
             max-width: 900px;
             margin-bottom: 40px;
         }
@@ -283,15 +288,19 @@
             0% {
                 transform: translate(0, 0) rotate(0deg);
             }
+
             25% {
                 transform: translate(20px, 20px) rotate(90deg);
             }
+
             50% {
                 transform: translate(0, 40px) rotate(180deg);
             }
+
             75% {
                 transform: translate(-20px, 20px) rotate(270deg);
             }
+
             100% {
                 transform: translate(0, 0) rotate(360deg);
             }
@@ -330,13 +339,22 @@
             animation: spin-dot 1.4s ease-in-out infinite both;
         }
 
-        .spin-dot:nth-child(1) { animation-delay: -0.32s; }
-        .spin-dot:nth-child(2) { animation-delay: -0.16s; }
+        .spin-dot:nth-child(1) {
+            animation-delay: -0.32s;
+        }
+
+        .spin-dot:nth-child(2) {
+            animation-delay: -0.16s;
+        }
 
         @keyframes spin-dot {
-            0%, 80%, 100% {
+
+            0%,
+            80%,
+            100% {
                 transform: scale(0);
             }
+
             40% {
                 transform: scale(1);
             }
@@ -368,6 +386,7 @@
                 opacity: 0;
                 transform: translateY(30px);
             }
+
             to {
                 opacity: 1;
                 transform: translateY(0);
@@ -398,6 +417,7 @@
         }
     </style>
 </head>
+
 <body>
     <!-- Preloader -->
     <div id="overlayer">
@@ -421,33 +441,46 @@
     <div class="container">
         <div class="logo animate-in">
             <a href="https://www.linkscircle.com/">
-                <img src="{{ \App\Helper\Static\Methods::staticAsset('img/logo.png') }}" alt="LinksCircle Affiliate Network" class="img-fluid">
+                <img src="{{ \App\Helper\Static\Methods::staticAsset('img/logo.png') }}"
+                    alt="LinksCircle Affiliate Network" class="img-fluid">
             </a>
         </div>
 
         <div class="main-content">
             <div class="welcome-section animate-in delay-1">
                 <h1>Let's Get Started!</h1>
-                <p>Select the account type that best fits your role and join our growing network of publishers and advertisers.</p>
+                <p>Select the account type that best fits your role and join our growing network of publishers and
+                    advertisers.</p>
             </div>
 
             <div class="account-cards">
-                <a class="account-card animate-in delay-2" href="{{ route('register', ['type' => 'publisher']) }}">
+                <a class="account-card animate-in delay-2" href="{{ route('login', ['type' => 'publisher']) }}">
                     <div class="card-icon">
                         <i class="fas fa-globe-americas"></i>
                     </div>
                     <h3 class="card-title">Publisher</h3>
-                    <p class="card-description">I have a website, blog, or social media presence and want to monetize it by promoting relevant brands and products.</p>
+                    <p class="card-description">I have a website, blog, or social media presence and want to monetize it
+                        by promoting relevant brands and products.</p>
                     <div class="card-button">
                         <span>Get Started</span>
                         <i class="fas fa-arrow-right"></i>
                     </div>
                 </a>
-            </div>
 
-            <div class="login-section animate-in">
-                <p>Already have an account?</p>
-                <a href="{{ route('login', ['type' => 'advertiser']) }}" class="login-button">Log In</a>
+
+
+                <a class="account-card animate-in delay-3" href="{{ route('login', ['type' => 'advertiser']) }}">
+                    <div class="card-icon">
+                        <i class="fas fa-bullhorn"></i>
+                    </div>
+                    <h3 class="card-title">Advertiser</h3>
+                    <p class="card-description">I want to grow my business by partnering with top publishers who can
+                        promote my brand to their audiences.</p>
+                    <div class="card-button">
+                        <span>Get Started</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </a>
             </div>
         </div>
     </div>
@@ -475,15 +508,15 @@
         });
 
         // Additional interactive effects
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const cards = document.querySelectorAll('.account-card');
 
             cards.forEach(card => {
-                card.addEventListener('mouseenter', function() {
+                card.addEventListener('mouseenter', function () {
                     this.style.transform = 'translateY(-10px)';
                 });
 
-                card.addEventListener('mouseleave', function() {
+                card.addEventListener('mouseleave', function () {
                     this.style.transform = 'translateY(0)';
                 });
             });
@@ -493,15 +526,16 @@
     @if(env("APP_ENV") == "production" && empty(request()->search))
         <!-- Hotjar Tracking Code for https://app.linkscircle.com/ -->
         <script>
-            (function(h,o,t,j,a,r){
-                h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
-                h._hjSettings={hjid:3451709,hjsv:6};
-                a=o.getElementsByTagName('head')[0];
-                r=o.createElement('script');r.async=1;
-                r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+            (function (h, o, t, j, a, r) {
+                h.hj = h.hj || function () { (h.hj.q = h.hj.q || []).push(arguments) };
+                h._hjSettings = { hjid: 3451709, hjsv: 6 };
+                a = o.getElementsByTagName('head')[0];
+                r = o.createElement('script'); r.async = 1;
+                r.src = t + h._hjSettings.hjid + j + h._hjSettings.hjsv;
                 a.appendChild(r);
-            })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+            })(window, document, 'https://static.hotjar.com/c/hotjar-', '.js?sv=');
         </script>
     @endif
 </body>
+
 </html>

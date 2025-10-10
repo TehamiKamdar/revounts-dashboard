@@ -103,6 +103,7 @@
     <?php echo $__env->make("partial.publisher.header", \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <div class="dashboard-container">
         <main class="dashboard-main">
+            <div class="notification-wrapper position-fixed top-0 end-0 p-3" style="z-index: 1080"></div>
             <?php echo $__env->yieldContent("content"); ?>
         </main>
     </div>
@@ -118,7 +119,6 @@
             </div>
         </span>
     </div>
-    <div class="notification-wrapper position-fixed top-0 end-0 p-3" style="z-index: 1080"></div>
 
     <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-3.5.1.min.js")); ?>"></script>
     <script src="<?php echo e(\App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-ui.js")); ?>"></script>

@@ -1,10 +1,9 @@
 @extends("layouts.panel_guest")
 
 @section("content")
-
-
-
-        @if(($isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour) || (!$isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour))
+<div class="row justify-content-center">
+    <div class="col-12">
+            @if(($isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour) || (!$isStepOne && !$isStepTwo && !$isStepThree && !$isStepFour))
             @include("auth.publisher_register.step_one", $stepOne)
 
         @elseif(!$isStepOne && $isStepTwo && !$isStepThree && !$isStepFour)
@@ -27,6 +26,8 @@
         </div>
     </div>
 
+</div>
+</div>
 @endsection
 
 @push("scripts")
@@ -94,7 +95,26 @@
                 data: {page, account},
                 success: function (data) {
                     $("#signUpForm").html(data)
-
+                    // 🖼️ Sidebar image update
+                    let image = document.getElementById("stepImage");
+                    if (image) {
+                        switch (page) {
+                            case 1:
+                                image.src = "{{ asset('img/svg/progress1.svg') }}";
+                                break;
+                            case 2:
+                                image.src = "{{ asset('img/svg/progress3.svg') }}";
+                                break;
+                            case 3:
+                                image.src = "{{ asset('img/svg/progress4.svg') }}";
+                                break;
+                            case 4:
+                                image.src = "{{ asset('img/svg/progress5.svg') }}";
+                                break;
+                            default:
+                                image.src = "{{ asset('img/svg/progress1.svg') }}";
+                        }
+                    }
                     if(page === 1)
                         loadStepOneForm();
 
@@ -206,7 +226,7 @@
                 let iti = window.intlTelInput(input, {
                     hiddenInput: "phone_number",
                     separateDialCode: true,
-                    utilsScript: "{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/phone/utils.js") }}",
+                    utilsScript: "{{ asset("vendor_assets/js/phone/utils.js") }}",
                 });
 
                 input.addEventListener("countrychange", function() {
@@ -478,9 +498,9 @@
 @endpush
 
 @pushonce('styles')
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/phone/intlTelInput.css") }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/phone/demo.css") }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/select2.min.css") }}"/>
+    <link rel="stylesheet" href="{{ asset("vendor_assets/css/phone/intlTelInput.css") }}">
+    <link rel="stylesheet" href="{{ asset("vendor_assets/css/phone/demo.css") }}">
+    <link rel="stylesheet" href="{{ asset("vendor_assets/css/select2.min.css") }}"/>
     <style>
 
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
@@ -509,8 +529,8 @@
 @endpushonce
 
 @pushonce('scripts')
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/phone/intlTelInput.js") }}"></script>
-    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/select2.full.min.js") }}"></script>
+    <script src="{{ asset("vendor_assets/js/phone/intlTelInput.js") }}"></script>
+    <script src="{{ asset("vendor_assets/js/select2.full.min.js") }}"></script>
 @endpushonce
 
 

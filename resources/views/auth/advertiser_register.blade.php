@@ -1,91 +1,58 @@
 @extends("layouts.panel_guest")
 
 @section("content")
+        @if(($isStepOne && !$isStepTwo && !$isStepThree) || (!$isStepOne && !$isStepTwo && !$isStepThree))
+            @include("auth.advertiser_register.step_one", $stepOne)
 
-    <div class="signUP-admin">
-        <div class="container-fluid">
-            <div class="row justify-content-center">
-                <div class="col-xl-4 col-lg-5 col-md-5 p-0">
-                    <div class="signUP-admin-left position-relative">
-                        <div class="signUP-overlay">
-                            <img class="svg signupTop" src="{{ asset("img/svg/signuptop.svg") }}" alt="img" />
-                            <img class="svg signupBottom" src="{{ asset("img/svg/signupbottom.svg") }}" alt="img" />
-                        </div>
-                        <div class="signUP-admin-left__content">
-                            <div class="text-capitalize mb-md-30 mb-15 d-flex align-items-center justify-content-md-start justify-content-center">
-                                <a href="/"><img src="https://www.linkscircle.com/images/logo.png"></a>
-                            </div>
-                            <h1>Advertiser Signup</h1>
-                        </div>
-                        <div class="signUP-admin-left__img">
-                            <img class="img-fluid svg" src="{{ asset("img/svg/signupillustration.svg") }}" alt="img" />
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-8 col-lg-7 col-md-7 col-sm-8">
-                    <div class="signUp-admin-right  p-md-40 p-10" id="signUpForm">
+        @elseif(!$isStepOne && $isStepTwo && !$isStepThree)
+            @include("auth.advertiser_register.step_two", $stepTwo)
 
-                        <div class="notification-wrapper top-right"></div>
+        @elseif(!$isStepOne && !$isStepTwo && $isStepThree)
+            @include("auth.advertiser_register.step_three")
 
-                        @if(($isStepOne && !$isStepTwo && !$isStepThree) || (!$isStepOne && !$isStepTwo && !$isStepThree))
-                            @include("auth.advertiser_register.step_one", $stepOne)
+        @endif
 
-                        @elseif(!$isStepOne && $isStepTwo && !$isStepThree)
-                            @include("auth.advertiser_register.step_two", $stepTwo)
-
-                        @elseif(!$isStepOne && !$isStepTwo && $isStepThree)
-                            @include("auth.advertiser_register.step_three")
-
-                        @endif
-
-                    </div>
-                    <div class="loader-overlay display-hidden" id="showLoader">
-                        <div class="atbd-spin-dots spin-lg">
-                            <span class="spin-dot badge-dot dot-primary"></span>
-                            <span class="spin-dot badge-dot dot-primary"></span>
-                            <span class="spin-dot badge-dot dot-primary"></span>
-                            <span class="spin-dot badge-dot dot-primary"></span>
-                        </div>
-                    </div>
-                </div>
-            </div>
+    <div class="loader-overlay display-hidden" id="showLoader">
+        <div class="atbd-spin-dots spin-lg">
+            <span class="spin-dot badge-dot dot-primary"></span>
+            <span class="spin-dot badge-dot dot-primary"></span>
+            <span class="spin-dot badge-dot dot-primary"></span>
+            <span class="spin-dot badge-dot dot-primary"></span>
         </div>
     </div>
-
 @endsection
 
-@push("top_scripts")
+@push("scripts")
 
     <script>
         let toastCount = 0;
 
-        function createToast(type, content){
+        function createToast(type, content) {
             let toast = ``;
             const notificationShocase = $('.notification-wrapper');
 
-            toast =`
-                    <div class="atbd-notification-box notification-${type} notification-${toastCount}">
-                        <div class="atbd-notification-box__content media">
-                            <div class="atbd-notification-box__icon">
-                                <span data-feather="x-circle"></span>
+            toast = `
+                        <div class="atbd-notification-box notification-${type} notification-${toastCount}">
+                            <div class="atbd-notification-box__content media">
+                                <div class="atbd-notification-box__icon">
+                                    <span data-feather="x-circle"></span>
+                                </div>
+                                <div class="atbd-notification-box__text media-body">
+                                    <h6>Error List</h6>
+                                    ${content}
+                                </div>
                             </div>
-                            <div class="atbd-notification-box__text media-body">
-                                <h6>Error List</h6>
-                                ${content}
-                            </div>
+                            <a href="#" class="atbd-notification-box__close" data-toast="close">
+                                <span data-feather="x"></span>
+                            </a>
                         </div>
-                        <a href="#" class="atbd-notification-box__close" data-toast="close">
-                            <span data-feather="x"></span>
-                        </a>
-                    </div>
-                    `;
+                        `;
 
             notificationShocase.append(toast);
             toastCount++;
         }
 
-        function showErrors(response)
-        {
+        function showErrors(response) {
             let duration = (optionValue, defaultValue) =>
                 typeof optionValue === "undefined" ? defaultValue : optionValue;
 
@@ -101,40 +68,38 @@
             feather.replace();
             let thisToast = toastCount - 1;
 
-            $('*[data-toast]').on('click',function(){
+            $('*[data-toast]').on('click', function () {
                 $(this).parent('.atbd-notification-box').remove();
             })
 
-            setTimeout(function(){
-                $(document).find(".notification-"+thisToast).remove();
-            },duration(6000));
+            setTimeout(function () {
+                $(document).find(".notification-" + thisToast).remove();
+            }, duration(6000));
         }
 
-        function stepFormShow(page)
-        {
+        function stepFormShow(page) {
             let account = "{{ $account }}";
             $.ajax({
                 url: '{{ route("advertiser-step-form") }}',
                 type: 'GET',
-                data: {page, account},
+                data: { page, account },
                 success: function (data) {
                     $("#signUpForm").html(data)
 
-                    if(page === 1)
+                    if (page === 1)
                         loadStepOneForm();
 
-                    else if(page === 2)
+                    else if (page === 2)
                         loadStepTwoForm();
 
-                    else if(page === 3)
+                    else if (page === 3)
                         loadStepThreeForm();
 
                 }
             });
         }
 
-        function loadStepOneForm()
-        {
+        function loadStepOneForm() {
 
             $("#stepOne").validate({
                 rules: {
@@ -172,7 +137,7 @@
                 errorPlacement: function (error, element) {
                     error.insertAfter(element.closest('.input-modal-group'));
                 },
-                submitHandler: function(){
+                submitHandler: function () {
 
                     $("#signUpForm").addClass("disableDiv");
                     $("#showLoader").show();
@@ -181,11 +146,10 @@
                     $.ajax({
                         url: '{{ route("advertiser-step-one") }}',
                         type: 'POST',
-                        headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+                        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
                         data: data,
                         success: function (response) {
-                            if(response)
-                            {
+                            if (response) {
                                 stepFormShow(2)
                             }
                             $("#signUpForm").removeClass("disableDiv");
@@ -203,9 +167,8 @@
 
         }
 
-        function loadStepTwoForm()
-        {
-            $('#country').change(function() {
+        function loadStepTwoForm() {
+            $('#country').change(function () {
 
                 $("#signUpForm").addClass("disableDiv");
                 $("#showLoader").show();
@@ -213,8 +176,8 @@
                 $.ajax({
                     url: '{{ route("get-states") }}',
                     type: 'POST',
-                    headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
-                    data: {"country_id": $(this).val()},
+                    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+                    data: { "country_id": $(this).val() },
                     success: function (response) {
                         $("#state").html("<option value='' selected disabled>Please Select</option>");
                         response.map(state => {
@@ -230,7 +193,7 @@
                     }
                 });
             });
-            $('#state').change(function() {
+            $('#state').change(function () {
 
                 $("#signUpForm").addClass("disableDiv");
                 $("#showLoader").show();
@@ -238,8 +201,8 @@
                 $.ajax({
                     url: '{{ route("get-cities") }}',
                     type: 'POST',
-                    headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
-                    data: {"state_id": $(this).val(), "country_id": $('#country').val()},
+                    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
+                    data: { "state_id": $(this).val(), "country_id": $('#country').val() },
                     success: function (response) {
                         $("#city").html("<option value='' selected disabled>Please Select</option>");
                         response.map(city => {
@@ -256,9 +219,9 @@
                 });
             });
 
-            $('#agree').change(function() {
+            $('#agree').change(function () {
                 let isChecked = $(this).is(':checked');
-                if(isChecked)
+                if (isChecked)
                     $("#terms").val(1);
                 else
                     $("#terms").val("");
@@ -303,23 +266,21 @@
                 },
                 errorPlacement: function (error, element) {
                     error.insertAfter(element.closest('.input-modal-group'));
-                    if($(element).attr("name") === "terms")
-                    {
+                    if ($(element).attr("name") === "terms") {
                         error.insertAfter(element);
                     }
                 },
-                submitHandler: function(){
+                submitHandler: function () {
                     $("#signUpForm").addClass("disableDiv");
                     $("#showLoader").show();
                     let data = $("#stepTwo").serialize();
                     $.ajax({
                         url: '{{ route("advertiser-step-two") }}',
                         type: 'POST',
-                        headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+                        headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
                         data: data,
                         success: function (response) {
-                            if(response)
-                            {
+                            if (response) {
                                 stepFormShow(3)
                             }
                             $("#signUpForm").removeClass("disableDiv");
@@ -335,9 +296,8 @@
             });
         }
 
-        function loadStepThreeForm()
-        {
-            $("#stepThree").submit(function() {
+        function loadStepThreeForm() {
+            $("#stepThree").submit(function () {
 
                 $("#signUpForm").addClass("disableDiv");
                 $("#showLoader").show();
@@ -345,7 +305,7 @@
                 $.ajax({
                     url: '{{ route('verification.send') }}',
                     type: 'POST',
-                    headers: {'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content')},
+                    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') },
                     success: function (data) {
                         $("#signUpForm").removeClass("disableDiv");
                         $("#showLoader").hide();

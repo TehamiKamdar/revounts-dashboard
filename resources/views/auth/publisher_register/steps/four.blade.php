@@ -1,4 +1,4 @@
-<div class="checkout-progress justify-content-center px-0">
+<div class="checkout-progress justify-content-around px-0">
     <div class="step completed" id="1">
         <span class="ri-check-line"></span>
     </div>
@@ -13,9 +13,6 @@
     </div>
 </div>
 <div class="page-header">
-    <h4>Verify your email</h4>
+    <h1>Verify your email</h1>
     <p>We have emailed your inbox, check and verify to complete your registration.</p>
-    @section('image')
-    <img class="svg" src="{{ \App\Helper\Static\Methods::staticAsset("img/svg/progress5.svg") }}" alt="img">
-    @endsection
 </div>

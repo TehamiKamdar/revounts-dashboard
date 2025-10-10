@@ -1,4 +1,4 @@
-<div class="checkout-progress justify-content-center px-0">
+<div class="checkout-progress justify-content-around px-0">
     <div class="step current" id="1">
         <span>1</span>
     </div>

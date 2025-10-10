@@ -1,4 +1,4 @@
-<div class="checkout-progress justify-content-center px-0">
+<div class="checkout-progress justify-content-around px-0">
     <div class="step completed" id="1">
         <span class="ri-check-line"></span>
     </div>
@@ -13,11 +13,6 @@
     </div>
 </div>
 <div class="page-header">
-    <h1 class="pt-20">Fill in your company information</h1>
+    <h1>Fill in your company information</h1>
     <p>Show your authenticity by filling in your legal information. We do not share data with anyone.</p>
-    @section('image')
-    <div class="div">
-        <img class="svg w-100" src="{{ \App\Helper\Static\Methods::staticAsset("img/svg/progress3.svg") }}" alt="img">
-    </div>
-    @endsection
 </div>

@@ -2,35 +2,241 @@
 
 @section("step_form_content")
 
-    <div class="row justify-content-center">
-        <div class="col-xl-12 col-lg-12 col-sm-12">
-            <div class="card checkout-shipping-form px-30 pt-2 pb-30 border-color" style="margin-top: 40px;">
-                <div class="card-header border-bottom-0 pb-sm-0 pb-1 px-0">
-                    <h4 class="fw-500">Email Verification</h4>
-                </div>
-                <div class="card-body p-0">
-                    <div class="edit-profile__body">
-                        <h2 class="pt-2">You're Only One Step Away!</h2>
-
-                        <p>An email has been sent to your inbox, please check and verify to complete your registration.</p>
-
-                        <p>If you did not receive any email, please check your spam/junk folder or click on the resend button below.</p>
-                        <div class="button-group d-flex pt-3 justify-content-between flex-wrap">
-
-                            <form id="stepThree" action="javascript:void(0)">
-{{--                            <form method="POST" action="{{ route('verification.send') }}">--}}
-{{--                                @csrf--}}
-                                <button type="submit" class="btn text-white btn-primary btn-default btn-squared text-capitalize m-1">Resend Verification Email</button>
-                            </form>
+<div class="row justify-content-center">
+    <div class="col-xl-12 col-lg-12 col-sm-12">
+        <div class="card" style="margin-top: 20px;">
+            <div class="card-body bg-white radius-xl px-sm-30 pt-sm-25">
+                <div class="payment-status__area py-sm-10 py-10 text-center">
+                    <div class="success-animation">
+                        <div class="success-icon animate-check">
+                            <i class="ri-mail-send-line"></i>
                         </div>
                     </div>
+                    <h4 class="success-title">Email Verification Required</h4>
+                    <p class="success-subtitle">Please verify your email to complete registration</p>
                 </div>
+            </div>
+        </div>
+        <div class="card" style="margin-top: 20px;">
+            <div class="card-body">
+                <div class="edit-profile__body">
+                    <h2 class="step-title">You're Only One Step Away!</h2>
+                    <p class="success-message">An email has been sent to your inbox, please check and verify to complete your registration.</p>
+                    <p class="success-message">If you did not receive any email, please check your spam/junk folder or click on the resend button below.</p>
 
-            </div><!-- ends: .card -->
+                    <div class="button-group d-flex pt-3 justify-content-center flex-wrap">
+                        <form id="stepThree" action="javascript:void(0)">
+                            <button type="submit" class="btn-login">
+                                <i class="ri-mail-send-line"></i>Resend Verification Email
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div><!-- ends: .card -->
+    </div><!-- ends: .col -->
+</div>
 
+<style>
+    .success-animation {
+        margin-bottom: 30px;
+    }
 
-        </div><!-- ends: .col -->
+    .success-icon {
+        width: 80px;
+        height: 80px;
+        background: var(--primary-color);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        color: white;
+        font-size: 2.5rem;
+        position: relative;
+    }
 
-    </div>
+    .animate-check {
+        animation: checkmark 0.5s ease-in-out;
+    }
+
+    .animate-check::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 2px solid var(--primary-color);
+        border-radius: 50%;
+        animation: ripple 1s ease-out infinite;
+    }
+
+    @keyframes checkmark {
+        0% {
+            transform: scale(0);
+            opacity: 0;
+        }
+        50% {
+            transform: scale(1.2);
+        }
+        100% {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes ripple {
+        0% {
+            transform: scale(1);
+            opacity: 1;
+        }
+        100% {
+            transform: scale(2);
+            opacity: 0;
+        }
+    }
+
+    .success-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--primary-color);
+        margin-bottom: 10px;
+    }
+
+    .success-subtitle {
+        font-size: 1.1rem;
+        color: #6c757d;
+        margin-bottom: 0;
+    }
+
+    .step-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: var(--secondary-color);
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .success-message {
+        font-size: 1.1rem;
+        color: #6c757d;
+        line-height: 1.6;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    .btn-login {
+        padding: 14px 30px;
+        background: var(--primary-color);
+        color: white;
+        border: none;
+        border-radius: 12px;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        width:100%;
+    }
+
+    .btn-login:hover {
+        background: var(--primary-dark-color);
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(123, 54, 181, 0.3);
+    }
+
+    .button-group {
+        display: flex;
+        justify-content: center;
+        margin-top: 30px;
+    }
+
+    .mr-10 {
+        margin-right: 10px;
+    }
+
+    /* Card styling */
+    .card {
+        border: none;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+        padding: 40px;
+    }
+
+    .bg-white {
+        background-color: white;
+    }
+
+    .radius-xl {
+        border-radius: 20px;
+    }
+
+    .text-center {
+        text-align: center;
+    }
+
+    .border-color {
+        border: 1px solid #e9ecef;
+    }
+
+    @media (max-width: 768px) {
+        .card-body {
+            padding: 20px;
+        }
+
+        .success-title {
+            font-size: 1.5rem;
+        }
+
+        .step-title {
+            font-size: 1.5rem;
+        }
+
+        .success-message {
+            font-size: 1rem;
+        }
+
+        .btn-login {
+            width: 100%;
+            justify-content: center;
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            font-size: 2rem;
+        }
+    }
+</style>
+
+<script>
+    // Add animation on page load
+    document.addEventListener('DOMContentLoaded', function() {
+        const successIcon = document.querySelector('.success-icon');
+
+        // Reset animation
+        successIcon.classList.remove('animate-check');
+        void successIcon.offsetWidth; // Trigger reflow
+        successIcon.classList.add('animate-check');
+    });
+
+    // CSS for loading animation
+    const style = document.createElement('style');
+    style.textContent = `
+        .animate-spin {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+    `;
+    document.head.appendChild(style);
+</script>
 
 @endsection

@@ -1,7 +1,7 @@
 @extends("auth.publisher_register.base")
 
 @section("step_form_content")
-    <div class="card" style="padding-bottom: 20px;">
+    <div class="card">
         <div class="card-body ">
             <div class="edit-profile__body">
                 <form id="stepOne" class="stepOne" action="javascript:void(0)">

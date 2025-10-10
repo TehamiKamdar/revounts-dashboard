@@ -158,7 +158,7 @@ class PublisherAjaxController extends Controller
 
             $page = $request->page;
             $account = $request->account;
-
+            // dd($account);
             Session::put('is_step_one_complete_publisher', false);
             Session::put('is_step_two_complete_publisher', false);
             Session::put('is_step_three_complete_publisher', false);

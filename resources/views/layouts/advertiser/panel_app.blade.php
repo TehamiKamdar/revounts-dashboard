@@ -6,99 +6,118 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <link rel="icon" type="image/png" href="{{ \App\Helper\Static\Methods::staticAsset("img/favicon.png") }}">
-
+    <link rel="icon" type="image/png" href="{{ asset("new_assets/favicon.png") }}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
     {!! JsonLd::generate() !!}
 
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <!-- inject:css-->
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/bootstrap/bootstrap.css") }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/fontawesome.css") }}">
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/line-awesome.min.css") }}">
+    {{-- <link rel="stylesheet" href="{{ asset("vendor_assets/css/bootstrap/bootstrap.css") }}"> --}}
+    {{-- <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset(" vendor_assets/css/fontawesome.css") }}">
+    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset(" vendor_assets/css/line-awesome.min.css")
+        }}"> --}}
 
     @stack('styles')
+    @stack('extended_styles')
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- RemixIcons -->
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@3.5.0/fonts/remixicon.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset("new_assets/css/style.css") }}">
 
-    <link rel="stylesheet" href="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/css/style.css") }}">
+    {{-- <style>
 
-    <style>
-        .w-10 {
-            width: 10% !important;
-        }
-
-        .navbar-left .navbar-brand {
-            margin-right: 65px !important;
-        }
-
-        .navbar-left .navbar-brand svg, .navbar-left .navbar-brand img {
-            max-width: 80%; !important;
-        }
-
-        .strikingDash-top-menu ul li a {
-             padding: unset;
-        }
-
-        .footer-wrapper {
-            padding: 10px 12px !important;
-        }
-
-        .strikingDash-top-menu ul li:hover > .subMenu, .dropdown-custom .dropdown-wrapper {
-            top: 20px !important
-        }
         .select2-container--default .select2-selection--multiple .select2-selection__clear {
             margin: -2px -10px;
         }
+
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
             margin: 10px 0 !important;
         }
-        .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple {
+
+        .select2-container--default .select2-selection--single,
+        .select2-container--default .select2-selection--multiple {
             min-height: 46px;
         }
+
         .select2-container--default .select2-selection--multiple .select2-selection__rendered li,
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
-            margin: 10px 0 10px 10px !important;
+            margin: 0px 0 0px 10px !important;
         }
-        .select2-container--default .select2-selection--single, .select2-container--default .select2-selection--multiple {
-            padding: unset !important;
+
+        .select2-container--default .select2-selection--single,
+        .select2-container--default .select2-selection--multiple {
+            padding: 8px !important;
         }
+
         .select2-container--default .select2-selection--multiple .select2-selection__choice {
             margin-bottom: 5px;
         }
+
         .select2-container--default .select2-selection--multiple .select2-selection__rendered {
             padding: 0 20px 0 5px !important;
         }
-    </style>
 
+        .text-truncate-custom {
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .spin-active #advertiserContent,
+        .spin-active .table-responsive {
+            opacity: 0.1;
+        }
+
+        .select2-container .select2-selection--single {
+            box-sizing: border-box;
+            cursor: pointer;
+            display: block;
+            height: 48px;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+
+        .select2-container .select2-search--inline .select2-search__field {
+            box-sizing: border-box;
+            border: none;
+            font-size: 100%;
+            margin-top: 8px;
+            padding: 0;
+        }
+    </style> --}}
 </head>
 
-<body class="top-menu layout-light overlayScroll">
-
-@include("partial.advertiser.mobile")
-@include("partial.advertiser.header")
-<main class="main-content">
-    @yield("content")
+<body>
+    @include("partial.advertiser.header")
+    <div class="dashboard-container">
+        <main class="dashboard-main">
+            <div class="notification-wrapper position-fixed top-0 end-0 p-3" style="z-index: 1080"></div>
+            @yield("content")
+        </main>
+    </div>
     @include("partial.advertiser.footer")
-</main>
 
-<div id="overlayer">
-    <span class="loader-overlay">
-        <div class="atbd-spin-dots spin-lg">
-            <span class="spin-dot badge-dot dot-primary"></span>
-            <span class="spin-dot badge-dot dot-primary"></span>
-            <span class="spin-dot badge-dot dot-primary"></span>
-            <span class="spin-dot badge-dot dot-primary"></span>
-        </div>
-    </span>
-</div>
+    <div id="overlayer">
+        <span class="loader-overlay">
+            <div class="atbd-spin-dots spin-lg">
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+                <span class="spin-dot badge-dot dot-primary"></span>
+            </div>
+        </span>
+    </div>
 
-<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-3.5.1.min.js") }}"></script>
-<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-ui.js") }}"></script>
-<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/bootstrap/popper.js") }}"></script>
-<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/bootstrap/bootstrap.min.js") }}"></script>
-<script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/feather.min.js") }}"></script>
+    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-3.5.1.min.js") }}"></script>
+    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-ui.js") }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/feather.min.js") }}"></script>
 
 @stack('scripts')
 

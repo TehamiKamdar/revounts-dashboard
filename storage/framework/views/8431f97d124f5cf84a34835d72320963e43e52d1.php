@@ -1,10 +1,7 @@
 <?php $__env->startSection("step_form_content"); ?>
 
-<div class="card checkout-shipping-form">
-    <div class="card-header border-bottom-0 pb-sm-0 pb-1 px-0">
-        <h4 class="font-weight-bold">2. Company Information</h4>
-    </div>
-    <div class="card-body p-0">
+<div class="card">
+    <div class="card-body">
         <div class="edit-profile__body">
             <form id="stepTwo" action="javascript:void(0)">
                 <input type="hidden" id="dialCode" name="dialCode" value="<?php echo e($stepTwo['dialCode'] ?? '+1'); ?>">
@@ -115,9 +112,13 @@
                     </div>
                 </div>
 
-                <div class="button-group d-flex pt-3 mb-20 justify-content-between flex-wrap">
-                    <button type="button" onclick="stepFormShow(1)" class="btn-light"><i class="ri-arrow-left-line mr-10"></i>Previous</button>
-                    <button type="submit" id="saveTwoStep" class="btn-login">Save &amp; Next<i class="ri-arrow-right-line ml-10"></i></button>
+                <div class="button-group pt-3 flex-wrap">
+                    <button type="button" onclick="stepFormShow(1)" class="btn-light">
+                        <i class="ri-arrow-left-line me-2"></i>Previous
+                    </button>
+                    <button type="submit" id="saveTwoStep" class="btn-login">
+                        Save &amp; Next<i class="ri-arrow-right-line ms-2"></i>
+                    </button>
                 </div>
             </form>
         </div>

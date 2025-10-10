@@ -1,303 +1,161 @@
-<header class="header-top">
-    <nav class="navbar navbar-light">
-        <div class="navbar-left">
-            <a href="{{ route("dashboard", ["type" => "advertiser"]) }}" class="sidebar-toggle">
-                <img class="svg" src="{{ asset("img/svg/bars.svg") }}" alt="img">
-            </a>
-            <a class="navbar-brand" href="{{ route("dashboard", ["type" => "advertiser"]) }}">
-                <img class="dark" src="{{ asset("img/logo.png") }}" alt="svg" style="width: 200px">
-                <img class="light" src="{{ asset("img/logo.png") }}" alt="img" style="width: 200px">
-            </a>
-            <form action="/" class="search-form">
-                <span data-feather="search"></span>
-                <input class="form-control mr-sm-2 box-shadow-none" type="text" placeholder="Search...">
-            </form>
-            <div class="top-menu">
+<header class="dashboard-header">
+    <div class="header-content">
+        <!-- Brand and Navigation -->
+        <div class="brand">
+            <div class="dashboard-logo"></div>
 
-                <div class="strikingDash-top-menu position-relative">
-                    <ul>
-                        @can('publisher_dashboard')
-                            <li>
-                                <a href="#" class="">Dashboard</a>
-                            </li>
-                        @endcan
-                        @can('publisher_advertiser_access')
-                            <li @if(\App\Helper\PublisherData::getAdvertisersAccess()) class="has-subMenu" @endif>
-                                <a href="#" class="">Advertisers</a>
-                                @if(\App\Helper\PublisherData::getAdvertisersAccess())
-                                    <ul class="subMenu">
-                                        @can('publisher_my_advertiser')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="light">My Advertisers</a>
-                                            </li>
-                                        @endcan
-                                        @can('publisher_find_advertiser')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="dark">Find Advertisers</a>
-                                            </li>
-                                        @endcan
-                                    </ul>
-                                @endif
-                            </li>
-                        @endcan
-                        @can('publisher_reports_access')
-                            <li @if(\App\Helper\PublisherData::getReportsAccess()) class="has-subMenu" @endif>
-                                <a href="#" class="">Reports</a>
-                                @if(\App\Helper\PublisherData::getReportsAccess())
-                                    <ul class="subMenu">
-                                        @can('publisher_reports_performance')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="light">Performance</a>
-                                            </li>
-                                        @endcan
-                                        @can('publisher_reports_transactions')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="dark">Transactions</a>
-                                            </li>
-                                        @endcan
-                                    </ul>
-                                @endif
-                            </li>
-                        @endcan
-                        @can('publisher_links_access')
-                            <li @if(\App\Helper\PublisherData::getLinksAccess()) class="has-subMenu" @endif>
-                                <a href="#" class="">Links</a>
-                                @if(\App\Helper\PublisherData::getLinksAccess())
-                                    <ul class="subMenu">
-                                        @can('publisher_links_banners')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="light">Banners</a>
-                                            </li>
-                                        @endcan
-                                        @can('publisher_links_text_n_emails')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="dark">Text/Emails</a>
-                                            </li>
-                                        @endcan
-                                        @can('publisher_links_coupons')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="dark">Coupons</a>
-                                            </li>
-                                        @endcan
-                                        @can('publisher_links_products')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="dark">Products</a>
-                                            </li>
-                                        @endcan
-                                        @can('publisher_links_brand_datafeeds')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="dark">Brands Datafeeds</a>
-                                            </li>
-                                        @endcan
-                                    </ul>
-                                @endif
-                            </li>
-                        @endcan
-                        @can('publisher_payments_access')
-                            <li @if(\App\Helper\PublisherData::getPaymentsAccess()) class="has-subMenu" @endif>
-                                <a href="#" class="">Payments</a>
-                                @if(\App\Helper\PublisherData::getPaymentsAccess())
-                                    <ul class="subMenu">
-                                        @can('publisher_payments_summary')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="light">Summary</a>
-                                            </li>
-                                        @endcan
-                                        @can('publisher_payments_details')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="dark">Details</a>
-                                            </li>
-                                        @endcan
-                                        @can('publisher_payments_transaction_inquiries')
-                                            <li class="l_sidebar">
-                                                <a href="#" data-layout="dark">Transaction Inquiries</a>
-                                            </li>
-                                        @endcan
-                                    </ul>
-                                @endif
-                            </li>
-                        @endcan
-                        @can('publisher_settings')
-                            <li>
-                                <a href="#" class="">Settings</a>
-                            </li>
-                        @endcan
-                    </ul>
-                </div>
 
-            </div>
-        </div>
-        <!-- ends: navbar-left -->
-
-        <div class="navbar-right">
-            <ul class="navbar-right__menu">
-                <!-- ends: nav-message -->
-{{--                <li class="nav-notification">--}}
-{{--                    <div class="dropdown-custom">--}}
-{{--                        <a href="javascript:;" class="nav-item-toggle">--}}
-{{--                            <span data-feather="bell"></span></a>--}}
-{{--                        <div class="dropdown-wrapper">--}}
-{{--                            <h2 class="dropdown-wrapper__title">Notifications <span class="badge-circle badge-warning ml-1">4</span></h2>--}}
-{{--                            <ul>--}}
-{{--                                <li class="nav-notification__single nav-notification__single--unread d-flex flex-wrap">--}}
-{{--                                    <div class="nav-notification__type nav-notification__type--primary">--}}
-{{--                                        <span data-feather="inbox"></span>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="nav-notification__details">--}}
-{{--                                        <p>--}}
-{{--                                            <a href="" class="subject stretched-link text-truncate" style="max-width: 180px;">James</a>--}}
-{{--                                            <span>sent you a message</span>--}}
-{{--                                        </p>--}}
-{{--                                        <p>--}}
-{{--                                            <span class="time-posted">5 hours ago</span>--}}
-{{--                                        </p>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-notification__single nav-notification__single--unread d-flex flex-wrap">--}}
-{{--                                    <div class="nav-notification__type nav-notification__type--secondary">--}}
-{{--                                        <span data-feather="upload"></span>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="nav-notification__details">--}}
-{{--                                        <p>--}}
-{{--                                            <a href="" class="subject stretched-link text-truncate" style="max-width: 180px;">James</a>--}}
-{{--                                            <span>sent you a message</span>--}}
-{{--                                        </p>--}}
-{{--                                        <p>--}}
-{{--                                            <span class="time-posted">5 hours ago</span>--}}
-{{--                                        </p>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-notification__single nav-notification__single--unread d-flex flex-wrap">--}}
-{{--                                    <div class="nav-notification__type nav-notification__type--success">--}}
-{{--                                        <span data-feather="log-in"></span>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="nav-notification__details">--}}
-{{--                                        <p>--}}
-{{--                                            <a href="" class="subject stretched-link text-truncate" style="max-width: 180px;">James</a>--}}
-{{--                                            <span>sent you a message</span>--}}
-{{--                                        </p>--}}
-{{--                                        <p>--}}
-{{--                                            <span class="time-posted">5 hours ago</span>--}}
-{{--                                        </p>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-notification__single nav-notification__single d-flex flex-wrap">--}}
-{{--                                    <div class="nav-notification__type nav-notification__type--info">--}}
-{{--                                        <span data-feather="at-sign"></span>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="nav-notification__details">--}}
-{{--                                        <p>--}}
-{{--                                            <a href="" class="subject stretched-link text-truncate" style="max-width: 180px;">James</a>--}}
-{{--                                            <span>sent you a message</span>--}}
-{{--                                        </p>--}}
-{{--                                        <p>--}}
-{{--                                            <span class="time-posted">5 hours ago</span>--}}
-{{--                                        </p>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                                <li class="nav-notification__single nav-notification__single d-flex flex-wrap">--}}
-{{--                                    <div class="nav-notification__type nav-notification__type--danger">--}}
-{{--                                        <span data-feather="heart"></span>--}}
-{{--                                    </div>--}}
-{{--                                    <div class="nav-notification__details">--}}
-{{--                                        <p>--}}
-{{--                                            <a href="" class="subject stretched-link text-truncate" style="max-width: 180px;">James</a>--}}
-{{--                                            <span>sent you a message</span>--}}
-{{--                                        </p>--}}
-{{--                                        <p>--}}
-{{--                                            <span class="time-posted">5 hours ago</span>--}}
-{{--                                        </p>--}}
-{{--                                    </div>--}}
-{{--                                </li>--}}
-{{--                            </ul>--}}
-{{--                            <a href="" class="dropdown-wrapper__more">See all incoming activity</a>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </li>--}}
-                <!-- ends: .nav-notification -->
-                <li class="nav-author">
-                    <div class="dropdown-custom">
-                        <a href="javascript:;" class="nav-item-toggle">
-                            <img src="{{ \App\Helper\Static\Methods::staticAsset("img/author-nav.jpg") }}" alt="" class="rounded-circle">
+            <nav class="header-nav">
+                @can('publisher_dashboard')
+                    <div class="nav-item">
+                        <a href="{{ route("dashboard", ["type" => "advertiser"]) }}" class="nav-link">
+                            <i class="ri-dashboard-line"></i>
+                            <span class="nav-text">Dashboard</span>
                         </a>
-                        <div class="dropdown-wrapper">
-                            <div class="nav-author__info">
-                                <div class="author-img">
-                                    <img src="{{ \App\Helper\Static\Methods::staticAsset("img/author-nav.jpg") }}" alt="" class="rounded-circle">
-                                </div>
-                                <div>
-                                    <h6>{{ auth()->user()->full_name }}</h6>
-                                    <span>{{ auth()->user()->getRoleName() }} ID: {{ auth()->user()->sid }}</span>
-                                </div>
-                            </div>
-                            <div class="nav-author__options">
-                                <ul>
-                                    @if(auth()->user()->type == \App\Models\User::PUBLISHER)
-                                        <li>
-                                            <a href="{{ route("publisher.profile.basic-information.index") }}">
-                                                <span data-feather="settings"></span> Settings
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span data-feather="grid"></span> Websites
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span data-feather="key"></span> Payment Settings
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span data-feather="user-plus"></span> Refer A Friend
-                                            </a>
-                                        </li>
-                                    @else
-                                        <li>
-                                            <a href="">
-                                                <span data-feather="user"></span> Profile
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span data-feather="settings"></span> Settings</a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span data-feather="key"></span> Billing</a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span data-feather="users"></span> Activity</a>
-                                        </li>
-                                        <li>
-                                            <a href="">
-                                                <span data-feather="bell"></span> Help</a>
-                                        </li>
-                                    @endif
-                                </ul>
-                                <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logoutform').submit();" class="nav-author__signout">
-                                    <span data-feather="log-out"></span> Sign Out</a>
-                                <form id="logoutform" action="{{ route('logout') }}" method="POST" class="display-hidden">
-                                    {{ csrf_field() }}
-                                </form>
-                            </div>
-                        </div>
-                        <!-- ends: .dropdown-wrapper -->
                     </div>
-                </li>
-                <!-- ends: .nav-author -->
-            </ul>
-            <!-- ends: .navbar-right__menu -->
-            <div class="navbar-right__mobileAction d-md-none">
-                <a href="#" class="btn-search">
-                    <span data-feather="search"></span>
-                    <span data-feather="x"></span></a>
-                <a href="#" class="btn-author-action">
-                    <span data-feather="more-vertical"></span></a>
+                @endcan
+
+                @can('publisher_advertiser_access')
+                    <div class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">
+                            <i class="ri-user-smile-line"></i>
+                            <span class="nav-text">Advertisers</span>
+                            <i class="chevron ri-arrow-down-s-line"></i>
+                        </a>
+                        <ul class="submenu">
+                            @can('publisher_my_advertiser')
+                                <li><a href="#" class="nav-link">My Advertisers</a></li>
+                            @endcan
+                            @can('publisher_find_advertiser')
+                                <li><a href="#" class="nav-link">Find Advertisers</a></li>
+                            @endcan
+                        </ul>
+                    </div>
+                @endcan
+
+                @can('publisher_reports_access')
+                    <div class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">
+                            <i class="ri-line-chart-line"></i>
+                            <span class="nav-text">Reports</span>
+                            <i class="chevron ri-arrow-down-s-line"></i>
+                        </a>
+                        <ul class="submenu">
+                            @can('publisher_reports_performance')
+                                <li><a href="#" class="nav-link">Performance</a></li>
+                            @endcan
+                            @can('publisher_reports_transactions')
+                                <li><a href="#" class="nav-link">Transactions</a></li>
+                            @endcan
+                        </ul>
+                    </div>
+                @endcan
+
+                @can('publisher_links_access')
+                    <div class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">
+                            <i class="ri-links-line"></i>
+                            <span class="nav-text">Links</span>
+                            <i class="chevron ri-arrow-down-s-line"></i>
+                        </a>
+                        <ul class="submenu">
+                            @can('publisher_links_banners')
+                                <li><a href="#" class="nav-link">Banners</a></li>
+                            @endcan
+                            @can('publisher_links_text_n_emails')
+                                <li><a href="#" class="nav-link">Text/Emails</a></li>
+                            @endcan
+                            @can('publisher_links_coupons')
+                                <li><a href="#" class="nav-link">Coupons</a></li>
+                            @endcan
+                            @can('publisher_links_products')
+                                <li><a href="#" class="nav-link">Products</a></li>
+                            @endcan
+                            @can('publisher_links_brand_datafeeds')
+                                <li><a href="#" class="nav-link">Brands Datafeeds</a></li>
+                            @endcan
+                        </ul>
+                    </div>
+                @endcan
+
+                @can('publisher_payments_access')
+                    <div class="nav-item has-dropdown">
+                        <a href="#" class="nav-link">
+                            <i class="ri-money-dollar-circle-line"></i>
+                            <span class="nav-text">Payments</span>
+                            <i class="chevron ri-arrow-down-s-line"></i>
+                        </a>
+                        <ul class="submenu">
+                            @can('publisher_payments_summary')
+                                <li><a href="#" class="nav-link">Summary</a></li>
+                            @endcan
+                            @can('publisher_payments_details')
+                                <li><a href="#" class="nav-link">Details</a></li>
+                            @endcan
+                            @can('publisher_payments_transaction_inquiries')
+                                <li><a href="#" class="nav-link">Transaction Inquiries</a></li>
+                            @endcan
+                        </ul>
+                    </div>
+                @endcan
+
+                @can('publisher_settings')
+                    <div class="nav-item">
+                        <a href="#" class="nav-link">
+                            <i class="ri-settings-3-line"></i>
+                            <span class="nav-text">Settings</span>
+                        </a>
+                    </div>
+                @endcan
+            </nav>
+        </div>
+
+        <!-- User Profile Actions -->
+        <div class="header-actions">
+            <div class="user-profile">
+                <div class="avatar"><i class="ri-user-2-fill"></i></div>
+                <div class="profile-dropdown">
+                    <div class="user-info">
+                        <div class="user-name">{{ auth()->user()->full_name }}</div>
+                        <div class="user-email">{{ auth()->user()->getRoleName() }} ID: {{ auth()->user()->sid }}</div>
+                    </div>
+
+                    @if(auth()->user()->type == \App\Models\User::PUBLISHER)
+                        <a class="dropdown-item" href="{{ route("publisher.profile.basic-information.index") }}">
+                            <i class="ri-settings-3-line"></i>
+                            <span>Settings</span>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="ri-global-line"></i>
+                            <span>Websites</span>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="ri-currency-line"></i>
+                            <span>Payment Settings</span>
+                        </a>
+                        <a class="dropdown-item" href="#">
+                            <i class="ri-user-add-line"></i>
+                            <span>Refer A Friend</span>
+                        </a>
+                    @else
+                        <a class="dropdown-item" href="#"><span>Profile</span></a>
+                        <a class="dropdown-item" href="#"><span>Settings</span></a>
+                        <a class="dropdown-item" href="#"><span>Billing</span></a>
+                        <a class="dropdown-item" href="#"><span>Activity</span></a>
+                        <a class="dropdown-item" href="#"><span>Help</span></a>
+                    @endif
+
+                    <div class="dropdown-divider"></div>
+
+                    <a href="javascript:void(0)" onclick="event.preventDefault(); document.getElementById('logoutform').submit();" class="dropdown-item logout-item">
+                        <i class="ri-logout-box-r-line"></i>
+                        <span>Logout</span>
+                        <form id="logoutform" action="{{ route('logout') }}" method="POST" class="display-hidden">
+                            {{ csrf_field() }}
+                        </form>
+                    </a>
+                </div>
             </div>
         </div>
-        <!-- ends: .navbar-right -->
-    </nav>
+    </div>
 </header>

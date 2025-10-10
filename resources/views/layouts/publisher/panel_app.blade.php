@@ -101,6 +101,7 @@
     @include("partial.publisher.header")
     <div class="dashboard-container">
         <main class="dashboard-main">
+            <div class="notification-wrapper position-fixed top-0 end-0 p-3" style="z-index: 1080"></div>
             @yield("content")
         </main>
     </div>
@@ -116,7 +117,6 @@
             </div>
         </span>
     </div>
-    <div class="notification-wrapper position-fixed top-0 end-0 p-3" style="z-index: 1080"></div>
 
     <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-3.5.1.min.js") }}"></script>
     <script src="{{ \App\Helper\Static\Methods::staticAsset("vendor_assets/js/jquery/jquery-ui.js") }}"></script>
